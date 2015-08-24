@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int myAtoi(string str) {
+        int n = str.length();
+        long ret=0;
+        int i = 0;
+        int sign = 1;
+        if(n==0)
+        return ret;
+        while(str.at(i)==' ' && i<n){
+            i++;
+        }
+        
+        if (str.at(i)=='-'){
+            sign=-1;
+            i++;
+        }else if (str.at(i)=='+')
+            i++;
+            
+        for(;i<n;i++){
+            if(str.at(i)>'9'||str.at(i)<'0')
+                break;
+            ret = ret *10+(str.at(i)-'0');
+            if(ret > INT_MAX) return sign == 1 ? INT_MAX : INT_MIN; 
+                
+        }
+        return ret*sign;
+    }
+};
