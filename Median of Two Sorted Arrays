@@ -39,6 +39,6 @@ public:
             }
         }
         if(k==0)
-            return nums1[--i]<nums2[--j]? nums2[j] :nums1[i];
+            return min(nums2[--j],nums1[--i]);
     }
 };
