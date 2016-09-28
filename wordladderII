@@ -13,7 +13,8 @@ public class Solution {
         int cnt=q.size();
         boolean found=false;
         while(cnt>0 && !found){
-        	for(String s : q){
+        	//进入下层之前，把先上一层全部设为visited！
+            for(String s : q){
             	visited.add(s);
             }
             while(cnt>0){                
