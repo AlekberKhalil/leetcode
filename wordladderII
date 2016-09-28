@@ -1,17 +1,23 @@
 public class Solution {
+    List<List<String>> ret = new ArrayList<List<String>>();
+    List<String> path= new ArrayList<String>();
+    HashMap<String,Set<String>> father= new HashMap<String,Set<String>>();
+    
     public List<List<String>> findLadders(String beginWord, String endWord, Set<String> wordList) {
         Set<String> visited = new HashSet<String>();
         Queue<String> q = new LinkedList<String>();
-        HashMap<String,List<String>> father= new HashMap<String,List<String>>();
-        List<List<String>> ret = new ArrayList<List<String>>();
+        
+        
         q.offer(beginWord);
         visited.add(beginWord);
         int cnt=q.size();
         boolean found=false;
         while(cnt>0 && !found){
-            
-            while(cnt>0){
-                String cur= q.poll();
+        	for(String s : q){
+            	visited.add(s);
+            }
+            while(cnt>0){                
+            	String cur= q.poll();
                 cnt--;
                 char[] charArr = cur.toCharArray();
                 for(int i=0;i<charArr.length;i++){
@@ -21,30 +27,34 @@ public class Solution {
                          charArr[i]=c;
                          String str = new String(charArr);
                          if(str.equals(endWord) ){
-                             List<String> l = father.get(endWord);
+                             Set<String> l = father.get(endWord);
                              if(l==null){
-                               l = new ArrayList<String>();
+                               l = new HashSet<String>();
                                 l.add(cur);
                                 father.put(endWord, l);
                              }
                             else{
-                                l.add(str); 
+                                l.add(cur); 
                             }
-                             
                              found=true;
                              break;
                          }
-                         else if(!str.equals(beginWord)&&!visited.contains(str)&&wordList.contains(str)){
-                             visited.add(str);
+                          if(!visited.contains(str)&&wordList.contains(str)){
                              q.offer(str);
-                             if(father.containsKey(str))
-                                father.get(str).add(cur);
-                            else{
-                                List<String> l = new ArrayList<String>();
+                             
+                             Set<String> l = father.get(str);
+                             if(l==null){
+                               l = new HashSet<String>();
                                 l.add(cur);
                                 father.put(str, l);
+                             }
+                            else{
+                                l.add(cur); 
                             }
+                             
+                             
                          }
+                         
                          
                      }
                      charArr[i]=tempC;
@@ -54,25 +64,21 @@ public class Solution {
            
         }
         
-        List<String> path= new ArrayList<String>();
-        genPath(beginWord, path, father,ret, endWord);
+        genPath(beginWord, endWord);
         return ret;
     }
     
-    public void genPath(String beginWord, List<String> path, HashMap<String,List<String>> father,List<List<String>> ret, String word){
+    public void genPath(String beginWord, String word){
         path.add(0,word);
         if(word.equals(beginWord)){
             ret.add(new ArrayList<String>(path));
-            
         }else{
             if(father!=null && father.get(word)!=null){
                 for(String child : father.get(word)){
-                genPath(beginWord, path, father,ret, child);
+                genPath(beginWord, child);
                 }
             }
-            
         }
-        
         path.remove(0);
     }
 }
