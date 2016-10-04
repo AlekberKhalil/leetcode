@@ -1,0 +1,36 @@
+public class Solution {
+    List<List<String>> ret = new ArrayList<List<String>>();
+    List<String> path = new ArrayList<String>();
+    public List<List<String>> partition(String s) {
+         dfs(s,0);
+         return ret;
+    }
+    void dfs(String s, int start){
+        if(start==s.length()){
+            List<String> temp = new ArrayList<String>(path);
+            ret.add(temp);
+            return;
+        }
+        
+        for(int i=start;i<s.length();i++){
+            String temp = s.substring(start,i+1);
+            if(isPal(temp)){
+                path.add(temp);
+                dfs(s,i+1);
+                path.remove(path.size()-1);
+            }
+        }
+    }
+    boolean isPal(String str){
+        if(str.length()<2)
+         return true;
+         int s=0,e=str.length()-1;
+         char[] c = str.toCharArray();
+        while(s<=e){
+            if(c[s++]!=c[e--])
+             return false;
+             
+        }
+        return true;
+    }
+}
