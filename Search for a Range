@@ -1,0 +1,44 @@
+public class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        
+            
+        int index = findTarget(nums,target);
+        int lindex=index, rindex=index;
+        while(lindex-1>-1&&lindex-1<nums.length&&nums[lindex-1]==target)
+            lindex--;
+        while(rindex+1<nums.length&&rindex+1>-1&&nums[rindex+1]==target)
+            rindex++;
+            
+         if(index==-1&&nums.length<4){
+             int min=-1,max=-1;
+             for(int i=0;i<nums.length;i++){
+                 if(nums[i]==target&&min==-1)
+                    min=i;
+                if(nums[i]==target)
+                    max=Math.max(i,min);
+             }
+             int[] ret = {min,max};
+             return ret;
+         }
+         
+         
+        int[] ret = {lindex,rindex};
+        return ret;
+    }
+    
+    int findTarget(int[] nums, int target){
+        int l=0,r=nums.length,m;
+        while(r-l>1){
+            m=l+(r-l)/2;
+            if(nums[m]<=target)
+                l=m;
+            else
+                r=m;
+        }
+         if(l>-1&&l<nums.length&&nums[l]==target)
+        return l;
+
+    return -1;
+    }
+   
+}
