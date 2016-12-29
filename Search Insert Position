@@ -1,0 +1,19 @@
+public class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int l=0,r=nums.length-1,m=0;
+        while(l<r){
+            m=l+((r-l)>>1);
+            if(nums[m]<target)
+                l=m+1;
+            else
+                r=m;
+                
+        }
+        
+        if(l==r&&nums[l]<target)
+        	return l+1;
+        else
+        	return r;
+        
+    }
+}
