@@ -1,0 +1,17 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix.length==0)
+        return false;
+        int m=matrix.length,n=matrix[0].length, c=n-1,r=0,v;
+        while(c>-1&&r<m){
+            v=matrix[r][c];
+            if(v==target)
+            return true;
+            else if(v<target)
+                r++;
+                else 
+                c--;
+        }
+        return false;
+    }
+}
