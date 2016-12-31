@@ -1,0 +1,21 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix.length==0)
+        return false;
+        
+        int l=0,m=matrix.length,n=matrix[0].length,r=m*n-1,d,v;
+        while(l<r){
+            d=l+(r-l)/2;
+            v=matrix[d/n][d%n];
+            if(v<target)
+            l=d+1;
+            else
+            r=d;
+            
+        }
+        if(target==matrix[r/n][r%n])
+            return true;
+            return false;
+        
+    }
+}
