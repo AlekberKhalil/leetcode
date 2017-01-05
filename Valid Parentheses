@@ -1,0 +1,23 @@
+public class Solution {
+    public boolean isValid(String s) {
+        
+        String l="({[";
+        String r=")}]";
+        Character temp;
+        Stack<Character> ss= new Stack<Character>();
+        for(char c : s.toCharArray()){
+            if(l.indexOf(c)>=0)
+                ss.push(c);
+            else{
+                if(!ss.empty()){
+                    temp=ss.pop();
+                    if(r.indexOf(c)!=l.indexOf(temp))
+                        return false;
+                }
+                else 
+                    return false;
+            }
+        }
+        return ss.empty();
+    }
+}
