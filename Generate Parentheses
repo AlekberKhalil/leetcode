@@ -1,0 +1,19 @@
+public class Solution {
+     List<String> ret = new ArrayList<String>();
+    String path;
+    public List<String> generateParenthesis(int n) {
+        genPath(n,0,"");
+        return  ret;
+    }
+    void genPath(int l,int r,String s){
+        if(l==0&&r==0){
+            ret.add(s);
+            return;
+        }
+        if(l>0)
+        genPath(l-1,r+1,s+'(');
+        if(r>0)
+        genPath(l,r-1,s+')');
+            
+    }
+}
