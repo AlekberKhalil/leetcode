@@ -1,3 +1,4 @@
+//recursive
 public class Solution {
     public void flatten(TreeNode root) {
         if(root==null)
@@ -15,6 +16,31 @@ public class Solution {
          root.right=root.left;
         
          root.left=null;
+    }
+       
+}
+
+/**
+ * iterative
+ * }
+ */
+public class Solution {
+    public void flatten(TreeNode root) {
+        Stack s = new Stack<TreeNode>();
+        if(root==null)
+        return;
+        s.push(root);
+        while(!s.empty()){
+            TreeNode p=(TreeNode)s.peek();
+            s.pop();
+            if(p.right!=null)
+            s.push(p.right);
+            if(p.left!=null)
+            s.push(p.left);
+            if(!s.empty())
+            p.right=(TreeNode)s.peek();
+            p.left=null;
+        }
     }
     
     
