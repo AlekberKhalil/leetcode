@@ -23,7 +23,7 @@ public class Solution {
         return null;
         TreeNode root=new TreeNode(postorder[postEnd]);
         int pos=hm.get(postorder[postEnd]);
-        TreeNode left=buildTree(inorder,postorder, inBegin,pos-1,postBegin,postBegin+pos-inBegin-1,hm);
+        TreeNode left=buildTree(inorder,postorder, inBegin,pos-1,postBegin,postBegin+pos-inBegin-1,hm);//就是前俩param相减得到左子数长度
         TreeNode right=buildTree(inorder,postorder, pos+1,inEnd,postBegin+pos-inBegin,postEnd-1,hm);
         root.left=left;
         root.right=right;
