@@ -1,0 +1,56 @@
+public class Solution {
+    //两次二分，第一次移动end，得到左边界，第二次移动start，得到右边界。
+    public int[] searchRange(int[] nums, int target) {
+        if(nums.length==0)
+            return new int[]{-1, -1};
+
+        
+        int start=0, end = nums.length-1, mid;
+        int[] bound = new int[2];
+        //left bound
+        while(start+1<end){
+            mid = start+(end-start)/2;
+            
+            if(nums[mid] == target)
+                end=mid;
+            else if(nums[mid] <target)
+                start=mid;
+            else 
+                end=mid;
+        }
+        
+        if(target==nums[start])
+            bound[0]=start;
+        else if(target == nums[end])
+            bound[0]=end;
+        else
+            bound[0]=-1;
+        
+        //reset start and end,right bound
+        start=0;
+        end=nums.length-1;
+        
+        while(start+1<end){
+            mid = start+(end-start)/2;
+            
+            if(nums[mid] == target)
+                start=mid;
+            else if(nums[mid] <target)
+                start=mid;
+            else 
+                end=mid;
+        }
+        
+        //此处比较顺序很重要
+        if(target==nums[end])
+            bound[1]=end;
+        else if(target == nums[start])
+            bound[1]=start;
+        else
+            bound[1]=-1;
+        
+        
+         return bound;   
+            
+    }
+}
