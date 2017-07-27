@@ -25,3 +25,23 @@ public class Solution {
         }
     }
 }
+
+//非递归，bit
+public class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        
+      int len=nums.length;
+        //i<(1<<3) 此处1<<3 为1000 减一正好111
+        for(int i = 0;i<(1<<len);i++){
+            List<Integer> path =  new ArrayList<Integer>();
+            for(int j = 0 ; j<len; j++){
+                if((i&(1<<j)) > 0){
+                    path.add(nums[j]);
+                }
+            }
+            result.add(path);
+        }      
+        return result;
+    }    
+}
