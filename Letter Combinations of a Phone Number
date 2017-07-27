@@ -1,0 +1,30 @@
+public class Solution {
+    
+    
+    public List<String> letterCombinations(String digits) {  
+        List<String> result = new ArrayList<>();
+        
+        if(digits==null || digits.length()==0)
+            return result;
+        
+        String[] nums = new String[digits.length()+1];
+        String[] phone= {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        for(int i = 0;i<digits.length();i++)
+            nums[i]=phone[digits.charAt(i)-'0'];
+
+        dfs(nums, result, "",0);
+        return result;
+    }
+    
+    public void dfs(String[] nums, List<String> result, String path,int pos){       
+        if(pos == nums.length-1){
+            result.add(path);
+            return;
+        }
+        
+        String level = nums[pos];
+        for(int i=0;i<level.length();i++){
+            dfs(nums,result,path+level.charAt(i),pos+1);         
+        }
+    }
+}
