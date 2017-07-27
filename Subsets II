@@ -1,0 +1,32 @@
+public class Solution {
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+        Arrays.sort(nums);
+        
+        List<List<Integer>> result = new ArrayList<>();
+        if(nums==null)
+            return result;
+        
+        List<Integer> path =  new ArrayList<Integer>();
+        boolean[] visited = new boolean[nums.length];
+        //空集也要加入
+        if(nums.length ==0)
+            result.add(path);
+        dfs(nums, result, path, 0,visited);
+        return result;
+    }
+    
+    public void dfs(int[] nums, List<List<Integer>> result, List<Integer> path, int pos, boolean[] visited){
+        result.add(new ArrayList<>(path) );
+        
+        for(int i=pos;i<nums.length;i++){
+            //i!=pos
+            if(i!=pos && nums[i]==nums[i-1] && !visited[i-1])
+                continue;
+            path.add(nums[i]);
+            visited[i]=true;
+            dfs(nums,result,path,i+1,visited);
+            visited[i]=false;
+            path.remove(path.size()-1);            
+        }
+    }
+    }
