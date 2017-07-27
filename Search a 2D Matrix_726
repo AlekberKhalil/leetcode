@@ -1,0 +1,30 @@
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        if(matrix==null || matrix.length == 0)
+            return false;
+        //不要忘记判断matrix[0]！！！！！
+        if(matrix[0]==null || matrix[0].length==0)
+            return false;
+        
+        int row= matrix.length, column = matrix[0].length;
+        int start = 0, end = row*column-1,mid;
+        
+        while(start+1<end){
+            mid=start+(end-start)/2;
+            
+            if(matrix[mid/column][mid%column] == target)
+                return true;
+            else if(matrix[mid/column][mid%column] < target)
+                start=mid;
+            else
+                end=mid;               
+        }
+        
+        if(matrix[start/column][start%column] == target)
+            return true;
+        if(matrix[end/column][end%column] ==  target)
+            return true;
+        
+        return false;
+    }
+}
