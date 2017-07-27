@@ -1,0 +1,33 @@
+public class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+    List<List<Integer>> result = new ArrayList<>();
+        if(nums==null)
+            return result;
+        
+        List<Integer> path =  new ArrayList<Integer>();
+        //空集也要加入
+        if(nums.length ==0)
+            result.add(path);
+        Arrays.sort(nums);
+        boolean[] visited= new boolean[nums.length];
+        dfs(nums, result, path,visited);
+        return result;
+    }
+    
+    public void dfs(int[] nums, List<List<Integer>> result, List<Integer> path, boolean[] visited){
+        //path要新建一个啊！！！！！！！！！！！！
+        if(path.size()==nums.length)
+            result.add(new ArrayList<>(path) );
+        
+        for(int i=0;i<nums.length;i++){
+            //visited[i] 也要判断！！！！！
+            if(visited[i] || (i!=0 && nums[i]==nums[i-1]&& !visited[i-1]))
+                continue;
+            path.add(nums[i]);
+            visited[i]=true;
+            dfs(nums,result,path,visited);
+            visited[i]=false;
+            path.remove(path.size()-1);            
+        }
+    }
+}
