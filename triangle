@@ -1,0 +1,27 @@
+public class Solution {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        //错过，长宽极值都要算
+        if (triangle == null || triangle.size() == 0) {
+            return -1;
+        }
+        if (triangle.get(0) == null || triangle.get(0).size() == 0) {
+            return -1;
+        }
+
+        //自底向上
+        int row = triangle.size();
+        
+        int[][] f=new int[row][row];//长宽都是row长度。
+        
+        //初始化最底层，无需初始化第一列，因为需要计算（错过）
+        for(int j=0;j<row;j++)
+            f[row-1][j]=triangle.get(row-1).get(j);
+
+
+        for(int i=row-2;i>=0;i--)
+            for(int j=0;j<=i;j++)
+                f[i][j]=Math.min(f[i+1][j],f[i+1][j+1])+triangle.get(i).get(j);
+        
+        return f[0][0];
+    }
+}
