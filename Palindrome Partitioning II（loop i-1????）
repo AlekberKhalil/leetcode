@@ -1,0 +1,23 @@
+public class Solution {
+    public int minCut(String s) {
+        int n=s.length();
+        int[] cut = new int[n+1];
+        boolean[][] isP = new boolean[n][n];
+           
+        if(s==null || s.length() == 0)
+            return 0;
+        
+        cut[0]=0;
+        //竟然是i-1 很不理解！！！！！
+        for(int i=1;i<=n;i++){
+            cut[i]=i;
+            for(int j=0;j<i;j++){
+                isP[j][i-1]=(i-1-j)>1 ? s.charAt(i-1)==s.charAt(j)&&isP[j+1][i-2] : s.charAt(i-1)==s.charAt(j);
+                if(isP[j][i-1])
+                    cut[i] = Math.min(cut[i],cut[j]+1);
+            }
+    }
+        
+        return cut[n]-1;
+    }
+}
