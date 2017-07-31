@@ -1,0 +1,31 @@
+public class Solution {
+    public int maxSubArray(int[] nums) {
+        int f = 0;
+        int max = Integer.MIN_VALUE;
+
+        for(int i=0;i<nums.length;i++){
+            f=Math.max(f+nums[i], nums[i]);
+             max=Math.max(f,max);
+        }
+                                
+        return max;
+    }
+}
+
+//version 2
+public class Solution {
+    public int maxSubArray(int[] nums) {       
+        int f = 0;
+        int max = Integer.MIN_VALUE;
+
+        for(int i=0;i<nums.length;i++){
+            f+=nums[i];
+            //这一步必须在f赋新值之前。
+            if(f>max)
+             max=f;
+            f=Math.max(f, 0);               
+        }
+                                
+        return max;
+    }
+}
