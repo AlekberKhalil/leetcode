@@ -1,0 +1,40 @@
+public class Solution {
+    public int maximalRectangle(char[][] matrix) {
+        if(matrix==null || matrix.length == 0 || matrix[0]==null || matrix[0].length==0)
+            return 0;
+        //比当前栈内数字小，弹出，大的话加入
+        int row=matrix.length;
+        int column=matrix[0].length;
+        int[] h = new int[column+1];
+        int ret=0;
+  
+        for(int i=0;i<row;i++){
+            //每层一个！
+            Stack<Integer> s = new Stack<Integer>();
+            //为了弹出所有元素，多加一个column
+            for(int j=0;j<=column;j++){
+                if(j<column){
+                     if(matrix[i][j]=='1')
+                    h[j]++;
+                else
+                    h[j]=0;
+                }
+               
+                
+                if(s.isEmpty() || h[j]>=h[s.peek()])
+                    s.push(j);
+                else {
+                    while(!s.isEmpty() && h[j]<h[s.peek()]){
+                        int top = s.pop();
+                        int area = h[top]*(s.isEmpty()? j : j-1-s.peek());
+                        ret = Math.max(ret,area);
+                    }
+                    s.push(j);
+                }
+                
+            }
+        }
+        
+        return ret;
+    }
+}
