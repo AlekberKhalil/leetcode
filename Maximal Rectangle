@@ -38,3 +38,52 @@ public class Solution {
         return ret;
     }
 }
+
+//version 2 从左到右 再从右到左
+public class Solution {
+    public int maximalRectangle(char[][] matrix) {
+         if(matrix==null || matrix.length == 0 || matrix[0]==null || matrix[0].length==0)
+            return 0;
+        //比当前栈内数字小，弹出，大的话加入
+        int row=matrix.length;
+        int column=matrix[0].length;
+        int left,right;
+        int L[]=new int[column];
+        int R[]=new int[column];
+        int ret=0;
+        //初始化
+        for(int j=0;j<column;j++)
+            R[j]=column;
+        
+        int[] h = new int[column];
+        for(int i=0;i<row;i++){
+            left=0;right=column;
+            //从左到右
+            for(int j=0;j<column;j++){
+                if(matrix[i][j]=='1'){
+                     h[j]++;
+                     L[j]=Math.max(L[j],left);
+                }   
+                else{
+                    h[j]=0;
+                    left=j+1;
+                    L[j]=0;
+                    R[j]=column;
+                }     
+            }
+            //从右到左
+           for(int j=column-1;j>=0;j--){
+                if(matrix[i][j]=='1'){                
+                    R[j]=Math.min(R[j],right);
+                    ret=Math.max(ret,h[j]*(R[j]-L[j]));
+                }   
+                else{                
+                    right=j;//不是j+1 比如6-3=3 其实3456有四位。
+                }
+                    
+            }         
+        }
+  
+        return ret;
+    }
+}
