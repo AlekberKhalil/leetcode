@@ -11,6 +11,7 @@ public class Solution {
         for(int k = 1;k<=K;k++){
             temp = -prices[0];
             for(int i=1;i<prices.length;i++){
+            //f[k, ii] = max(f[k, ii-1], prices[ii] - prices[jj] + f[k-1, jj]) { jj in range of [0, ii-1] }
                 f[k][i]=Math.max(f[k][i-1],temp+prices[i]);
                 temp=Math.max(temp,f[k-1][i]-prices[i]);                
             }
