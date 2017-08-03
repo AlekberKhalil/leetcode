@@ -1,0 +1,26 @@
+public class Solution {
+    public int minDistance(String word1, String word2) {        
+        int m = word1.length();
+        int n = word2.length();
+
+        int[][] f = new int[m+1][n+1];
+         //f里存的是尺寸，不是index，所以是m和n，word2.charAt(j-1) 才需要Index
+        for (int i = 0; i <=m; i++) {
+            f[i][0]=i;
+        }
+
+        for (int j = 0; j <=n; j++) {
+           f[0][j]=j;
+        }
+        int min;
+        for(int i =1 ; i <=m; i++){            
+            for(int j =1 ; j <=n; j++){ 
+                min=Math.min(f[i-1][j]+1,f[i][j-1]+1);
+                f[i][j] = word1.charAt(i-1)==word2.charAt(j-1) ? 
+                    Math.min(f[i-1][j-1],min): Math.min(f[i-1][j-1]+1,min);
+                    
+            }
+        }       
+        return f[m][n];
+    }
+}
