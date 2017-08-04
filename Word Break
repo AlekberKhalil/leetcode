@@ -1,0 +1,30 @@
+//还是用长度循环好，坐标加减直接计算，不需要考虑边界
+public class Solution {
+
+    public boolean wordBreak(String s, List<String> wordDict) {
+        int n=s.length();
+        boolean[] f= new boolean[n+1];
+        int maxL = getMaxLength(wordDict);
+        //此处f[n] n还是长度，代表前面n-1是true，不包括当前n
+        f[0]=true;
+        for(int i=1;i<n+1;i++){
+            //j做长度Last word length
+            for(int j=1;j<=maxL && j<=i;j++){               
+                f[i]=f[i-j]&&wordDict.contains(s.substring(i-j,i));
+                if(f[i])
+                    break;
+            }
+        }
+        return f[n];
+    }
+    
+    private int getMaxLength(List<String> dict) {
+        int maxLength = 0;
+        for (String word : dict) {
+            maxLength = Math.max(maxLength, word.length());
+        }
+        return maxLength;
+    }
+
+    
+}
