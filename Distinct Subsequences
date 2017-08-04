@@ -1,0 +1,17 @@
+public class Solution {
+    //f[i][j]是s中长度为i的字符串和t中长度为j的字符串匹配的个数 
+    //f[i][j]=f[i-1][j]+ s(i)==t(j)? f[i-1][j-1]
+    public int numDistinct(String s, String t) {        
+        int n = t.length();
+        int m = s.length();
+        int[] f =new int[n+1];
+        f[0]=1;
+        for(int i = 1 ; i <= m ; i++){
+            //j需要从后往前，因为正序会改变当前值，下一次循环里f[j-1]就变了！！！！
+            for(int j = n ; j > 0 ; j--){
+                f[j]+= s.charAt(i-1)==t.charAt(j-1)? f[j-1] : 0;
+            }           
+        }        
+        return f[n];
+    }
+}
