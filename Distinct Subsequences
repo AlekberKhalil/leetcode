@@ -1,5 +1,6 @@
 public class Solution {
     //f[i][j]是s中长度为i的字符串和t中长度为j的字符串匹配的个数 
+    //s(i)==t(j)时，s[i]可以取，否则删除。
     //f[i][j]=f[i-1][j]+ s(i)==t(j)? f[i-1][j-1]
     public int numDistinct(String s, String t) {        
         int n = t.length();
