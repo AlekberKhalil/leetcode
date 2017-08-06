@@ -1,0 +1,55 @@
+
+
+public class Solution {
+    List<String> ret;
+    boolean[][] m;
+    String s;
+    int n;
+    boolean[] f;
+
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        int n=s.length();
+        f= new boolean[n+1];
+
+        //此处f[i]从i到终点是否可分，这样在dfs就可以剪枝提前返回，防止内存泄漏
+        m = new boolean[n+1][n+1];
+        this.n=n;
+        f[n]=true;
+        this.s = s;
+        
+        for(int i=n;i>=0;i--){
+            //j做长度Last word length
+            for(int j=i;j<n;j++){
+                if(wordDict.contains(s.substring(i,j+1))){
+                    m[i][j]=true;
+                }
+                if(f[j+1]&&m[i][j]) //花了一天，f[i]=f[j+1]&&m[i][j] 就是不行，非要分开然后设为true!!!!!!!
+                    f[i]=true;
+            }
+        }
+
+        ret= new ArrayList<String>();
+        dfs("",0);
+        return ret;
+    }
+
+
+    void dfs(String path,int pos){
+        //剪枝！！！
+        if(!f[pos])
+            return;
+        if(pos==n){
+            ret.add(path.trim());
+            return;
+
+        }
+        for(int i = pos; i <n; i++){
+            if(m[pos][i]){
+                dfs(path+" "+s.substring(pos,i+1), i+1);
+            }
+        }
+    }
+}
+
+
+
