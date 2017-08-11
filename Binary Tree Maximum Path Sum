@@ -1,0 +1,23 @@
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: An integer.
+     */
+     int ret=Integer.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        // write your code here
+        singlePath(root);
+        return ret;
+    }
+    
+    //以当前点为顶点的线长
+    public int singlePath(TreeNode root){
+        if(root==null)
+            return 0;
+            int left=Math.max(0,singlePath(root.left));
+            int right=Math.max(0,singlePath(root.right));
+            //更新最长长度，比较若包含当前点的长度和以往max
+            ret=Math.max(ret,left+right+root.val);
+            return Math.max(left,right)+root.val;
+    }
+}
