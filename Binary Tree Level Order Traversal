@@ -28,6 +28,7 @@ public class Solution {
                     q.offer(cur.right);
                 
             }
+            //ret.add(0,level);倒序用这个
             ret.add(level);
         }
         return ret;
