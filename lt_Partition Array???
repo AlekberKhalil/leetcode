@@ -1,0 +1,37 @@
+public class Solution {
+	/** 
+     *@param nums: The integer array you should partition
+     *@param k: As description
+     *return: The index after partition
+     */
+    public int partitionArray(int[] nums, int k) {
+	    //write your code here
+	    int l=nums.length;
+	    if(l==0)
+	    return 0;
+	    int start=0, end=l-1;
+	    
+	    while(start<=end){
+//把>=都换到右边
+	        while(start<=end && nums[start]<k){
+	            start++;
+	        }
+	       
+	       while(start<=end && nums[end]>=k){
+	            end--;
+	       }
+//把<换到左边	            
+	       if(start<=end){
+	           int temp=nums[start];
+    	       nums[start]=nums[end];
+    	       nums[end]=temp;
+    	       
+    	       start++;
+                end--;
+	       }
+	       
+	    }
+	        return start;//？？？？？？
+    }
+    
+}
