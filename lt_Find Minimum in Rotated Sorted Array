@@ -1,0 +1,14 @@
+public class Solution {
+    /**
+     * @param nums: a rotated sorted array
+     * @return: the minimum number in the array
+     */
+    public int findMin(int[] nums) {
+        // write your code here
+        for(int i = 0;i < nums.length-1;i++){
+            if(nums[i]>nums[i+1])
+                return nums[i+1];
+        }
+        return nums[0];//顺序的时候！！！
+    }
+}
