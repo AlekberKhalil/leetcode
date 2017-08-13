@@ -1,0 +1,39 @@
+public class Solution {
+    
+    
+        /*
+         * @param A: An integer array
+         * @param queries: The query list
+         * @return: The number of element in the array that are smaller that the given integer
+         */
+        public List<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+            // write your code here
+            List<Integer> ret = new ArrayList<Integer>();
+            if(A == null)
+                return ret;
+            Arrays.sort(A);
+            
+            for(int i = 0; i<queries.length; i++){
+                
+                int pos = searchInsert(A,queries[i]);
+                ret.add(pos);
+            }
+            return ret;
+        }
+        
+        public int searchInsert(int[] nums, int target) {
+            if(nums.length == 0)
+            return 0;
+            int l=0,r=nums.length-1,m=0;
+            while(l<r){
+                m=l+((r-l)>>1);
+                if(nums[m]<target)
+                    l=m+1;
+                else
+                    r=m;
+            }
+            
+            return r;
+    }
+    
+};
