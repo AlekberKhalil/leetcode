@@ -1,0 +1,25 @@
+class Solution {
+    /**
+     * @param x: An integer
+     * @return: The sqrt of x
+     */
+    public int sqrt(int x) {
+        // write your code here
+        long s = 1;//此处用long 因为int*int会溢出。
+        long e = x;
+        long m;
+        
+        while(s+1 < e){
+             m = s + (e - s) / 2;
+            if(m * m <= x) //此处没有 == 的判断是因为符合条件的可能也落在<= 所以和start放在一起判断
+                s=m;
+            else
+                e = m;
+        } 
+        
+        if(s * s <= x)
+            return (int) s;//要返回int
+        else
+            return (int) e;
+    }
+}
