@@ -1,0 +1,54 @@
+/**
+ * Definition for Directed graph.
+ * class DirectedGraphNode {
+ *     int label;
+ *     ArrayList<DirectedGraphNode> neighbors;
+ *     DirectedGraphNode(int x) { label = x; neighbors = new ArrayList<DirectedGraphNode>(); }
+ * };
+ */
+public class Solution {
+    /**
+     * @param graph: A list of Directed graph node
+     * @return: Any topological order for the given graph.
+     */    
+    public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
+        // write your code here
+        ArrayList<DirectedGraphNode> ret = new ArrayList<DirectedGraphNode>();
+        HashMap<DirectedGraphNode, Integer> map = new HashMap<DirectedGraphNode, Integer>();
+
+        //每个点的入度用Map来存
+        for(DirectedGraphNode n : graph){
+            for(DirectedGraphNode neighbor : n.neighbors){
+                if(!map.containsKey(neighbor)){
+                map.put(neighbor, 1);
+            }
+            else{
+                map.put(neighbor, map.get(neighbor)+1);//注意此处map里value如何更新，要重新Put入，而且不可以用++
+            }
+            }
+        }
+        
+        //比起往常的第一个Node入queue，此处给了所有Node的list，所以先把入度为0的点都加入queue
+        Queue<DirectedGraphNode> q = new LinkedList<DirectedGraphNode>();
+        for(DirectedGraphNode n : graph){
+            if(!map.containsKey(n)){
+                q.offer(n);
+                
+            }
+        }
+
+       //在queue里，每次减少入度，只有入度为0才可入queue，最后存入结果。
+        while(!q.isEmpty()){
+            DirectedGraphNode cur = q.poll();
+            ret.add(cur);
+            for(DirectedGraphNode neighbor : cur.neighbors){
+                map.put(neighbor, map.get(neighbor)-1);
+                if(map.get(neighbor) == 0){
+                    q.offer(neighbor);
+                }
+            }
+        }
+
+        return ret;
+    }
+}
