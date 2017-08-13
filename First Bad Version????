@@ -14,3 +14,23 @@ public class Solution extends VersionControl {
     
     }
 }
+
+//version 2
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+         int s = 1;
+        int e = n;
+        int m;
+        while(s + 1 < e){
+            m = s + (e - s)/2;
+            if(isBadVersion(m))
+                e = m;
+            else 
+                s = m;
+        }
+        if(isBadVersion(s))
+            return s;
+        return e;
+    
+    }
+}
