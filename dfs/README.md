@@ -1,5 +1,10 @@
 # DFS
 
+多线程dfs BFS:
+
+* This is really only useful if the processing of each node is expensive.  If the searching itself is what is taking most of the time then parallelization will most likely slow you down with its overhead, not speed anything up.
+* For a breath first search, an unordered search, and possibly certain others, you can do the searching itself in parallel, and not just the consuming of each node, but for a depth first search that is not possible.  There is only ever one node to do next, unlike a breath first search where there are 2^\(current depth\) nodes to process at the same time
+
 要给出所有方案的话。一般DFS
 
 **dfs的状态**
