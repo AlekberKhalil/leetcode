@@ -114,7 +114,7 @@
   * [Flood Fill](dfs/flood-fill.md)
   * [Leaf-Similar Trees](dfs/leaf-similar-trees.md)
   * [Increasing Order Search Tree](dfs/increasing-order-search-tree.md)
-* [sweep line](qiang-hua-1/README.md)
+* [sweep line & interval](qiang-hua-1/README.md)
   * [Number of Airplanes in the Sky\(sweep line\)](qiang-hua-1/number-of-airplanes-in-the-sky.md)
   * [Minimum Number of Arrows to Burst Balloons](qiang-hua-1/minimum-number-of-arrows-to-burst-balloons.md)
 * [强化2（Union Find, Trie, sweep line\)](qiang-hua-2-data-structure-i/README.md)

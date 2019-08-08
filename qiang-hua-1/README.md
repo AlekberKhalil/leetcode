@@ -1,4 +1,10 @@
-# sweep line
+# sweep line & interval
+
+代表2段interval有交集。
+
+```text
+if (Math.max(b[0], start) < Math.min(b[1], end)) return false;
+```
 
 meeting room I II
 
