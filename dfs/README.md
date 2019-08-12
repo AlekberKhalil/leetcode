@@ -7,6 +7,14 @@
 
 要给出所有方案的话。一般DFS
 
+跳着走的无需visited？
+
+比较subset和combination sum，前俩是有pos，跳着走，所以不需要visited，注意path还是需要弹入弹出，和visited不是一个东西。 
+
+Permutation是一步步走， for 循环了每步所有可能性，必须要visited去重。
+
+电话本也是一步步走，每个for loop循环每步所有可能性，不需要visited。
+
 **dfs的状态**
 
 * 每个元素有取或者不取，就2个路径。子dfs就调用2次
