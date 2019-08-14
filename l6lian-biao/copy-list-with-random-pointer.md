@@ -8,6 +8,8 @@ Return a deep copy of the list.
 
 2个loop，第一个复制新Node插入旧node后面。第二次设置新建Node们的random指针。最后split2个链表
 
+
+
 ```text
 /**
  * Definition for singly-linked list with a random pointer.
@@ -37,6 +39,8 @@ public class Solution {
         //split
         RandomListNode nh = new RandomListNode(0);
         cur = nh;
+        //next 一步步的走，不要next.next的跳
+        //先设置好next，然后再跳向next。
         while(head != null){
             nh.next = head.next;  
             nh = nh.next;

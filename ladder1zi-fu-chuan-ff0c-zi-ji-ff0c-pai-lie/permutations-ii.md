@@ -17,6 +17,8 @@ For example,
 
 和前面一样，用visited数组判断重复数字是否连续。也排序。
 
+前面没有visited数组，所以用Path.contains\(ele\)判断重复
+
 ```text
 class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
