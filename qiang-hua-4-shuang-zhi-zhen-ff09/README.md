@@ -13,7 +13,7 @@
 
 quick select -&gt; kth largest element 第K大（比如中位数）
 
-heap（priority queue\)-&gt;前k大:
+heap（priority queue\)-&gt;前k大: O\(NlogK\)如果把heap size设为k的话。
 
 top k smallest
 

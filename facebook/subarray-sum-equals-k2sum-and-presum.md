@@ -19,6 +19,8 @@ Output:
 
 分析：
 
+本题只能two sum思想，不能用two pointers，因为可能有负数，所以当前的sum可能和前面好几个sum的diff == K. 用Map才能准确记录前面多少个subsum = cursum - K.\(含有负数抵消的情况）
+
 ```text
 PrefixSum + Dictionary
 > Time Complexity O(N)

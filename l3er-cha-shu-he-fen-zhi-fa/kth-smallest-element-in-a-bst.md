@@ -72,7 +72,7 @@ class Solution:
         return res
 ```
 
-recursive
+iterative
 
 ```text
 # Definition for a binary tree node.

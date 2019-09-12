@@ -26,11 +26,15 @@ cache.get(4);       // returns 4
 
 分析
 
+一直错的:
+
+get 不记得删除链表的旧位置：
+
+**dict只有拿node的作用，只有满删**, list存在就删   
+
 一个双链表和一个dict.自建一个LRUNode class
 
 链表删除在原地做简单，直接原地做。链表插入尾部写成函数
-
-**dict只有拿node的作用，只有满删**, list存在就删   
 
  LL remove cur and insert cur
 

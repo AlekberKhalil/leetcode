@@ -28,6 +28,8 @@ _或者 for cur in q,就不用pop\[0\]_
 
 **拓扑：**
 
+一定要判断 numCourses == len\(q\)!!!!!! Course Schedule II
+
 1. 三个元素，2个链表一个Map，图\(邻接链表，像每个桶里装数组，arraylist的数组），入度\(int\[\]或者map\)，q\(queue或者arraylist，这里可能linkedlist可以所以arraylist也可以）
 2. 填充图，入度和Q。初始化图，就是遍历所有元素都建立一个对应链表。计算入度
 3. **入度为0的放入q里，将来遍历也是入度为0就进入bfs。或者都进入Q，然后for loop里每次入Q和出Q。**

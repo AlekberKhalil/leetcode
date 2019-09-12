@@ -75,3 +75,27 @@ public class Solution{
 }
 ```
 
+Python
+
+```text
+class Solution:
+    def trapRainWater(self, heightMap: List[List[int]]) -> int:
+        if not heightMap or not heightMap[0]:
+            return 0
+        n,m = len(heightMap),len(heightMap[0])
+        q = [(heightMap[0][j],0,j) for j in range(m)] + [(heightMap[i][0],i,0) for i in range(n)] + [(heightMap[n-1][j],n-1,j) for j in range(m)] + [(heightMap[i][m-1],i,m-1) for i in range(n)]
+        seen = {(0,j) for j in range(m)} | {(x,0) for x in range(n)}| {(n-1,j) for j in range(m)} | {(x,m-1) for x in range(n)}
+        heapq.heapify(q)
+        d = [-1,0,1,0,-1]
+        res = 0
+        while q:
+            h,x,y = heapq.heappop(q)
+            for nx,ny in [(x+d[i],y+d[i+1]) for i in range(4)]:
+                if 0 <= nx < n and 0 <= ny < m and (nx,ny) not in seen:
+                    if heightMap[nx][ny] < h:
+                        res += h - heightMap[nx][ny]
+                    heapq.heappush(q,(max(h, heightMap[nx][ny]),nx,ny))
+                    seen.add((nx,ny))
+        return res
+```
+
