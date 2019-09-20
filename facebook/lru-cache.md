@@ -130,3 +130,69 @@ class LRUCache:
 # obj.put(key,value)
 ```
 
+Python
+
+```text
+class Node:
+    def __init__(self,key,value):
+        self.key = key
+        self.value = value
+        self.pre = None
+        self.next = None
+        
+class LRUCache:
+
+    def __init__(self, capacity: int):
+        self.capacity = capacity
+        self.nodeMap = {}
+        self.head = Node(-1,-1)
+        self.tail = Node(-1,-1)
+        self.head.next = self.tail
+        self.tail.pre = self.head
+        
+    def moveToTail(self, key:int) -> None:
+        node = self.nodeMap[key]
+        self.tail.pre.next = node
+        node.pre = self.tail.pre
+        node.next = self.tail
+        self.tail.pre = node
+        
+    def get(self, key: int) -> int:
+        if key not in self.nodeMap:
+            return -1
+        node = self.nodeMap[key]
+        #要去掉当前点位置
+        node.pre.next = node.next
+        node.next.pre = node.pre
+        #新位置尾部加入当前点
+        self.moveToTail(key)
+        return node.value
+        
+
+    def put(self, key: int, value: int) -> None:
+        node = None
+        #有的话： 1:node更新value 2： list更新位置
+        if key in self.nodeMap:            
+            node = self.nodeMap[key]
+            node.value = value
+            self.get(key)
+        else:#没有的话 1建Node 2 list加入新位置，尾部 3 检查是否需要更新dict。（一般都是有加入就有去除。
+            #唯一改dict的地方，别处都是用dict取node而已。
+            if self.capacity == len(self.nodeMap):
+                self.nodeMap.pop(self.head.next.key) #dict里去掉元素，错了
+                #去掉头元素
+                self.head.next = self.head.next.next
+                self.head.next.pre = self.head
+            node = Node(key,value)
+            self.nodeMap[key] = node
+            self.moveToTail(key)#新元素加入尾部。
+        
+        
+
+
+# Your LRUCache object will be instantiated and called as such:
+# obj = LRUCache(capacity)
+# param_1 = obj.get(key)
+# obj.put(key,value)
+```
+

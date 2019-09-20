@@ -7,6 +7,8 @@
 3. father 可以指向自己或者0
 4. 并查集1不能拆开，2是放射状结构的数，子都指向父亲
 5. time complexity : worst o\(n\) 一条直线时候，best o\(logn\) by rank: [https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/](https://www.geeksforgeeks.org/union-find-algorithm-set-2-union-by-rank/)
+6. 需要计算block里个数时候，可以加个size和rank数组：Max Area of Island
+7. 比较Unionfind,**dfs**能得到一个Group内具体的点。
 
 代码模板
 

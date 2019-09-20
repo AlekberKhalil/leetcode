@@ -20,5 +20,5 @@ interval排序时候，sort默认先按a\[0\]再按a\[1\]（就是都排了）
 
 **merge interval** 需要按start sort， end排不排无所谓
 
-**meeting room**需要都排
+**meeting room**需要都排，所以才需要拆成times，先降后升
 

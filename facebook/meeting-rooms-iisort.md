@@ -44,3 +44,23 @@ class Solution:
         return mr
 ```
 
+先降后升
+
+```text
+class Solution:
+    def minMeetingRooms(self, intervals: List[List[int]]) -> int:
+        times = []
+        for s,e in intervals:
+            times.append((s,1))
+            times.append((e,0))
+        
+        times.sort(key = lambda x: (x[0],x[1]))
+        cur = res = 0
+        for _,d in times:
+            cur += 1 if d == 1 else -1
+            res = max(res,cur)
+        return res
+```
+
+
+

@@ -22,3 +22,5 @@ A Perfect Binary Tree of height h \(where height is the number of nodes on the p
 
 Count Complete Tree Nodes
 
+preorder建树：[https://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversal-set-2/](https://www.geeksforgeeks.org/construct-bst-from-given-preorder-traversal-set-2/)
+

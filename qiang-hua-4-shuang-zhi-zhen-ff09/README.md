@@ -153,11 +153,13 @@ anagram 顺序不需要，所以**Map**
 
 **min/max substring 双指针通用模板**
 
+\*\*\*\*[**https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.**](https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.)\*\*\*\*
+
 一个map存char count。头尾指针，尾前进到满足条件，头缩进到不满足条件。2个while一个头一个尾。注意min/max的位置
 
-模板不能做这个Longest Substring with At Least K Repeating Characters（递归）
-
 双指针模板：[https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.](https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.)
+
+模板不能做这个Longest Substring with At Least K Repeating Characters（递归）
 
 [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
 

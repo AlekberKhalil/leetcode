@@ -145,3 +145,62 @@ class Solution:
         return res
 ```
 
+Union find
+
+用了size和rank,记得最后取size的时候再find一次，很重要！！！
+
+```text
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n,m = len(grid),len(grid[0])
+        f = list(range(n*m))
+        rank = [0]*(n*m)
+        size = [1]*(n*m)
+        d = [-1, 0, 1, 0, -1]
+        def find(x):
+            if f[x] == x:
+                return x
+            f[x] = find(f[x])
+            return f[x]
+        
+        def union(x,y):
+            # if x== y:return False
+            fx,fy = find(x),find(y)
+            if fx == fy:
+                return size[fx]
+            if rank[fy] > rank[fx]:
+                f[fx] = fy
+                size[fy] += size[fx]
+                return size[fy]
+                
+            elif rank[fy] < rank[fx]:
+                f[fy] = fx
+                size[fx] += size[fy]
+                return size[fx]
+            else:
+                f[fy] = fx
+                rank[fx] += 1
+                size[fx] += size[fy]
+                return size[fx]
+            
+                
+        res = 0
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1:
+                    temp = size[find(i*m+j)] #再find一次
+                    for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:
+                        if 0 <= x < n and 0 <= y < m and grid[x][y] == 1 :
+                            temp = max(res,union(x*m+y,i*m+j))
+                    res = max(res,temp)           
+                            
+       
+        return res
+        
+    
+
+            
+```
+

@@ -1,5 +1,21 @@
 # 线段树&binary index tree
 
+1 update更新区间和点，更新点不需要lazy. 更新区间需要lazy，有增和替换之分，而且sum需要lazy\*（r-l）。
+
+2 pushup往上更新是必须的，左右更新完再更新root，和之前步骤一样。query也是读root的值
+
+3 pushdown 往下推迟更新，每次更新左右孩子并且标记。在update/query里都需要，除掉pushdown 别的代码都一样
+
+4 query 查询范围&gt; root范围可以直接返回。
+
+区间增
+
+{% embed url="http://www.ishenping.com/ArtInfo/294138.html" %}
+
+区间替换
+
+[https://hrbust-acm-team.gitbooks.io/acm-book/content/data\_structure/ds\_part3.html](https://hrbust-acm-team.gitbooks.io/acm-book/content/data_structure/ds_part3.html)
+
 做这类题目
 
 1 分治 mid = （L+R）/2，左右recursive后，merge,不要忘了LR内要sort
