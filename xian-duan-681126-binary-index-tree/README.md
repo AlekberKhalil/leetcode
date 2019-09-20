@@ -8,6 +8,10 @@
 
 4 query 查询范围&gt; root范围可以直接返回。
 
+线段树实例calendar ii
+
+[https://leetcode.com/problems/my-calendar-ii/discuss/382796/Python-segment-tree](https://leetcode.com/problems/my-calendar-ii/discuss/382796/Python-segment-tree)
+
 区间增
 
 {% embed url="http://www.ishenping.com/ArtInfo/294138.html" %}
