@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [MS](ms/README.md)
+  * [Remove K Digits](ms/remove-k-digits.md)
   * [Design Tic-Tac-Toe](ms/design-tic-tac-toe.md)
   * [Find the Celebrity](ms/find-the-celebrity.md)
   * [Spiral Matrix](ms/spiral-matrix.md)
