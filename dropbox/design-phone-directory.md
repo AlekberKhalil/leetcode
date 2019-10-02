@@ -158,3 +158,202 @@ class PhoneDirectory:
 # obj.release(number)
 ```
 
+3 bitset
+
+这里bit的长度 = max number,某个数字就是设置这个位上的bit
+
+nextClearBit\(num\)注意此处需要参数
+
+```text
+class PhoneDirectory {
+
+    /** Initialize your data structure here
+        @param maxNumbers - The maximum numbers that can be stored in the phone directory. */
+    BitSet bs;
+    final int max;
+    int nextAvail;
+    public PhoneDirectory(int maxNumbers) {
+        bs = new BitSet(maxNumbers);
+        max = maxNumbers;
+        nextAvail = 0;      
+    }
+    
+    /** Provide a number which is not assigned to anyone.
+        @return - Return an available number. Return -1 if none is available. */
+    public int get() {
+        if (nextAvail >= max) {
+            return -1;
+        }
+        int res = nextAvail;
+        bs.set(res); 
+        nextAvail = bs.nextClearBit(res);//注意nextClearBit用法，需要传入num
+        return res;
+        
+        
+    }
+    
+    /** Check if a number is available or not. */
+    public boolean check(int number) {
+        return number < max &&  !bs.get(number);
+        
+    }
+    
+    /** Recycle or release a number. */
+    public void release(int number) {
+        if(number >= 0 && number < max){
+            bs.clear(number);
+        }
+        nextAvail = Math.min(number,nextAvail);
+        
+    }
+}
+
+/**
+ * Your PhoneDirectory object will be instantiated and called as such:
+ * PhoneDirectory obj = new PhoneDirectory(maxNumbers);
+ * int param_1 = obj.get();
+ * boolean param_2 = obj.check(number);
+ * obj.release(number);
+ */
+```
+
+4 segment Tree
+
+总共2\*max个节点，max个叶节点》max，max个内节点 《max。线段树是Bool arr
+
+get取第一个超过max的未赋值，也就是叶节点。 每次使用叶节点或者释放，都要更新内节点。pushup
+
+```text
+class PhoneDirectory:
+
+    def __init__(self, maxNumbers: int):
+        """
+        Initialize your data structure here
+        @param maxNumbers - The maximum numbers that can be stored in the phone directory.
+        """
+        self.max = maxNumbers
+        self.segTree = [True]*(self.max << 1)
+    
+    def pushup(self, i) -> None:
+        i >>=1
+        while i > 0:
+            self.segTree[i] =  self.segTree[i<<1] or self.segTree[i<<1|1]
+            i>>=1
+
+    def get(self) -> int:
+        """
+        Provide a number which is not assigned to anyone.
+        @return - Return an available number. Return -1 if none is available.
+        """
+        if not self.segTree[1]:
+            return -1
+        i = 1
+        while i < self.max:
+            if (i << 1) < (self.max << 1) and  self.segTree[i<<1]:
+                i = i<<1
+            if i<< 1|1 < self.max << 1 and  self.segTree[i<<1|1]:
+                i = i << 1|1
+        self.segTree[i] = False   
+        res = i - self.max
+        self.pushup(i)
+        return res
+            
+        
+        
+        
+
+    def check(self, number: int) -> bool:
+        """
+        Check if a number is available or not.
+        """
+        if 0<=number < self.max:
+            return self.segTree[number + self.max]
+        return False
+        
+
+    def release(self, number: int) -> None:
+        """
+        
+        Recycle or release a number.
+        """
+        i = number+self.max
+        self.segTree[i] = True
+        self.pushup(i)
+        
+        
+
+
+# Your PhoneDirectory object will be instantiated and called as such:
+# obj = PhoneDirectory(maxNumbers)
+# param_1 = obj.get()
+# param_2 = obj.check(number)
+# obj.release(number)
+```
+
+```text
+class PhoneDirectory:
+
+    def __init__(self, maxNumbers: int):
+        """
+        Initialize your data structure here
+        @param maxNumbers - The maximum numbers that can be stored in the phone directory.
+        """
+        self.max = maxNumbers
+        self.segTree = [True]*(self.max << 1)
+    
+    def pushup(self, i) -> None:
+        i >>=1
+        while i > 0:
+            self.segTree[i] =  self.segTree[i<<1] or self.segTree[i<<1|1]
+            i>>=1
+
+    def get(self) -> int:
+        """
+        Provide a number which is not assigned to anyone.
+        @return - Return an available number. Return -1 if none is available.
+        """
+        if not self.segTree[1]:
+            return -1
+        i = 1
+        while i < self.max:
+            if (i << 1) < (self.max << 1) and  self.segTree[i<<1]:
+                i = i<<1
+            if i<< 1|1 < self.max << 1 and  self.segTree[i<<1|1]:
+                i = i << 1|1
+        self.segTree[i] = False   
+        res = i - self.max
+        self.pushup(i)
+        return res
+            
+        
+        
+        
+
+    def check(self, number: int) -> bool:
+        """
+        Check if a number is available or not.
+        """
+        if 0<=number < self.max:
+            return self.segTree[number + self.max]
+        return False
+        
+
+    def release(self, number: int) -> None:
+        """
+        
+        Recycle or release a number.
+        """
+        i = number+self.max
+        self.segTree[i] = True
+        self.pushup(i)
+        
+        
+
+
+# Your PhoneDirectory object will be instantiated and called as such:
+# obj = PhoneDirectory(maxNumbers)
+# param_1 = obj.get()
+# param_2 = obj.check(number)
+# obj.release(number)
+```
+
