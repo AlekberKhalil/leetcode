@@ -48,6 +48,8 @@
   * [3Sum Smaller](high-frequency/3sum-smaller.md)
   * [Best Time to Buy and Sell Stock with Cooldown](high-frequency/best-time-to-buy-and-sell-stock-with-cooldown.md)
 * [练习](lian-xi/README.md)
+  * [Non-overlapping Intervals](lian-xi/non-overlapping-intervals.md)
+  * [Find Right Interval](lian-xi/find-right-interval.md)
   * [Find All Duplicates in an Array](lian-xi/find-all-duplicates-in-an-array.md)
   * [My Calendar III](lian-xi/my-calendar-iii.md)
   * [Minimum number of Parentheses to be added to make it valid](lian-xi/minimum-number-of-parentheses-to-be-added-to-make-it-valid.md)

@@ -44,6 +44,11 @@ If you come up with an algorithm that you thought it is O\(n log m\) or O\(m log
         new ArrayList<>( Arrays.asList(1,2,3) )
 ```
 
+复杂度分析  
+等比数列，一共logN层   Sn=\(1-2^logN\) / 1-2 =N
+
+![](../.gitbook/assets/image.png)
+
 答案
 
 ```text
