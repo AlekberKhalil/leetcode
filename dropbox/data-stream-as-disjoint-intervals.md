@@ -64,3 +64,62 @@ class SummaryRanges:
 # param_2 = obj.getIntervals()
 ```
 
+
+
+每个点二分找位置，在某range内直接return,否则比较Pos后和前，合并到前删掉后（直接设置为\[\]）
+
+```text
+class SummaryRanges(object):
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.q = []
+        
+
+    def addNum(self, val):
+        """
+        :type val: int
+        :rtype: None
+        """       
+
+        s,e = 0,len(self.q)-1
+        while s <= e:
+            m =(s+e)//2
+            elem = self.q[m]
+            if elem[0] <= val<= elem[1]:
+                return
+            elif elem[0] > val:
+                e = m-1
+            else:
+                s = m+1
+
+        pos = s     
+        
+        self.q.insert(pos,[val,val])
+        if pos+1 < len(self.q) and self.q[pos+1][0] == val + 1:
+            self.q[pos][1] = self.q[pos+1][1]
+            self.q[pos+1:pos+2] = []
+        if pos-1>=0 and self.q[pos-1][1] == val -1:
+            self.q[pos-1][1] = self.q[pos][1]
+            self.q[pos:pos+1] = []
+        
+        
+            
+        
+
+    def getIntervals(self):
+        """
+        :rtype: List[List[int]]
+        """
+        return self.q
+        
+
+
+# Your SummaryRanges object will be instantiated and called as such:
+# obj = SummaryRanges()
+# obj.addNum(val)
+# param_2 = obj.getIntervals()
+```
+
