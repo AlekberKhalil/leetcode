@@ -36,3 +36,45 @@ class Solution:
         
 ```
 
+```text
+class TrieNode:
+    def __init__(self):
+        self.val = 0
+        self.children = {}
+       
+class Solution:
+    """
+    @param nums: 
+    @return: the maximum result of ai XOR aj, where 0 Ã¢ÂÂ¤ i, j < n
+    """
+
+    def findMaximumXOR(self, arr):
+        root = TrieNode()
+        
+        for key in arr:
+            node = root
+            for i in range(31, -1, -1):
+                curbit = key >> i & 1
+                if curbit not in node.children:
+                    node.children[curbit] = TrieNode()
+                node = node.children[curbit]
+            node.val = key
+        
+        
+        res = 0
+        for key in arr:
+            node = root
+            temp = 0
+            for i in range(31, -1, -1):
+                curbit = key >> i & 1
+                
+                if 1^curbit in node.children:
+                    temp += 1 << i
+                    node = node.children[1^curbit]
+                elif curbit in node.children:
+                    node = node.children[curbit]
+            res = max(temp, res)
+            
+        return res
+```
+
