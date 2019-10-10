@@ -48,6 +48,7 @@
   * [3Sum Smaller](high-frequency/3sum-smaller.md)
   * [Best Time to Buy and Sell Stock with Cooldown](high-frequency/best-time-to-buy-and-sell-stock-with-cooldown.md)
 * [练习](lian-xi/README.md)
+  * [Number Complement](lian-xi/number-complement.md)
   * [Maximum XOR of Two Numbers in an Array](lian-xi/maximum-xor-of-two-numbers-in-an-array.md)
   * [Reconstruct Original Digits from English](lian-xi/reconstruct-original-digits-from-english.md)
   * [Longest Repeating Character Replacement](lian-xi/longest-repeating-character-replacement.md)

@@ -33,8 +33,11 @@ class Solution:
             ans <<= 1
             ans += any(ans^1^p in prevs for p in prevs)
         return ans
-        
 ```
+
+Trie实现，只有2个子树0,1。每次尽量往相反方向走，0^1才能max
+
+可行则 temp+=1&lt;&lt;j. 或者直接最后叶子的值^当前Num
 
 ```text
 class TrieNode:
