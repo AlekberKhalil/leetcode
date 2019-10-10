@@ -68,7 +68,6 @@
   * [Valid Sudoku](lian-xi/valid-sudoku.md)
   * [Flatten Nested List Iterator](lian-xi/flatten-nested-list-iterator.md)
   * [Game of Life](lian-xi/game-of-life.md)
-  * [Merge Intervals\(sweep line\)](lian-xi/merge-intervals.md)
   * [Radius\_union find\_same name](lian-xi/radiusunion-find-same-name.md)
   * [Find Median from Data Stream](lian-xi/find-median-from-data-stream.md)
   * [Max Points on a Line](lian-xi/max-points-on-a-line.md)
