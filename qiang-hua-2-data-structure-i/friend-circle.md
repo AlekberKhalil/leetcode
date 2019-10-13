@@ -84,3 +84,42 @@ public class Solution {
 }
 ```
 
+python
+
+```text
+class Solution:
+    """
+    @param M: a matrix
+    @return: the total number of friend circles among all the students
+    """
+    def findCircleNum(self, M):
+        # Write your code here
+        
+        N = len(M)
+        f = [i for i in range(N)]
+        cnt = N
+        def find(x):
+            if f[x] == x:
+                return x
+            f[x] = find(f[x])
+            return f[x]
+            
+        def union(x,y):
+            nonlocal cnt
+            fx,fy = find(x),find(y)
+            if fx!=fy:
+                f[fx] = fy
+                cnt -= 1
+        
+        for i in range(N):
+            for j in range(i):
+                if M[i][j] == 1:
+                    union(i,j)
+        return cnt
+                
+                    
+                
+        
+            
+```
+
