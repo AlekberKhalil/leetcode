@@ -551,6 +551,8 @@
 * [Sort](sort/README.md)
   * [MergeSort](sort/mergesort.md)
 * [Karat](karat/README.md)
+  * [Evaluate Division](karat/evaluate-division.md)
+  * [Optimal Account Balancing](karat/optimal-account-balancing.md)
   * [Basic Calculator II](karat/basic-calculator-ii.md)
   * [karat calculator 三题](karat/calculator-zhi-5e26+.md)
   * [Basic Calculator](karat/basic-calculator.md)
