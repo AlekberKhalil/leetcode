@@ -1,6 +1,9 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Expedia oa](expedia-oa/README.md)
+  * [Valid Triangle Number](expedia-oa/valid-triangle-number.md)
+  * [String Compression](expedia-oa/string-compression.md)
 * [Gusto](gusto.md)
 * [Twitter OA](twitter-oa/README.md)
   * [Reaching Points](twitter-oa/reaching-points.md)
