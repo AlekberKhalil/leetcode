@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Wish](wish/README.md)
+  * [Get Relations](wish/get-relations.md)
 * [braze OA](braze-oa.md)
 * [Twilio](twilio/README.md)
   * [Subarray Sums Divisible by K](twilio/subarray-sums-divisible-by-k.md)
@@ -9,6 +11,7 @@
   * [String Compression](expedia-oa/string-compression.md)
 * [Gusto](gusto.md)
 * [Twitter OA](twitter-oa/README.md)
+  * [view path](twitter-oa/view-path.md)
   * [Reaching Points](twitter-oa/reaching-points.md)
   * [Paint House](twitter-oa/paint-house.md)
   * [Palindromic Substrings](twitter-oa/palindromic-substrings.md)

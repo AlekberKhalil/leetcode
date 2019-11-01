@@ -1,5 +1,11 @@
 # sweep line & interval
 
+career event:
+
+用（end, duration\)排序，Greedy做法，好多容纳更多event.
+
+
+
 代表2段interval有交集。
 
 ```text

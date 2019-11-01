@@ -1,5 +1,9 @@
 # L3\_二叉树和分治法
 
+## Construct Tree from given Inorder and Preorder traversals
+
+[https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/](https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/)
+
 Divide and Conquer
 
 **注意遇到了树的题目，首先考虑他和他的左右子树之间有什么联系。**
