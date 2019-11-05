@@ -33,6 +33,12 @@ class Solution:
             res[k] = navg + 1 if i < rem else navg
         return res
 
+
+```
+
+
+
+```text
     def findMatch(self,s):
         #'/api[/\w]*/users/\d+[/\w+_]*[/\w]*'
         ns = re.sub('/users/\d+','/users/{userid}',s)
@@ -70,13 +76,7 @@ class Solution:
             #     res.append(t2)
 
         # print(res)
-
-
-```
-
-
-
-```text
+        
 #from Solution import Solution
 from Solution import Solution
 # obj = Solution()
@@ -89,6 +89,11 @@ map = dict(zip(a,b))
 obj = Solution()
 urls = '2014-01-09T06:16:53.748849+00:00 heroku[router]: at=info method=POST path=/api/online/platforms/facebook_canvas/users/100002266342173/add_ticket host=mygame.heroku.com fwd="94.66.255.106" dyno=web.12 connect=12ms service=21ms status=200 bytes=782014-01-09T06:16:53.742892+00:00 heroku[router]: at=info method=GET path=/api/users/100002266342173/count_pending_messages host=mygame.heroku.com fwd="94.66.255.106" dyno=web.8 connect=9ms service=9ms status=304 bytes=02014-01-09T06:16:53.766841+00:00 heroku[router]: at=info method=POST path=/logs/save_personal_data host=mygame.heroku.com fwd="5.13.87.91" dyno=web.10 connect=1ms service=42ms status=200 bytes=162014-01-09T06:16:53.772938+00:00 heroku[router]: at=info method=POST path=/api/users/100002844291023 host=mygame.heroku.com fwd="46.195.178.244" dyno=web.6 connect=2ms service=43ms status=200 bytes=522014-01-09T06:16:53.765430+00:00 heroku[router]: at=info method=GET path=/api/users/100005936523817/get_friends_progress host=mygame.heroku.com fwd="5.13.87.91" dyno=web.11 connect=1ms service=47ms status=200 bytes=74982014-01-09T06:16:53.760472+00:00 heroku[router]: at=info method=POST path=/api/users/1770684197 host=mygame.heroku.com fwd="74.139.217.81" dyno=web.5 connect=1ms service=17ms status=200 bytes=6812014-01-09T06:15:15.893505+00:00 heroku[router]: at=info method=GET path=/api/users/1686318645/get_friends_progress host=mygame.heroku.com fwd="1.125.42.139" dyno=web.3 connect=8ms service=90ms status=‍‌‌‍‌‍‌‌‌‌‍‍‌‌‍‍‌‌‌200 bytes=75342014-01-09T06:16:53.768188+00:00 heroku[router]: at=info method=GET path=/api/users/100005936523817/get_friends_score host=mygame.heroku.com fwd="5.13.87.91" dyno=web.13 connect=2ms service=46ms status=200 bytes=75342014-01-09T06:16:53.768188+00:00 heroku[router]: at=info method=GET path=/api/users/100005936523817/get_friends_score'
 # ret = obj.findMatch(urls)
+```
+
+dict sort test
+
+```text
 
 # print(ret)
 # mydict = {2:2,3:4,1:6}
@@ -101,6 +106,15 @@ urls = '2014-01-09T06:16:53.748849+00:00 heroku[router]: at=info method=POST pat
 # for x in mydict:
 #     print(x)
 
+
+
+```
+
+
+
+embold HTML
+
+```text
 import re #regular expression library
 def emboldenHTML(input, boldenStrs):
     if not boldenStrs:
@@ -145,6 +159,7 @@ emboldenHTML('abcd77abcab',['ab','abc']) # output: <b>abc</b>d77<b>abcab</b>
 emboldenHTML('hyatt35342hy',['hy','hyat']) # output: <b>hyat</b>t35342<b>hy</b>
 
 
-
 ```
+
+
 
