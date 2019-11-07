@@ -11,7 +11,20 @@ For example, if the price of a stock over the next 7 days were `[100, 80, 60, 70
 **Example 1:**
 
 ```text
-Input: ["StockSpanner","next","next","next","next","next","next","next"], [[],[100],[80],[60],[70],[60],[75],[85]]Output: [null,1,1,1,2,1,4,6]Explanation: First, S = StockSpanner() is initialized.  Then:S.next(100) is called and returns 1,S.next(80) is called and returns 1,S.next(60) is called and returns 1,S.next(70) is called and returns 2,S.next(60) is called and returns 1,S.next(75) is called and returns 4,S.next(85) is called and returns 6.Note that (for example) S.next(75) returned 4, because the last 4 prices(including today's price of 75) were less than or equal to today's price.
+Input: ["StockSpanner","next","next","next","next","next","next","next"], [[],[100],[80],[60],[70],[60],[75],[85]]
+Output: [null,1,1,1,2,1,4,6]
+Explanation: 
+First, S = StockSpanner() is initialized.  Then:
+S.next(100) is called and returns 1,
+S.next(80) is called and returns 1,
+S.next(60) is called and returns 1,
+S.next(70) is called and returns 2,
+S.next(60) is called and returns 1,
+S.next(75) is called and returns 4,
+S.next(85) is called and returns 6.
+
+Note that (for example) S.next(75) returned 4, because the last 4 prices
+(including today's price of 75) were less than or equal to today's price.
 ```
 
 分析
@@ -19,6 +32,24 @@ Input: ["StockSpanner","next","next","next","next","next","next","next"], [[],[1
 连续几天比当前小的，所以弹出比cur小的，同时记录当前cur的cnt,将来的Price进来都要累积，大鱼吃小鱼，只留大鱼在栈内
 
 ```text
-class StockSpanner:    def __init__(self):        self.s = []            def next(self, p: int) -> int:          curcnt = 1        while self.s and self.s[-1][1] <= p:            curcnt += self.s.pop()[0]        self.s.append((curcnt, p))        return curcnt# Your StockSpanner object will be instantiated and called as such:# obj = StockSpanner()# param_1 = obj.next(price)
+class StockSpanner:
+
+    def __init__(self):
+        self.s = []
+
+        
+
+    def next(self, p: int) -> int:  
+        curcnt = 1
+        while self.s and self.s[-1][1] <= p:
+            curcnt += self.s.pop()[0]
+        self.s.append((curcnt, p))
+        return curcnt
+
+
+
+# Your StockSpanner object will be instantiated and called as such:
+# obj = StockSpanner()
+# param_1 = obj.next(price)
 ```
 

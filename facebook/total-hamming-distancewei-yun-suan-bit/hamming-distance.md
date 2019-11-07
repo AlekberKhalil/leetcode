@@ -10,7 +10,21 @@ Given two integers`x`and`y`, calculate the Hamming distance.
 **Example:**
 
 ```text
-Input: x = 1, y = 4Output: 2Explanation:1   (0 0 0 1)4   (0 1 0 0)       ↑   ↑The above arrows point to positions where the corresponding bits are different.
+Input:
+ x = 1, y = 4
+
+
+Output:
+ 2
+
+
+Explanation:
+
+1   (0 0 0 1)
+4   (0 1 0 0)
+       ↑   ↑
+
+The above arrows point to positions where the corresponding bits are different.
 ```
 
 分析
@@ -20,12 +34,51 @@ Input: x = 1, y = 4Output: 2Explanation:1   (0 0 0 1)4   (0 1 0 0)       ↑   �
 也可以设置个m=1移动 像total hamming distance一样
 
 ```text
-class Solution:    def hammingDistance(self, x, y):        """        :type x: int        :type y: int        :rtype: int        """        m = 1        maxx = max(x,y)        cnt = 0        while m <= maxx:            if (x&m) ^(y&m):                cnt += 1            m<<=1        return cntclass Solution:    def hammingDistance(self, x, y):        """        :type x: int        :type y: int        :rtype: int        """        cnt = 0        while x or y:            if (x&1) ^(y&1):                cnt +=1            x>>=1            y>>=1        return cnt
+class Solution:
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        m = 1
+        maxx = max(x,y)
+        cnt = 0
+        while m <= maxx:
+            if (x&m) ^(y&m):
+                cnt += 1
+            m<<=1
+        return cnt
+
+class Solution:
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+
+
+        cnt = 0
+        while x or y:
+            if (x&1) ^(y&1):
+                cnt +=1
+            x>>=1
+            y>>=1
+
+        return cnt
 ```
 
 用Bin
 
 ```text
-class Solution:    def hammingDistance(self, x, y):        """        :type x: int        :type y: int        :rtype: int        """        return (bin(x^y)).count('1')
+class Solution:
+    def hammingDistance(self, x, y):
+        """
+        :type x: int
+        :type y: int
+        :rtype: int
+        """
+        return (bin(x^y)).count('1')
 ```
 

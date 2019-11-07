@@ -25,6 +25,44 @@ Could you do better than O\(n2\) per `move()` operation?
 注意先移动再判断
 
 ```text
+from collections import Counter
+
+
+class TicTacToe:
+
+    def __init__(self, n: int):
+        """
+        Initialize your data structure here.
+        """
+        self.h, self.v, self.l, self.r = Counter(), Counter(), Counter(), Counter()
+        self.n = n
+
+    def move(self, row: int, col: int, player: int) -> int:
+        """
+        Player {player} makes a move at ({row}, {col}).
+        @param row The row of the board.
+        @param col The column of the board.
+        @param player The player, can be either 1 or 2.
+        @return The current winning condition, can be either:
+                0: No one wins.
+                1: Player 1 wins.
+                2: Player 2 wins.
+        """
+        val = 1 if player == 1 else -1
+        self.h[row] += val
+        self.v[col] += val
+        self.l[row+col] += val
+        self.r[row-col] += val
+        if self.h[row] == self.n or self.h[row] == -self.n or self.v[col] == self.n or self.v[col] == -self.n or self.l[row+col] == self.n or self.l[row+col] == -self.n or self.r[row-col] == self.n or self.r[row-col] == -self.n:
+            return player
+        return 0
+
+# Your TicTacToe object will be instantiated and called as such:
+# obj = TicTacToe(n)
+# param_1 = obj.move(row,col,player)
+```
+
+```text
 class TicTacToe:        def __init__(self, n: int):        """        Initialize your data structure here.        """        self.n = n        self.h,self.v,self.l,self.r = collections.Counter(),collections.Counter(),collections.Counter(),collections.Counter()            def move(self, row: int, col: int, player: int) -> int:        """        Player {player} makes a move at ({row}, {col}).        @param row The row of the board.        @param col The column of the board.        @param player The player, can be either 1 or 2.        @return The current winning condition, can be either:                0: No one wins.                1: Player 1 wins.                2: Player 2 wins.        """        x,y,n = row,col,self.n        val = 1 if player == 1 else -1        self.h[x] += val        self.v[y] += val        self.l[x+y] += val        self.r[x-y] += val        if self.h[x] == n or self.h[x] == -n or self.v[y] == n or self.v[y] == -n or self.l[x+y] == n or self.l[x+y] == -n or self.r[x-y] == n or self.r[x-y] == -n:            return player        return 0
 ```
 

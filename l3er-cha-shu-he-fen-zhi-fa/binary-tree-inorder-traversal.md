@@ -9,12 +9,40 @@ Iterative
 注意此处while条件是or
 
 ```text
-public List<Integer> inorderTraversal(TreeNode root) {        List<Integer> ret = new ArrayList<Integer>();        if(root == null)            return ret;        Stack<TreeNode> s = new Stack<TreeNode>();        TreeNode cur = root;        while(cur != null || !s.isEmpty()){            while(cur != null){                s.push(cur);                cur = cur.left;            }            cur = s.pop();            ret.add(cur.val);            cur = cur.right;        }        return ret;    }
+public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if(root == null)
+            return ret;
+        Stack<TreeNode> s = new Stack<TreeNode>();
+        TreeNode cur = root;
+
+        while(cur != null || !s.isEmpty()){
+            while(cur != null){
+                s.push(cur);
+                cur = cur.left;
+            }
+            cur = s.pop();
+            ret.add(cur.val);
+            cur = cur.right;
+        }
+
+        return ret;
+    }
 ```
 
 Recursive
 
 ```text
-    public List<Integer> inorderTraversal(TreeNode root) {        List<Integer> ret = new ArrayList<Integer>();        if(root == null)            return ret;        List<Integer> left = inorderTraversal(root.left);        List<Integer> right = inorderTraversal(root.right);        ret.addAll(left);        ret.add(root.val);        ret.addAll(right);        return ret;    }
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> ret = new ArrayList<Integer>();
+        if(root == null)
+            return ret;
+        List<Integer> left = inorderTraversal(root.left);
+        List<Integer> right = inorderTraversal(root.right);
+        ret.addAll(left);
+        ret.add(root.val);
+        ret.addAll(right);
+        return ret;
+    }
 ```
 

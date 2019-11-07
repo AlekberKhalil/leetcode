@@ -11,13 +11,19 @@ Formally the function should:
 **Example 1:**
 
 ```text
-Input: [1,2,3,4,5]Output: true
+Input: 
+[1,2,3,4,5]
+Output: 
+true
 ```
 
 **Example 2:**
 
 ```text
-Input: [5,4,3,2,1]Output: false
+Input: 
+[5,4,3,2,1]
+Output: 
+false
 ```
 
 分析：
@@ -25,6 +31,20 @@ Input: [5,4,3,2,1]Output: false
 注意这种方法，二分得到原数组的递增子序列
 
 ```text
-class Solution(object):    def increasingTriplet(self, nums):        """        :type nums: List[int]        :rtype: bool        """        res = []        for n in nums:            index = bisect.bisect_left(res,n)              if index ==len(res):                res.append(n)            else: res[index] = n            if index == 2:                return True        return False
+class Solution(object):
+    def increasingTriplet(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: bool
+        """
+        res = []
+        for n in nums:
+            index = bisect.bisect_left(res,n)  
+            if index ==len(res):
+                res.append(n)
+            else: res[index] = n
+            if index == 2:
+                return True
+        return False
 ```
 

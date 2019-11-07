@@ -11,6 +11,32 @@ There is an integer array which has the following features: The numbers in adjac
 解法：
 
 ```text
-    public int findPeak(int[] A) {        // write your code here        if(A.length == 0)        return -1;        int s = 1, e = A.length - 2;//起点和终点位置只会在中间        while(s + 1 < e){            int m = s + (e - s)/2;            if(A[m-1] > A[m]){                e = m;            }else if(A[m] < A[m+1]){                s = m;            }else{                e = m; //正好是峰值，移动e好保留s            }        }        if(A[s-1] < A[s] && A[s+1] < A[s])            return s;        if(A[e-1] < A[e] && A[e+1] < A[e])            return e;            return -1;    }
+    public int findPeak(int[] A) {
+        // write your code here
+        if(A.length == 0)
+        return -1;
+
+        int s = 1, e = A.length - 2;//起点和终点位置只会在中间
+
+        while(s + 1 < e){
+            int m = s + (e - s)/2;
+
+            if(A[m-1] > A[m]){
+                e = m;
+            }else if(A[m] < A[m+1]){
+                s = m;
+            }else{
+                e = m; //正好是峰值，移动e好保留s
+            }
+        }
+
+        if(A[s-1] < A[s] && A[s+1] < A[s])
+            return s;
+
+        if(A[e-1] < A[e] && A[e+1] < A[e])
+            return e;
+
+            return -1;
+    }
 ```
 

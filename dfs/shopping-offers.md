@@ -13,13 +13,35 @@ You could use any of special offers as many times as you want.
 **Example 1:**
 
 ```text
-Input: [2,5], [[3,0,5],[1,2,10]], [3,2]Output: 14Explanation:There are two kinds of items, A and B. Their prices are $2 and $5 respectively. In special offer 1, you can pay $5 for 3A and 0BIn special offer 2, you can pay $10 for 1A and 2B. You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and $4 for 2A.
+Input:
+ [2,5], [[3,0,5],[1,2,10]], [3,2]
+
+Output:
+ 14
+
+Explanation:
+
+There are two kinds of items, A and B. Their prices are $2 and $5 respectively. 
+In special offer 1, you can pay $5 for 3A and 0B
+In special offer 2, you can pay $10 for 1A and 2B. 
+You need to buy 3A and 2B, so you may pay $10 for 1A and 2B (special offer #2), and $4 for 2A.
 ```
 
 **Example 2:**
 
 ```text
-Input: [2,3,4], [[1,1,0,4],[2,2,1,9]], [1,2,1]Output: 11Explanation:The price of A is $2, and $3 for B, $4 for C. You may pay $4 for 1A and 1B, and $9 for 2A ,2B and 1C. You need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and $3 for 1B, $4 for 1C. You cannot add more items, though only $9 for 2A ,2B and 1C.
+Input:
+ [2,3,4], [[1,1,0,4],[2,2,1,9]], [1,2,1]
+
+Output:
+ 11
+
+Explanation:
+
+The price of A is $2, and $3 for B, $4 for C. 
+You may pay $4 for 1A and 1B, and $9 for 2A ,2B and 1C. 
+You need to buy 1A ,2B and 1C, so you may pay $4 for 1A and 1B (special offer #1), and $3 for 1B, $4 for 1C. 
+You cannot add more items, though only $9 for 2A ,2B and 1C.
 ```
 
 **Note:**
@@ -37,6 +59,21 @@ Input: [2,3,4], [[1,1,0,4],[2,2,1,9]], [1,2,1]Output: 11Explanation:The price of
 dfs的参数是tuple（list\)一整串商品数量传入，loop special，每个可选和不选，要和完全单价买比较
 
 ```text
-class Solution:    def shoppingOffers(self, price: List[int], special: List[List[int]], needs: List[int]) -> int:        n = len(needs)                        mm = {}        def dfs(cur):            if tuple(cur) in mm:                return mm[tuple(cur)]            total = sum([price[i]*cur[i] for i in range(n)])#本轮商品直接买的价格            for spec in special:                temp = [cur[i] - spec[i] for i in range(n)]                if min(temp)>=0:                    total = min(total, dfs(tuple(temp)) + spec[-1])#直接买和对比当前sale            mm[tuple(cur)] = total            return total        return dfs(tuple(needs))
+class Solution:
+    def shoppingOffers(self, price: List[int], special: List[List[int]], needs: List[int]) -> int:
+        n = len(needs)                
+        mm = {}
+
+        def dfs(cur):
+            if tuple(cur) in mm:
+                return mm[tuple(cur)]
+            total = sum([price[i]*cur[i] for i in range(n)])#本轮商品直接买的价格
+            for spec in special:
+                temp = [cur[i] - spec[i] for i in range(n)]
+                if min(temp)>=0:
+                    total = min(total, dfs(tuple(temp)) + spec[-1])#直接买和对比当前sale
+            mm[tuple(cur)] = total
+            return total
+        return dfs(tuple(needs))
 ```
 

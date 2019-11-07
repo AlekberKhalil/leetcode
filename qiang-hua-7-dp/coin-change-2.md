@@ -8,19 +8,28 @@ You are given coins of different denominations and a total amount of money. Writ
 **Example 1:**
 
 ```text
-Input: amount = 5, coins = [1, 2, 5]Output: 4Explanation: there are four ways to make up the amount:5=55=2+2+15=2+1+1+15=1+1+1+1+1
+Input: amount = 5, coins = [1, 2, 5]
+Output: 4
+Explanation: there are four ways to make up the amount:
+5=5
+5=2+2+1
+5=2+1+1+1
+5=1+1+1+1+1
 ```
 
 **Example 2:**
 
 ```text
-Input: amount = 3, coins = [2]Output: 0Explanation: the amount of 3 cannot be made up just with coins of 2.
+Input: amount = 3, coins = [2]
+Output: 0
+Explanation: the amount of 3 cannot be made up just with coins of 2.
 ```
 
 **Example 3:**
 
 ```text
-Input: amount = 10, coins = [10] Output: 1
+Input: amount = 10, coins = [10] 
+Output: 1
 ```
 
 **Note:**
@@ -41,6 +50,16 @@ You can assume that
 [https://leetcode.com/problems/coin-change-2/discuss/141076/Logical-Thinking-with-Clear-Java-Code](https://leetcode.com/problems/coin-change-2/discuss/141076/Logical-Thinking-with-Clear-Java-Code)
 
 ```text
-class Solution:    def change(self, amount: int, coins: List[int]) -> int:                dp = [0] * (amount+1)        dp [0] = 1        for c in coins:            for i in range(c,amount+1):                                            dp[i] += dp[i-c]        return dp[amount]        
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        
+        dp = [0] * (amount+1)
+        dp [0] = 1
+        for c in coins:
+            for i in range(c,amount+1):            
+                
+                dp[i] += dp[i-c]
+        return dp[amount]
+        
 ```
 

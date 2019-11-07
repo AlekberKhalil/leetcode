@@ -9,13 +9,32 @@ You start with 0 points. Return the maximum number of points you can earn by app
 **Example 1:**
 
 ```text
-Input: nums = [3, 4, 2]Output: 6Explanation:Delete 4 to earn 4 points, consequently 3 is also deleted.Then, delete 2 to earn 2 points. 6 total points are earned.
+Input:
+ nums = [3, 4, 2]
+
+Output:
+ 6
+
+Explanation:
+
+Delete 4 to earn 4 points, consequently 3 is also deleted.
+Then, delete 2 to earn 2 points. 6 total points are earned.
 ```
 
 **Example 2:**
 
 ```text
-Input: nums = [2, 2, 3, 3, 3, 4]Output: 9Explanation:Delete 3 to earn 3 points, deleting both 2's and the 4.Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.9 total points are earned.
+Input:
+ nums = [2, 2, 3, 3, 3, 4]
+
+Output:
+ 9
+
+Explanation:
+
+Delete 3 to earn 3 points, deleting both 2's and the 4.
+Then, delete 3 again to earn 3 points, and 3 again to earn 3 points.
+9 total points are earned.
 ```
 
 **Note:**
@@ -49,6 +68,11 @@ Input: nums = [2, 2, 3, 3, 3, 4]Output: 9Explanation:Delete 3 to earn 3 points, 
 对待每个点，和House rober的每个数字一样。也是不能取相邻的，只能取前两天较大。
 
 ```text
-class Solution:    def deleteAndEarn(self, nums: List[int]) -> int:        prev,cur,cnt = 0,0,collections.Counter(nums)        for i in range(1,10003):            prev, cur = cur, max(prev+i*cnt[i],cur)        return cur
+class Solution:
+    def deleteAndEarn(self, nums: List[int]) -> int:
+        prev,cur,cnt = 0,0,collections.Counter(nums)
+        for i in range(1,10003):
+            prev, cur = cur, max(prev+i*cnt[i],cur)
+        return cur
 ```
 

@@ -19,10 +19,30 @@ Given an array of integers, find a contiguous subarray which has the largest sum
 解法：
 
 ```text
-public int maxSubArray(int[] nums) {        // write your code        int minSum =0, ret = Integer.MIN_VALUE;        int sum = 0;        for(int i = 0; i < nums.length; i++){            sum += nums[i];            ret = Math.max(ret, sum-minSum);            minSum = Math.min(minSum, sum);//这里保存min可以省一个loop        }        return ret;    }
+public int maxSubArray(int[] nums) {
+        // write your code
+        int minSum =0, ret = Integer.MIN_VALUE;
+        int sum = 0;
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i];
+            ret = Math.max(ret, sum-minSum);
+            minSum = Math.min(minSum, sum);//这里保存min可以省一个loop
+        }
+        return ret;
+    }
 ```
 
 ```text
-    public int maxSubArray(int[] nums) {        // write your code        int localMax =0, globalMax = Integer.MIN_VALUE;        for(int i = 0; i < nums.length; i++){            localMax += nums[i];            globalMax = Math.max(globalMax, localMax);            localMax = Math.max(localMax, 0);        }        return globalMax;    }
+    public int maxSubArray(int[] nums) {
+        // write your code
+        int localMax =0, globalMax = Integer.MIN_VALUE;
+
+        for(int i = 0; i < nums.length; i++){
+            localMax += nums[i];
+            globalMax = Math.max(globalMax, localMax);
+            localMax = Math.max(localMax, 0);
+        }
+        return globalMax;
+    }
 ```
 

@@ -7,19 +7,34 @@ Once you pay the cost, you can either climb one or two steps. You need to find m
 **Example 1:**
 
 ```text
-Input: cost = [10, 15, 20]Output: 15Explanation: Cheapest is start on cost[1], pay that cost and go to the top.
+Input:
+ cost = [10, 15, 20]
+
+Output:
+ 15
+
+Explanation:
+ Cheapest is start on cost[1], pay that cost and go to the top.
 ```
 
 **Example 2:**
 
 ```text
-Input: cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]Output: 6Explanation: Cheapest is start on cost[0], and only step on 1s, skipping cost[3].
+Input:
+ cost = [1, 100, 1, 1, 1, 100, 1, 1, 100, 1]
+
+Output:
+ 6
+
+Explanation:
+ Cheapest is start on cost[0], and only step on 1s, skipping cost[3].
 ```
 
 **Note:**
 
 ```text
-cost will have a length in the range [2, 1000].Every cost[i] will be an integer in the range [0, 999].
+cost will have a length in the range [2, 1000].
+Every cost[i] will be an integer in the range [0, 999].
 ```
 
 分析
@@ -27,6 +42,24 @@ cost will have a length in the range [2, 1000].Every cost[i] will be an integer 
 最后答案是 min\(f\[n - 1\],f\[n-2\]\) 大概是到最后一步的cost不算吧
 
 ```text
-class Solution:    def minCostClimbingStairs(self, cost):        """        :type cost: List[int]        :rtype: int        """        if not cost:            return 0        n = len(cost)        f = [0]*n        f[0] = cost[0]        f[1] = cost[1]        for i in range(2, n):            f[i] = min(f[i - 1], f[i - 2]) + cost[i]        return min(f[n - 1],f[n-2])
+class Solution:
+    def minCostClimbingStairs(self, cost):
+        """
+        :type cost: List[int]
+        :rtype: int
+        """
+        if not cost:
+            return 0
+        n = len(cost)
+        f = [0]*n
+
+        f[0] = cost[0]
+        f[1] = cost[1]
+
+
+        for i in range(2, n):
+            f[i] = min(f[i - 1], f[i - 2]) + cost[i]
+
+        return min(f[n - 1],f[n-2])
 ```
 

@@ -13,7 +13,11 @@ a^a=0 相同数异或会抵消,两两抵消
 c - \(c-1\)&c得到最后一个1
 
 ```text
-bitwise notenum | (1<<k): set num's k-th bit as 1num & (1<<k): get num's k-th bitint prev = s ^ (1 << j);
+bitwise note
+num | (1<<k): set num's k-th bit as 1
+num & (1<<k): get num's k-th bit
+
+int prev = s ^ (1 << j);
 ```
 
 Subarray

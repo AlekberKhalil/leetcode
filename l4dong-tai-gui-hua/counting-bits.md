@@ -5,13 +5,19 @@ Given a non negative integer number**num**. For every numbers**i**in the range**
 **Example 1:**
 
 ```text
-Input: 2Output: [0,1,1]
+Input: 
+2
+Output: 
+[0,1,1]
 ```
 
 **Example 2:**
 
 ```text
-Input: 5Output: [0,1,1,2,1,2]
+Input: 
+5
+Output: 
+[0,1,1,2,1,2]
 ```
 
 **Follow up:**
@@ -45,6 +51,19 @@ Input: 5Output: [0,1,1,2,1,2]
 c - \(c-1\)&c得到最后一个1，就是全部置空只有最后一个1的位置有1
 
 ```text
-class Solution:    def countBits(self, num: int) -> List[int]:        """        :type num: int        :rtype: List[int]        """        p = [0]*(num+1)        for i in range(1,num+1):            p[i] =p[i&(i-1)] + 1        return p
+class Solution:
+    def countBits(self, num: int) -> List[int]:
+
+        """
+        :type num: int
+        :rtype: List[int]
+        """
+
+        p = [0]*(num+1)
+
+        for i in range(1,num+1):
+            p[i] =p[i&(i-1)] + 1
+
+        return p
 ```
 

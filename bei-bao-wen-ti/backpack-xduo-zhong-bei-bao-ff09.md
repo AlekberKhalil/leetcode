@@ -5,12 +5,26 @@ You have a total of`n`yuan. Merchant has three merchandises and their prices are
 ## Example
 
 ```text
-Given: n = 900Return: 0
+Given: n = 900
+Return: 0
 ```
 
 多重背包p2
 
 ```text
-class Solution:    """    @param n: the money you have    @return: the minimum money you have to give    """    def backPackX(self, n):        # write your code here        f = [0]*(n+1)        values = [150,250,350]        for i in range(3):            for j in range(values[i], n+1):                f[j] = max(f[j],f[j-values[i]]+values[i])        return n - f[-1]
+class Solution:
+    """
+    @param n: the money you have
+    @return: the minimum money you have to give
+    """
+    def backPackX(self, n):
+        # write your code here
+        f = [0]*(n+1)
+
+        values = [150,250,350]
+        for i in range(3):
+            for j in range(values[i], n+1):
+                f[j] = max(f[j],f[j-values[i]]+values[i])
+        return n - f[-1]
 ```
 

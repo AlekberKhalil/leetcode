@@ -5,19 +5,45 @@ Given an array of integers and an integer**k**, you need to find the number of**
 **Example 1:**
 
 ```text
-Input: [3, 1, 4, 1, 5], k = 2Output: 2Explanation: There are two 2-diff pairs in the array, (1, 3) and (3, 5).Although we have two 1s in the input, we should only return the number of unique pairs.
+Input:
+ [3, 1, 4, 1, 5], k = 2
+
+Output:
+ 2
+
+Explanation: 
+There are two 2-diff pairs in the array, (1, 3) and (3, 5).
+
+
+Although we have two 1s in the input, we should only return the number of 
+unique
+ pairs.
 ```
 
 **Example 2:**
 
 ```text
-Input:[1, 2, 3, 4, 5], k = 1Output: 4Explanation: There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).
+Input:
+[1, 2, 3, 4, 5], k = 1
+
+Output: 
+4
+
+Explanation:
+ There are four 1-diff pairs in the array, (1, 2), (2, 3), (3, 4) and (4, 5).
 ```
 
 **Example 3:**
 
 ```text
-Input: [1, 3, 1, 5, 4], k = 0Output: 1Explanation: There is one 0-diff pair in the array, (1, 1).
+Input: 
+[1, 3, 1, 5, 4], k = 0
+
+Output: 
+1
+
+Explanation:
+ There is one 0-diff pair in the array, (1, 1).
 ```
 
 分析
@@ -25,6 +51,17 @@ Input: [1, 3, 1, 5, 4], k = 0Output: 1Explanation: There is one 0-diff pair in t
 就是2sum的思想，**排序后**，a和a-k pair存入map
 
 ```text
-class Solution:    def findPairs(self, nums: List[int], k: int) -> int:        nums.sort()        ll = len(nums)        mm = dict()        res = set()        for i in range(ll):            if nums[i]-k in mm:                res.add((nums[i]-k,nums[i]))            mm[nums[i]] = i        return len(res)
+class Solution:
+    def findPairs(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        ll = len(nums)
+        mm = dict()
+        res = set()
+        for i in range(ll):
+            if nums[i]-k in mm:
+                res.add((nums[i]-k,nums[i]))
+
+            mm[nums[i]] = i
+        return len(res)
 ```
 

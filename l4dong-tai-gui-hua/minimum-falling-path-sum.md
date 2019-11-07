@@ -7,7 +7,13 @@ A falling path starts at any element in the first row, and chooses one element f
 **Example 1:**
 
 ```text
-Input: [[1,2,3],[4,5,6],[7,8,9]]Output: 12Explanation: The possible falling paths are:
+Input: 
+[[1,2,3],[4,5,6],[7,8,9]]
+Output: 
+12
+Explanation: 
+
+The possible falling paths are:
 ```
 
 * `[1,4,7], [1,4,8], [1,5,7], [1,5,8], [1,5,9]`
@@ -19,7 +25,8 @@ The falling path with the smallest sum is`[1,4,7]`, so the answer is`12`.
 **Note:**
 
 ```text
-1 <= A.length == A[0].length <= 100-100 <= A[i][j] <= 100
+1 <= A.length == A[0].length <= 100
+-100 <= A[i][j] <= 100
 ```
 
 分析
@@ -31,6 +38,20 @@ A[i][j] is the minimum of A[i - 1][j - 1], A[i - 1][j] and A[i - 1][j + 1].
 ```
 
 ```text
-class Solution:    def minFallingPathSum(self, A: List[List[int]]) -> int:        if not A or not A[0]:            return 0        n,m = len(A),len(A[0])        dp = A[0]        for i in range(1,n):            cur = [float('inf')] *(m)            for j in range(m):                cur[j] = min(dp[max(0,j-1)],dp[j],dp[min(m-1,j+1)]) + A[i][j]            dp = cur[:]        return min(dp)
+class Solution:
+    def minFallingPathSum(self, A: List[List[int]]) -> int:
+        if not A or not A[0]:
+            return 0
+
+        n,m = len(A),len(A[0])
+        dp = A[0]
+
+        for i in range(1,n):
+            cur = [float('inf')] *(m)
+            for j in range(m):
+                cur[j] = min(dp[max(0,j-1)],dp[j],dp[min(m-1,j+1)]) + A[i][j]
+            dp = cur[:]
+
+        return min(dp)
 ```
 

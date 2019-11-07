@@ -44,7 +44,48 @@ The format of the output is as follows:
 **Examples:**
 
 ```text
-Input: expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1]Output: ["-1*a","14"]Input: expression = "e - 8 + temperature - pressure",evalvars = ["e", "temperature"], evalints = [1, 12]Output: ["-1*pressure","5"]Input: expression = "(e + 8) * (e - 8)", evalvars = [], evalints = []Output: ["1*e*e","-64"]Input: expression = "7 - 7", evalvars = [], evalints = []Output: []Input: expression = "a * b * c + b * a * c * 4", evalvars = [], evalints = []Output: ["5*a*b*c"]Input: expression = "((a - b) * (b - c) + (c - a)) * ((a - b) + (b - c) * (c - a))",evalvars = [], evalints = []Output: ["-1*a*a*b*b","2*a*a*b*c","-1*a*a*c*c","1*a*b*b*b","-1*a*b*b*c","-1*a*b*c*c","1*a*c*c*c","-1*b*b*b*c","2*b*b*c*c","-1*b*c*c*c","2*a*a*b","-2*a*a*c","-2*a*b*b","2*a*c*c","1*b*b*b","-1*b*b*c","1*b*c*c","-1*c*c*c","-1*a*a","1*a*b","1*a*c","-1*b*c"]
+Input:
+ expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1]
+
+Output:
+ ["-1*a","14"]
+
+
+Input:
+ expression = "e - 8 + temperature - pressure",
+evalvars = ["e", "temperature"], evalints = [1, 12]
+
+Output:
+ ["-1*pressure","5"]
+
+
+Input:
+ expression = "(e + 8) * (e - 8)", evalvars = [], evalints = []
+
+Output:
+ ["1*e*e","-64"]
+
+
+Input:
+ expression = "7 - 7", evalvars = [], evalints = []
+
+Output:
+ []
+
+
+Input:
+ expression = "a * b * c + b * a * c * 4", evalvars = [], evalints = []
+
+Output:
+ ["5*a*b*c"]
+
+
+Input:
+ expression = "((a - b) * (b - c) + (c - a)) * ((a - b) + (b - c) * (c - a))",
+evalvars = [], evalints = []
+
+Output:
+ ["-1*a*a*b*b","2*a*a*b*c","-1*a*a*c*c","1*a*b*b*b","-1*a*b*b*c","-1*a*b*c*c","1*a*c*c*c","-1*b*b*b*c","2*b*b*c*c","-1*b*c*c*c","2*a*a*b","-2*a*a*c","-2*a*b*b","2*a*c*c","1*b*b*b","-1*b*b*c","1*b*c*c","-1*c*c*c","-1*a*a","1*a*b","1*a*c","-1*b*c"]
 ```
 
 分析
@@ -54,6 +95,33 @@ Input: expression = "e + 8 - a + 5", evalvars = ["e"], evalints = [1]Output: ["-
 注意collection.counter初始化可以用map或iterative，有sub update 和mul函数
 
 ```text
-class Solution:    def basicCalculatorIV(self, expression, evalvars, evalints):        """        :type expression: str        :type evalvars: List[str]        :type evalints: List[int]        :rtype: List[str]        """        class C(collections.Counter):            def __add__(self, other):                self.update(other)                return self            def __sub__(self, other):                self.subtract(other)                return self            def __mul__(self, other):                product = C()                for x in self:                    for y in other:                        key = tuple(sorted(x+y))                        product[key] += self[x]*other[y]                return product        map = dict(zip(evalvars,evalints))        def f(s):            s = str(map.get(s,s))            return C({(s,):1}) if s.isalpha() else C({():int(s)})        c = eval(re.sub('(\w+)',r'f("\1")',expression))        return ['*'.join((str(c[x]),)+x) for x in sorted(c,key=lambda i:(-len(i),i)) if c[x]]
+class Solution:
+    def basicCalculatorIV(self, expression, evalvars, evalints):
+        """
+        :type expression: str
+        :type evalvars: List[str]
+        :type evalints: List[int]
+        :rtype: List[str]
+        """
+        class C(collections.Counter):
+            def __add__(self, other):
+                self.update(other)
+                return self
+            def __sub__(self, other):
+                self.subtract(other)
+                return self
+            def __mul__(self, other):
+                product = C()
+                for x in self:
+                    for y in other:
+                        key = tuple(sorted(x+y))
+                        product[key] += self[x]*other[y]
+                return product
+        map = dict(zip(evalvars,evalints))
+        def f(s):
+            s = str(map.get(s,s))
+            return C({(s,):1}) if s.isalpha() else C({():int(s)})
+        c = eval(re.sub('(\w+)',r'f("\1")',expression))
+        return ['*'.join((str(c[x]),)+x) for x in sorted(c,key=lambda i:(-len(i),i)) if c[x]]
 ```
 

@@ -17,6 +17,30 @@ For example, in array`[1, 2, 3, 1]`, 3 is a peak element and your function shoul
 二分好像是等于的那头，后判断。
 
 ```text
-class Solution {    public int findPeakElement(int[] nums) {        if(nums == null || nums.length == 0){            return -1;        }        int s = 0, e = nums.length - 1;        int n = nums.length;        while(s + 1 < e){            int m = s + (e - s)/2;            if(nums[m] > nums[m + 1]){                e = m;            }else if(nums[m] > nums[m - 1]){                s = m;            }else{                e = m;            }        }        if(nums[s] > nums[e])            return s;        return e;    }}
+class Solution {
+    public int findPeakElement(int[] nums) {
+        if(nums == null || nums.length == 0){
+            return -1;
+        }
+        int s = 0, e = nums.length - 1;
+        int n = nums.length;
+        while(s + 1 < e){
+            int m = s + (e - s)/2;
+            if(nums[m] > nums[m + 1]){
+                e = m;
+            }else if(nums[m] > nums[m - 1]){
+                s = m;
+            }else{
+                e = m;
+            }
+        }
+
+        if(nums[s] > nums[e])
+            return s;
+
+        return e;
+
+    }
+}
 ```
 

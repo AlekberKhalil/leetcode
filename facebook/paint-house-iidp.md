@@ -27,6 +27,40 @@ f\[n\]\[k\]是以k颜色为最后颜色的最小 值。
 f\[n\]\[k\] = f\[n-1\]\[min\]+cost 这里 min= min1 if k!= min else min2
 
 ```text
-class Solution:    """    @param costs: n x k cost matrix    @return: an integer, the minimum cost to paint all houses    """    def minCostII(self, costs):        # write your code here        if not costs or not len(costs):            return 0        n = len(costs)        k = len(costs[0])        old_cost = [0]*k        new_cost = [0] * k        min1 = min2 = -1        for i in range(n):            m1 = m2 = float('inf')            for s, v in enumerate(old_cost):                if v < m2:                    if v<m1:                        m1, m2 = v, m1                        min1, min2 = s, min1                    else:                        m2 = v                        min2 = s            for j in range(k):                if j != min1:                    new_cost[j] = old_cost[min1] + costs[i][j]                else:                    new_cost[j] = old_cost[min2] + costs[i][j]            old_cost[:] = new_cost[:]        return min(new_cost)
+class Solution:
+    """
+    @param costs: n x k cost matrix
+    @return: an integer, the minimum cost to paint all houses
+    """
+
+    def minCostII(self, costs):
+        # write your code here
+        if not costs or not len(costs):
+            return 0
+        n = len(costs)
+        k = len(costs[0])
+        old_cost = [0]*k
+        new_cost = [0] * k
+        min1 = min2 = -1
+        for i in range(n):
+            m1 = m2 = float('inf')
+            for s, v in enumerate(old_cost):
+                if v < m2:
+                    if v<m1:
+                        m1, m2 = v, m1
+                        min1, min2 = s, min1
+                    else:
+                        m2 = v
+                        min2 = s
+            for j in range(k):
+                if j != min1:
+                    new_cost[j] = old_cost[min1] + costs[i][j]
+                else:
+                    new_cost[j] = old_cost[min2] + costs[i][j]
+
+
+            old_cost[:] = new_cost[:]
+
+        return min(new_cost)
 ```
 

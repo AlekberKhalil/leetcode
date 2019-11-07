@@ -9,6 +9,10 @@ The maximum depth is the number of nodes along the longest path from the root no
 分治，递归了左右的情况再算总和。
 
 ```text
-    public int maxDepth(TreeNode root) {        if(root == null)            return 0;        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));    }
+    public int maxDepth(TreeNode root) {
+        if(root == null)
+            return 0;
+        return 1 + Math.max(maxDepth(root.left), maxDepth(root.right));
+    }
 ```
 

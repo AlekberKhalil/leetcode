@@ -11,7 +11,12 @@ The function has the following parameters:
 #### Example
 
 ```text
-Example:Input:cars: [2, 10, 8, 17]k: 3output: 9Explanation: you can build a roof of length 9 covering all parking slots from the 2nd one to the 10th one, so covering 3 cars at slots 2, 10, 8, there are no shorter roof  that can cover 3 cars, so the answer is 9
+Example:
+Input:
+cars: [2, 10, 8, 17]
+k: 3
+output: 9
+Explanation: you can build a roof of length 9 covering all parking slots from the 2nd one to the 10th one, so covering 3 cars at slots 2, 10, 8, there are no shorter roof  that can cover 3 cars, so the answer is 9
 ```
 
 #### Notice
@@ -26,6 +31,20 @@ Example:Input:cars: [2, 10, 8, 17]k: 3output: 9Explanation: you can build a roof
 排序后，间隔的数字的min diff
 
 ```text
-class Solution:    """    @param cars:  integer array of length denoting the parking slots where cars are parked    @param k: integer denoting the number of cars that have to be covered by the roof    @return: return the minium length of the roof that would cover k cars    """    def ParkingDilemma(self, cars, k):        # write your code here        cars.sort()        n = len(cars)        res = float('inf')        for i in range(n-k+1):            res = min(res, cars[i+k-1] - cars[i])        return res+1            
+class Solution:
+    """
+    @param cars:  integer array of length denoting the parking slots where cars are parked
+    @param k: integer denoting the number of cars that have to be covered by the roof
+    @return: return the minium length of the roof that would cover k cars
+    """
+    def ParkingDilemma(self, cars, k):
+        # write your code here
+        cars.sort()
+        n = len(cars)
+        res = float('inf')
+        for i in range(n-k+1):
+            res = min(res, cars[i+k-1] - cars[i])
+        return res+1
+            
 ```
 

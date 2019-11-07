@@ -14,11 +14,19 @@ Problem Correction
 ## Example
 
 ```text
-String: "abcabc"K: 3Answer: 3substrings:  ["abc", "bca", "cab"]
+String: "abcabc"
+K: 3
+
+Answer: 3
+substrings:  ["abc", "bca", "cab"]
 ```
 
 ```text
-String: "abacab"K: 3Answer: 2substrings: ["bac", "cab"]
+String: "abacab"
+K: 3
+
+Answer: 2
+substrings: ["bac", "cab"]
 ```
 
 分析
@@ -32,6 +40,32 @@ for 里面I做end指针，直接用i-k，不用start指针了。
 这里需要set 为了去重 比如重复出现的ab
 
 ```text
-class Solution:    """    @param stringIn: The original string.    @param K: The length of substrings.    @return: return the count of substring of length K and exactly K distinct characters.    """    import collections    def KSubstring(self, stringIn, K):        # Write your code here        map = collections.defaultdict(int)        i=j=0        cnt = 0        res = set()        strLen = len(stringIn)        for i in range(strLen):            c = stringIn[i]            map[c] += 1            if map[c] == 1:                cnt += 1            if i >= K:                c = stringIn[i - K]                map[c] -= 1                if map[c] == 0:                    cnt -= 1            if cnt == K:                res.add(stringIn[i - K + 1:i + 1])        return len(res)
+class Solution:
+    """
+    @param stringIn: The original string.
+    @param K: The length of substrings.
+    @return: return the count of substring of length K and exactly K distinct characters.
+    """
+    import collections
+    def KSubstring(self, stringIn, K):
+        # Write your code here
+        map = collections.defaultdict(int)
+        i=j=0
+        cnt = 0
+        res = set()
+        strLen = len(stringIn)
+        for i in range(strLen):
+            c = stringIn[i]
+            map[c] += 1
+            if map[c] == 1:
+                cnt += 1
+            if i >= K:
+                c = stringIn[i - K]
+                map[c] -= 1
+                if map[c] == 0:
+                    cnt -= 1
+            if cnt == K:
+                res.add(stringIn[i - K + 1:i + 1])
+        return len(res)
 ```
 

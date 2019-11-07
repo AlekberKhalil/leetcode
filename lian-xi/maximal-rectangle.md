@@ -7,7 +7,14 @@ Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle con
 **Example:**
 
 ```text
-Input:[  ["1","0","1","0","0"],  ["1","0","1","1","1"],  ["1","1","1","1","1"],  ["1","0","0","1","0"]]Output: 6
+Input:
+[
+  ["1","0","1","0","0"],
+  ["1","0","1","1","1"],
+  ["1","1","1","1","1"],
+  ["1","0","0","1","0"]
+]
+Output: 6
 ```
 
 
@@ -19,6 +26,39 @@ Input:[  ["1","0","1","0","0"],  ["1","0","1","1","1"],  ["1","1","1","1","1"], 
 注意heights数组弹出一次后，可能为0，要判断。
 
 ```text
-class Solution:        def maximalRectangle(self, matrix: List[List[str]]) -> int:        if not matrix:            return 0        n,m = len(matrix),len(matrix[0])        area = 0        heights = [0]* (m+1)        for i in range(n):                        for j in range(m):                if matrix[i][j] == '1':                    heights[j] += 1                else:                    heights[j] = 0            stack = []            for j in range(m+1):                h = heights[j] if j != m else 0                if not stack:                    stack.append(j)                else:                    while stack and heights[stack[-1]] >= h:                        hh = heights[stack.pop()]                        if stack:                             ww = j - 1 - stack[-1]                         else:                            ww = j                        area = max(area, hh*ww)                    stack.append(j)        return area                                            
+class Solution:
+    
+    def maximalRectangle(self, matrix: List[List[str]]) -> int:
+        if not matrix:
+            return 0
+        n,m = len(matrix),len(matrix[0])
+        area = 0
+        heights = [0]* (m+1)
+
+
+        for i in range(n):            
+            for j in range(m):
+                if matrix[i][j] == '1':
+                    heights[j] += 1
+                else:
+                    heights[j] = 0
+            stack = []
+            for j in range(m+1):
+                h = heights[j] if j != m else 0
+                if not stack:
+                    stack.append(j)
+                else:
+                    while stack and heights[stack[-1]] >= h:
+                        hh = heights[stack.pop()]
+                        if stack: 
+                            ww = j - 1 - stack[-1] 
+                        else:
+                            ww = j
+                        area = max(area, hh*ww)
+                    stack.append(j)
+        return area
+                    
+            
+            
 ```
 

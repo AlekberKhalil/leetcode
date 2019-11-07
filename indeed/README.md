@@ -27,6 +27,42 @@ There are a total of 2 courses to take. To take course 1 you should have finishe
 一个Neighbors的map存node和相应的neighbors。一个Indegree的array存每个点的入度。然后BFS用一个queue
 
 ```text
-class Solution {    public boolean canFinish(int numCourses, int[][] prerequisites) {        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors        Queue<Integer> q = new LinkedList<Integer>();//bfs        int[] indegree = new int[numCourses];//indegree出度        int cnt = numCourses;        for(int[] p : prerequisites){            indegree[p[1]] ++;            if(neighbors.containsKey(p[0])){                neighbors.get(p[0]).add(p[1]);            }else{                List<Integer> ns = new ArrayList<Integer>();                ns.add(p[1]);                neighbors.put(p[0], ns);            }        }        for(int i = 0; i < indegree.length; i ++){            if(indegree[i] == 0){                q.offer(i);            }        }        while(!q.isEmpty()){            int cur = q.poll();            cnt --;            if(neighbors.containsKey(cur)){              for(int i : neighbors.get(cur)){                indegree[i] --;                if(indegree[i] == 0){                    q.offer(i);                }            }            }        }        return cnt == 0;    }}
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors
+        Queue<Integer> q = new LinkedList<Integer>();//bfs
+        int[] indegree = new int[numCourses];//indegree出度
+        int cnt = numCourses;
+        for(int[] p : prerequisites){
+            indegree[p[1]] ++;
+            if(neighbors.containsKey(p[0])){
+                neighbors.get(p[0]).add(p[1]);
+            }else{
+                List<Integer> ns = new ArrayList<Integer>();
+                ns.add(p[1]);
+                neighbors.put(p[0], ns);
+            }
+        }
+        for(int i = 0; i < indegree.length; i ++){
+            if(indegree[i] == 0){
+                q.offer(i);
+            }
+        }
+        while(!q.isEmpty()){
+            int cur = q.poll();
+            cnt --;
+            if(neighbors.containsKey(cur)){
+              for(int i : neighbors.get(cur)){
+                indegree[i] --;
+                if(indegree[i] == 0){
+                    q.offer(i);
+                }
+            }
+            }
+
+        }
+        return cnt == 0;
+    }
+}
 ```
 

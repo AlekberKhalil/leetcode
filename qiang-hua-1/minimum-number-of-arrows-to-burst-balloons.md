@@ -7,7 +7,19 @@ An arrow can be shot up exactly vertically from different points along the x-axi
 **Example:**
 
 ```text
-Input:[[10,16], [2,8], [1,6], [7,12]]Output:2Explanation:One way is to shoot one arrow for example at x = 6 (bursting the balloons [2,8] and [1,6]) and another arrow at x = 11 (bursting the other two balloons).
+Input:
+
+[[10,16], [2,8], [1,6], [7,12]]
+
+
+Output:
+
+2
+
+
+Explanation:
+
+One way is to shoot one arrow for example at x = 6 (bursting the balloons [2,8] and [1,6]) and another arrow at x = 11 (bursting the other two balloons).
 ```
 
 分析
@@ -17,6 +29,21 @@ end 排序points，不用拆。想象end能兜住的区域，都可以等到end�
 start&gt;end，res++，new end update
 
 ```text
-class Solution:    def findMinArrowShots(self, points):        """        :type points: List[List[int]]        :rtype: int        """        if not points:            return 0        points.sort(key=lambda i:i[1])        end = points[0][1]        n=1        for p in points[1:]:            if p[0] > end:                n+=1                end = p[1]#别忘了更新end        return n
+class Solution:
+    def findMinArrowShots(self, points):
+        """
+        :type points: List[List[int]]
+        :rtype: int
+        """
+        if not points:
+            return 0
+        points.sort(key=lambda i:i[1])
+        end = points[0][1]
+        n=1
+        for p in points[1:]:
+            if p[0] > end:
+                n+=1
+                end = p[1]#别忘了更新end
+        return n
 ```
 

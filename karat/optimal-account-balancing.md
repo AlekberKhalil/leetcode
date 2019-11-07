@@ -14,13 +14,35 @@ Given a list of transactions between a group of people, return the minimum numbe
 **Example 1:**
 
 ```text
-Input:[[0,1,10], [2,0,5]]Output:2Explanation:Person #0 gave person #1 $10.Person #2 gave person #0 $5.Two transactions are needed. One way to settle the debt is person #1 pays person #0 and #2 $5 each.
+Input:
+[[0,1,10], [2,0,5]]
+
+Output:
+2
+
+Explanation:
+Person #0 gave person #1 $10.
+Person #2 gave person #0 $5.
+
+Two transactions are needed. One way to settle the debt is person #1 pays person #0 and #2 $5 each.
 ```
 
 **Example 2:**
 
 ```text
-Input:[[0,1,10], [1,0,1], [1,2,5], [2,0,5]]Output:1Explanation:Person #0 gave person #1 $10.Person #1 gave person #0 $1.Person #1 gave person #2 $5.Person #2 gave person #0 $5.Therefore, person #1 only need to give person #0 $4, and all debt is settled.
+Input:
+[[0,1,10], [1,0,1], [1,2,5], [2,0,5]]
+
+Output:
+1
+
+Explanation:
+Person #0 gave person #1 $10.
+Person #1 gave person #0 $1.
+Person #1 gave person #2 $5.
+Person #2 gave person #0 $5.
+
+Therefore, person #1 only need to give person #0 $4, and all debt is settled.
 ```
 
 分析
@@ -32,7 +54,29 @@ dfs从某起点开始，loop加入后面每个debts，进行下一步dfs\(start+
 等于每次清掉start的债务，丢掉start,然后继续下一轮，直到全部债务清除。
 
 ```text
-class Solution:    def minTransfers(self, transactions: List[List[int]]) -> int:        mm = collections.defaultdict(int)        for a,b,m in transactions:            mm[a] = mm.get(a,0) - m            mm[b] = mm.get(b,0) + m        debts = list(mm.values())        n = len(debts)        def dfs(pos):            while pos < n and debts[pos] == 0:                pos += 1            if pos == n:                return 0            r = float('inf')            for i in range(pos+1, n):                if debts[i]*debts[pos] < 0:                    debts[i] += debts[pos]                    r= min(r,1+dfs(pos+1))                    debts[i] -= debts[pos]            return r        return dfs(0)                            
+class Solution:
+    def minTransfers(self, transactions: List[List[int]]) -> int:
+        mm = collections.defaultdict(int)
+        for a,b,m in transactions:
+            mm[a] = mm.get(a,0) - m
+            mm[b] = mm.get(b,0) + m
+        debts = list(mm.values())
+        n = len(debts)
+        def dfs(pos):
+            while pos < n and debts[pos] == 0:
+                pos += 1
+            if pos == n:
+                return 0
+            r = float('inf')
+            for i in range(pos+1, n):
+                if debts[i]*debts[pos] < 0:
+                    debts[i] += debts[pos]
+                    r= min(r,1+dfs(pos+1))
+                    debts[i] -= debts[pos]
+            return r
+        return dfs(0)
+                    
+        
 ```
 
 

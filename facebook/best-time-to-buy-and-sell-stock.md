@@ -9,13 +9,28 @@ Note that you cannot sell a stock before you buy one.
 **Example 1:**
 
 ```text
-Input: [7,1,5,3,6,4]Output: 5Explanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.             Not 7-1 = 6, as selling price needs to be larger than buying price.
+Input:
+ [7,1,5,3,6,4]
+
+Output:
+ 5
+
+Explanation:
+ Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.
+             Not 7-1 = 6, as selling price needs to be larger than buying price.
 ```
 
 **Example 2:**
 
 ```text
-Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.e. max profit = 0.
+Input:
+ [7,6,4,3,1]
+
+Output:
+ 0
+
+Explanation:
+ In this case, no transaction is done, i.e. max profit = 0.
 ```
 
 分析
@@ -23,6 +38,19 @@ Input: [7,6,4,3,1]Output: 0Explanation: In this case, no transaction is done, i.
 Min,max设置一下，从第二天开始
 
 ```text
-class Solution:    def maxProfit(self, prices):        """        :type prices: List[int]        :rtype: int        """        if not prices:            return 0        mmax=0        mmin = prices[0]        for p in prices[1:]:            mmax = max(mmax,p-mmin)            mmin = min(mmin,p)        return mmax
+class Solution:
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        if not prices:
+            return 0
+        mmax=0
+        mmin = prices[0]
+        for p in prices[1:]:
+            mmax = max(mmax,p-mmin)
+            mmin = min(mmin,p)
+        return mmax
 ```
 

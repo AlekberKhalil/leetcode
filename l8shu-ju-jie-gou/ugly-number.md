@@ -11,6 +11,26 @@ Note that`1`is typically treated as an ugly number.
 都是正数
 
 ```text
-class Solution {    public boolean isUgly(int num) {        if(num < 1)            return false;        if(num == 1)            return true;        int[] arr = {2,3,5};        while(num != 1){            boolean canMul = false;            for(int i : arr){                if(num % i == 0){                    num /= i;                    canMul = true;                }            }            if(!canMul)                return false;        }        return true;    }}
+class Solution {
+    public boolean isUgly(int num) {
+        if(num < 1)
+            return false;
+        if(num == 1)
+            return true;
+        int[] arr = {2,3,5};
+        while(num != 1){
+            boolean canMul = false;
+            for(int i : arr){
+                if(num % i == 0){
+                    num /= i;
+                    canMul = true;
+                }
+            }
+            if(!canMul)
+                return false;
+        }
+        return true;
+    }
+}
 ```
 

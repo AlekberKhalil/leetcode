@@ -43,7 +43,14 @@ Given two sorted integer arrays_nums1\_and\_nums2_, merge\_nums2\_into\_nums1\_a
 **Example:**
 
 ```text
-Input:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6],       n = 3Output: [1,2,2,3,5,6]
+Input:
+
+nums1 = [1,2,3,0,0,0], m = 3
+nums2 = [2,5,6],       n = 3
+
+
+Output:
+ [1,2,2,3,5,6]
 ```
 
 分析
@@ -53,6 +60,58 @@ Input:nums1 = [1,2,3,0,0,0], m = 3nums2 = [2,5,6],       n = 3Output: [1,2,2,3,5
 3个while,开始while i&gt;=0 and j&gt;=0: 然后while i&gt;=0:和while j&gt;=0：
 
 ```text
-class Solution:    def merge(self, nums1, m, nums2, n):        """        :type nums1: List[int]        :type m: int        :type nums2: List[int]        :type n: int        :rtype: void Do not return anything, modify nums1 in-place instead.        """        if not n:            return        i = m-1        j=n-1        k=m+n-1        while i>=0 and j>=0:            if nums1[i]<nums2[j]:                nums1[k] = nums2[j]                k-=1                j-=1            else:                nums1[k] = nums1[i]                k-=1                i-=1        while i>=0:            nums1[k] = nums1[i]            k -= 1            i -= 1        while j>=0:            nums1[k] = nums2[j]            k -= 1            j -= 1
+class Solution:
+    def merge(self, nums1, m, nums2, n):
+        """
+        :type nums1: List[int]
+        :type m: int
+        :type nums2: List[int]
+        :type n: int
+        :rtype: void Do not return anything, modify nums1 in-place instead.
+        """
+        if not n:
+            return
+        i = m-1
+        j=n-1
+        k=m+n-1
+        while i>=0 and j>=0:
+            if nums1[i]<nums2[j]:
+                nums1[k] = nums2[j]
+                k-=1
+                j-=1
+            else:
+                nums1[k] = nums1[i]
+                k-=1
+                i-=1
+        while i>=0:
+            nums1[k] = nums1[i]
+            k -= 1
+            i -= 1
+        while j>=0:
+            nums1[k] = nums2[j]
+            k -= 1
+            j -= 1
+```
+
+java 代码简单，m到头证明结束，所以只需要判断N。
+
+```text
+class Solution {
+public:
+    void merge(int A[], int m, int B[], int n) {
+        int i=m-1;
+		int j=n-1;
+		int k = m+n-1;
+		while(i >=0 && j>=0)
+		{
+			if(A[i] > B[j])
+				A[k--] = A[i--];
+			else
+				A[k--] = B[j--];
+		}
+		while(j>=0)
+			A[k--] = B[j--];
+    }
+};
 ```
 

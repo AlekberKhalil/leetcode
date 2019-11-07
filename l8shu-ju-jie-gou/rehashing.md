@@ -5,13 +5,19 @@ The size of the hash table is not determinate at the very beginning. If the tota
 `size=3`,`capacity=4`
 
 ```text
-[null, 21, 14, null]       ↓    ↓       9   null       ↓      null
+[null, 21, 14, null]
+       ↓    ↓
+       9   null
+       ↓
+      null
 ```
 
 The hash function is:
 
 ```text
-int hashcode(int key, int capacity) {    return key % capacity;}
+int hashcode(int key, int capacity) {
+    return key % capacity;
+}
 ```
 
 here we have three numbers, 9, 14 and 21, where 21 and 9 share the same position as they all have the same hashcode 1 \(21 % 4 = 9 % 4 = 1\). We store them in the hash table by linked list.
@@ -21,7 +27,8 @@ rehashing this hash table, double the capacity, you will get:
 `size=3`,`capacity=8`
 
 ```text
-index:   0    1    2    3     4    5    6   7hash : [null, 9, null, null, null, 21, 14, null]
+index:   0    1    2    3     4    5    6   7
+hash : [null, 9, null, null, null, 21, 14, null]
 ```
 
 Given the original hash table, return the new hash table after rehashing .
@@ -45,6 +52,50 @@ For negative integer in hash table, the position can be calculated as follow:
 记得Node是链表，所以每次要new新的，不能直接连上旧的
 
 ```text
-/** * Definition for ListNode * public class ListNode { *     int val; *     ListNode next; *     ListNode(int x) { *         val = x; *         next = null; *     } * } */public class Solution {    /**     * @param hashTable: A list of The first node of linked list     * @return: A list of The first node of linked list which have twice size     */        public ListNode[] rehashing(ListNode[] hashTable) {        // write your code here        int n = hashTable.length;        if(n == 0)            return hashTable;        int len = 2 * n;        ListNode[] nTable = new ListNode[len];        for(ListNode cur : hashTable){            while(cur != null){                int nIndex = hashcode(cur.val, len);                if(nTable[nIndex] == null){                    nTable[nIndex] = new ListNode(cur.val);                }else{                    ListNode head = nTable[nIndex];                    while(head.next != null){                        head = head.next;                    }                    head.next = new ListNode(cur.val);                }                cur = cur.next;            }        }        return nTable;    }    int hashcode(int key, int capacity) {        return (key % capacity + capacity) % capacity;    }};
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    /**
+     * @param hashTable: A list of The first node of linked list
+     * @return: A list of The first node of linked list which have twice size
+     */    
+    public ListNode[] rehashing(ListNode[] hashTable) {
+        // write your code here
+        int n = hashTable.length;
+        if(n == 0)
+            return hashTable;
+        int len = 2 * n;
+        ListNode[] nTable = new ListNode[len];
+        for(ListNode cur : hashTable){
+            while(cur != null){
+                int nIndex = hashcode(cur.val, len);
+                if(nTable[nIndex] == null){
+                    nTable[nIndex] = new ListNode(cur.val);
+                }else{
+                    ListNode head = nTable[nIndex];
+                    while(head.next != null){
+                        head = head.next;
+                    }
+                    head.next = new ListNode(cur.val);
+                }
+                cur = cur.next;
+            }
+        }
+        return nTable;
+    }
+
+    int hashcode(int key, int capacity) {
+        return (key % capacity + capacity) % capacity;
+    }
+};
 ```
 

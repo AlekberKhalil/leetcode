@@ -15,13 +15,31 @@ Now, you can only press the keyboard for**N**times \(with the above four keys\),
 **Example 1:**
 
 ```text
-Input: N = 3Output: 3Explanation:We can at most get 3 A's on screen by pressing following key sequence:A, A, A
+Input:
+ N = 3
+
+Output:
+ 3
+
+Explanation:
+
+We can at most get 3 A's on screen by pressing following key sequence:
+A, A, A
 ```
 
 **Example 2:**
 
 ```text
-Input: N = 7Output: 9Explanation:We can at most get 9 A's on screen by pressing following key sequence:A, A, A, Ctrl A, Ctrl C, Ctrl V, Ctrl V
+Input:
+ N = 7
+
+Output:
+ 9
+
+Explanation:
+
+We can at most get 9 A's on screen by pressing following key sequence:
+A, A, A, Ctrl A, Ctrl C, Ctrl V, Ctrl V
 ```
 
 **Note:**
@@ -45,6 +63,14 @@ I可以直接print来，不copy, dp\[i\] = i
 j之前print, j之后都copy, j的 range = \[1,i-3\] . dp\[i\] = dp\[j\]\*\(i-j-1\)
 
 ```text
-class Solution:    def maxA(self, N: int) -> int:        dp=[0]*(N+1)        for i in range(1,N+1):                                    dp[i] = i            for j in range(1,i-3):                dp[i] = max(dp[i], dp[j]*(i-j-1))        return dp[N]
+class Solution:
+    def maxA(self, N: int) -> int:
+        dp=[0]*(N+1)
+        for i in range(1,N+1):                        
+            dp[i] = i
+            for j in range(1,i-3):
+                dp[i] = max(dp[i], dp[j]*(i-j-1))
+
+        return dp[N]
 ```
 

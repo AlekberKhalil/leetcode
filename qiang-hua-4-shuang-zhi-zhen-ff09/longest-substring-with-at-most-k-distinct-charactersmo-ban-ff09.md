@@ -19,6 +19,31 @@ O\(n\), n is the size of the string_s_.
 start的while 条件是while counter&gt;k 不是counter+=k
 
 ```text
-import collectionsclass Solution:    """    @param s: A string    @param k: An integer    @return: An integer    """    def lengthOfLongestSubstringKDistinct(self, s, k):        # write your code here        counter = start = end = d = 0        map = collections.defaultdict(int)        n = len(s)        while end < n:            if map[s[end]]==0:                counter +=1            map[s[end]]+=1            end +=1            while counter > k:                if map[s[start]]==1:                    counter -=1                map[s[start]] -=1                start +=1            d = max(d,end-start)        return d
+import collections
+
+
+class Solution:
+    """
+    @param s: A string
+    @param k: An integer
+    @return: An integer
+    """
+    def lengthOfLongestSubstringKDistinct(self, s, k):
+        # write your code here
+        counter = start = end = d = 0
+        map = collections.defaultdict(int)
+        n = len(s)
+        while end < n:
+            if map[s[end]]==0:
+                counter +=1
+            map[s[end]]+=1
+            end +=1
+            while counter > k:
+                if map[s[start]]==1:
+                    counter -=1
+                map[s[start]] -=1
+                start +=1
+            d = max(d,end-start)
+        return d
 ```
 

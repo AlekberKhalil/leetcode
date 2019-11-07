@@ -13,7 +13,31 @@
 binary search 模板
 
 ```text
-//first occurrence of targetint binarySearch(vector<int> &A, int target){    if(A.size()==0){        return -1;    }    int start=0;    int end=A.size()-1;    int mid;    while(start+1<end){        mid=start+（end-start）/2;        if(A[mid]==target)            end=mid;        else if(A[mid]>target)            end=mid; //不用mid+1之类        else            start=mid;    }//Mid不变，所以最后需要分别判断    if(A[start]==target)        return start;    if(A[end]==target)        return end;    return -1;}
+//first occurrence of target
+int binarySearch(vector<int> &A, int target){
+    if(A.size()==0){
+        return -1;
+    }
+    int start=0;
+    int end=A.size()-1;
+    int mid;
+    while(start+1<end){
+        mid=start+（end-start）/2;
+        if(A[mid]==target)
+            end=mid;
+        else if(A[mid]>target)
+            end=mid; //不用mid+1之类
+        else
+            start=mid;
+    }
+//Mid不变，所以最后需要分别判断
+    if(A[start]==target)
+        return start;
+    if(A[end]==target)
+        return end;
+
+    return -1;
+}
 ```
 
 二分查找range
@@ -25,7 +49,8 @@ range先找左bound，每次移动end，找右Bound，\(可能因为左边的肯
 从左下或者右上。这样每次都可以排除一行或者一列。普通正向或者反向都不好用
 
 ```text
-start =0, end = row * column -1;int number = matrix[mid / column][mid % column]; //都是用column
+start =0, end = row * column -1;
+int number = matrix[mid / column][mid % column]; //都是用column
 ```
 
 三步翻转法

@@ -12,7 +12,9 @@ The input is: `vector<pair<string, string>> equations, vector<double>& values, v
 According to the example above:
 
 ```text
-equations = [ ["a", "b"], ["b", "c"] ],values = [2.0, 3.0],queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]. 
+equations = [ ["a", "b"], ["b", "c"] ],
+values = [2.0, 3.0],
+queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]. 
 ```
 
 The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
@@ -24,7 +26,29 @@ The input is always valid. You may assume that evaluating the queries will resul
 dfs从起点起一步步拆分start，同时\*product.注意这里product起始是1.0不是1
 
 ```text
-class Solution:    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:        G = collections.defaultdict(list)        for e,v in zip(equations, values):            a,b = e            G[a].append((b,v))            G[b].append((a,1/v))                            def dfs(s,e,p,visited):            if s not in G or e not in G or s in visited:                return -1            if s == e:                return p            visited.add(s)            for n,v in G[s]:                temp = dfs(n,e,p*v,visited)                if temp!=-1:                    return temp            return -1         return[dfs(a,b,1.0,set()) for a,b in queries]              
+class Solution:
+    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
+        G = collections.defaultdict(list)
+        for e,v in zip(equations, values):
+            a,b = e
+            G[a].append((b,v))
+            G[b].append((a,1/v))            
+        
+        def dfs(s,e,p,visited):
+            if s not in G or e not in G or s in visited:
+                return -1
+            if s == e:
+                return p
+            visited.add(s)
+            for n,v in G[s]:
+                temp = dfs(n,e,p*v,visited)
+                if temp!=-1:
+                    return temp
+            return -1
+ 
+        return[dfs(a,b,1.0,set()) for a,b in queries]
+      
+        
 ```
 
 

@@ -17,7 +17,56 @@ Design the `encode` and `decode` methods for the TinyURL service. There is no re
 别忘了存2个map，对重复longurl不用encode again
 
 ```text
-class Codec:    def __init__(self):        self.global_counter = 0         self.s2l = {}        self.l2s = {}        self.base = 'http://tinyurl.com/'        self.strs = string.ascii_letters+string.digits    def encode(self, longUrl):        """Encodes a URL to a shortened URL.                :type longUrl: str        :rtype: str        """                          if longUrl not in self.l2s:                    encoded = ''.join(random.choice(self.strs) for i in range(6))            self.s2l[encoded] = longUrl            self.l2s[longUrl] = encoded            self.global_counter += 1            return self.base + encoded        else:            return self.base+self.l2s[longUrl]                           def decode(self, shortUrl):        """Decodes a shortened URL to its original URL.                :type shortUrl: str        :rtype: str        """        decoded = shortUrl[-6:]#shortUrl.split('/')[-1]        return self.s2l[decoded]            #     def __init__(self):#         self.urls = []#     def encode(self, longUrl):#         self.urls.append(longUrl)#         return 'http://tinyurl.com/' + str(len(self.urls) - 1)#     def decode(self, shortUrl):#         return self.urls[int(shortUrl.split('/')[-1])]        # Your Codec object will be instantiated and called as such:# codec = Codec()# codec.decode(codec.encode(url))
+class Codec:
+    def __init__(self):
+        self.global_counter = 0 
+        self.s2l = {}
+        self.l2s = {}
+        self.base = 'http://tinyurl.com/'
+        self.strs = string.ascii_letters+string.digits
+
+    def encode(self, longUrl):
+        """Encodes a URL to a shortened URL.
+        
+        :type longUrl: str
+        :rtype: str
+        """       
+           
+        if longUrl not in self.l2s:        
+            encoded = ''.join(random.choice(self.strs) for i in range(6))
+            self.s2l[encoded] = longUrl
+            self.l2s[longUrl] = encoded
+            self.global_counter += 1
+            return self.base + encoded
+        else:
+            return self.base+self.l2s[longUrl]
+               
+        
+
+    def decode(self, shortUrl):
+        """Decodes a shortened URL to its original URL.
+        
+        :type shortUrl: str
+        :rtype: str
+        """
+        decoded = shortUrl[-6:]#shortUrl.split('/')[-1]
+        return self.s2l[decoded]
+        
+    
+#     def __init__(self):
+#         self.urls = []
+
+#     def encode(self, longUrl):
+#         self.urls.append(longUrl)
+#         return 'http://tinyurl.com/' + str(len(self.urls) - 1)
+
+#     def decode(self, shortUrl):
+#         return self.urls[int(shortUrl.split('/')[-1])]
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.decode(codec.encode(url))
 ```
 
 

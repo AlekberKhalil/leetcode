@@ -17,7 +17,10 @@ The **output** is a list of group of duplicate file paths. For each group, it co
 **Example 1:**
 
 ```text
-Input:["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)", "root 4.txt(efgh)"]Output:  [["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]]
+Input:
+["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(efgh)", "root 4.txt(efgh)"]
+Output:  
+[["root/a/2.txt","root/c/d/4.txt","root/4.txt"],["root/a/1.txt","root/c/3.txt"]]
 ```
 
 **Note:**
@@ -41,6 +44,30 @@ Input:["root/a 1.txt(abcd) 2.txt(efgh)", "root/c 3.txt(abcd)", "root/c/d 4.txt(e
 注意split要用regular expression, indexOf不需要
 
 ```text
-class Solution {    public List<List<String>> findDuplicate(String[] paths) {        List<List<String>> res = new ArrayList<>();        if(paths == null || paths.length == 0){            return res;        }        Map<String, List<String>> mm = new HashMap<>();        for(String s : paths) {            String[] sarr = s.split("\\s+");            String r = sarr[0];                       for(int i = 1; i < sarr.length; i ++) {                String[] pair = sarr[i].split("\\("); //regular expression, need \\(, indexOf no need                String key =  pair[1].substring(0,pair[1].indexOf(")"));                List<String> temp = mm.getOrDefault(key,new ArrayList<String>());                         temp.add(r+"/"+pair[0]);                mm.put(key,temp);            }        }        for(List<String> value : mm.values()){            if(value.size() > 1){ res.add(value); }        }          return res;     }    }
+class Solution {
+    public List<List<String>> findDuplicate(String[] paths) {
+        List<List<String>> res = new ArrayList<>();
+        if(paths == null || paths.length == 0){
+            return res;
+        }
+        Map<String, List<String>> mm = new HashMap<>();
+        for(String s : paths) {
+            String[] sarr = s.split("\\s+");
+            String r = sarr[0];
+           
+            for(int i = 1; i < sarr.length; i ++) {
+                String[] pair = sarr[i].split("\\("); //regular expression, need \\(, indexOf no need
+                String key =  pair[1].substring(0,pair[1].indexOf(")"));
+                List<String> temp = mm.getOrDefault(key,new ArrayList<String>());         
+                temp.add(r+"/"+pair[0]);
+                mm.put(key,temp);
+            }
+        }
+        for(List<String> value : mm.values()){
+            if(value.size() > 1){ res.add(value); }
+        }
+          return res;
+     }    
+}
 ```
 

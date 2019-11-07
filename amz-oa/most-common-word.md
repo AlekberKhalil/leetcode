@@ -9,7 +9,16 @@ Words in the list of banned words are given in lowercase, and free of punctuatio
 **Example:**
 
 ```text
-Input: paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."banned = ["hit"]Output: "ball"Explanation: "hit" occurs 3 times, but it is a banned word."ball" occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph. Note that words in the paragraph are not case sensitive,that punctuation is ignored (even if adjacent to words, such as "ball,"), and that "hit" isn't the answer even though it occurs more because it is banned.
+Input: 
+paragraph = "Bob hit a ball, the hit BALL flew far after it was hit."
+banned = ["hit"]
+Output: "ball"
+Explanation: 
+"hit" occurs 3 times, but it is a banned word.
+"ball" occurs twice (and no other word does), so it is the most frequent non-banned word in the paragraph. 
+Note that words in the paragraph are not case sensitive,
+that punctuation is ignored (even if adjacent to words, such as "ball,"), 
+and that "hit" isn't the answer even though it occurs more because it is banned.
 ```
 
 **Note:**
@@ -31,6 +40,11 @@ re.findall, 不直接split因为要去标点符号
 map的key和value可以用数组下标取 【0】 【1】
 
 ```text
-class Solution:    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:        exclude = set(banned)        paragraph = re.findall(r'\w+',paragraph.lower())        return collections.Counter(w for w in paragraph if w not in exclude).most_common(1)[0][0]        
+class Solution:
+    def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
+        exclude = set(banned)
+        paragraph = re.findall(r'\w+',paragraph.lower())
+        return collections.Counter(w for w in paragraph if w not in exclude).most_common(1)[0][0]
+        
 ```
 

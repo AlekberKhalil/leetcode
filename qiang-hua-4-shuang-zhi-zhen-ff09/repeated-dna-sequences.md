@@ -7,7 +7,12 @@ Write a function to find all the 10-letter-long sequences \(substrings\) that oc
 **Example:**
 
 ```text
-Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"Output: ["AAAAACCCCC", "CCCCCAAAAA"]
+Input:
+ s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+
+
+Output:
+ ["AAAAACCCCC", "CCCCCAAAAA"]
 ```
 
 分析
@@ -19,6 +24,17 @@ Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"Output: ["AAAAACCCCC", "CCCCCAAAAA"
 难点是index
 
 ```text
-class Solution:    def findRepeatedDnaSequences(self, s: str) -> List[str]:        nonrepeated = set()        repeated = set()        l = len(s)        for i in range(0,l-9):#此处为Index            temp = s[i:i+10] #此处为10???            if temp in nonrepeated:                repeated.add(temp)            else:                nonrepeated.add(temp)         return list(repeated)
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        nonrepeated = set()
+        repeated = set()
+        l = len(s)
+        for i in range(0,l-9):#此处为Index
+            temp = s[i:i+10] #此处为10???
+            if temp in nonrepeated:
+                repeated.add(temp)
+            else:
+                nonrepeated.add(temp) 
+        return list(repeated)
 ```
 

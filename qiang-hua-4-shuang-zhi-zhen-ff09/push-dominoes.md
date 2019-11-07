@@ -21,19 +21,31 @@ Return a string representing the final state.
 **Example 1:**
 
 ```text
-Input: ".L.R...LR..L.."Output: "LL.RR.LLRRLL.."
+Input: 
+".L.R...LR..L.."
+
+Output: 
+"LL.RR.LLRRLL.."
 ```
 
 **Example 2:**
 
 ```text
-Input: "RR.L"Output: "RR.L"Explanation: The first domino expends no additional force on the second domino.
+Input: 
+"RR.L"
+
+Output: 
+"RR.L"
+
+Explanation: 
+The first domino expends no additional force on the second domino.
 ```
 
 **Note:**
 
 ```text
-0 <= N <= 10^5String dominoes contains only 'L', 'R' and '.'
+0 <= N <= 10^5
+String dominoes contains only 'L', 'R' and '.'
 ```
 
 分析
@@ -67,6 +79,26 @@ O\(N\)
 3 s = R, e=L（巧妙用了//2和%2）
 
 ```text
-class Solution:    def pushDominoes(self, dominoes: str) -> str:        d = 'L'+dominoes+'R' #首尾加入多余LR来防越界。        ll = len(d)        s=0        res = []        for e in range(1,ll):            if d[e] == '.':                continue            mid = e - s - 1 #不包括首尾s,e            if s: #每次开始加入起点，所以最后多余R不会被加入。                res.append(d[s])            if d[s] == d[e]:                res.append(d[s]*mid)            elif d[s] == 'L' and d[e] == 'R':                res.append('.'*mid)            else:                res.append('R'*(mid//2) + '.'*(mid%2) + 'L'*(mid//2))            s = e        return ''.join(res)
+class Solution:
+    def pushDominoes(self, dominoes: str) -> str:
+        d = 'L'+dominoes+'R' #首尾加入多余LR来防越界。
+        ll = len(d)
+        s=0
+        res = []
+        for e in range(1,ll):
+            if d[e] == '.':
+                continue
+            mid = e - s - 1 #不包括首尾s,e
+            if s: #每次开始加入起点，所以最后多余R不会被加入。
+                res.append(d[s])
+            if d[s] == d[e]:
+                res.append(d[s]*mid)
+            elif d[s] == 'L' and d[e] == 'R':
+                res.append('.'*mid)
+            else:
+                res.append('R'*(mid//2) + '.'*(mid%2) + 'L'*(mid//2))
+
+            s = e
+        return ''.join(res)
 ```
 

@@ -14,13 +14,21 @@ Given an integer, write an algorithm to convert it to hexadecimal. For negative 
 **Example 1:**
 
 ```text
-Input:26Output:"1a"
+Input:
+26
+
+Output:
+"1a"
 ```
 
 **Example 2:**
 
 ```text
-Input:-1Output:"ffffffff"
+Input:
+-1
+
+Output:
+"ffffffff"
 ```
 
 分析
@@ -30,7 +38,22 @@ Input:-1Output:"ffffffff"
 记得结果去掉开头0，因为8位的原因加的
 
 ```text
-class Solution:    def toHex(self, num: int) -> str:        if num == 0:            return'0'        elif num < 0:            num += 2**32        mp = '0123456789abcdef'         res = ''        for i in range(8):            n = num & 15            res = mp[n] + res            num= num >> 4                    return res.lstrip('0')                    
+class Solution:
+    def toHex(self, num: int) -> str:
+        if num == 0:
+            return'0'
+        elif num < 0:
+            num += 2**32
+        mp = '0123456789abcdef' 
+        res = ''
+        for i in range(8):
+            n = num & 15
+            res = mp[n] + res
+            num= num >> 4
+            
+        return res.lstrip('0')
+            
+        
 ```
 
 

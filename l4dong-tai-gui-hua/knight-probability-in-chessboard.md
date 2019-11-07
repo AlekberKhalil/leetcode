@@ -13,7 +13,16 @@ The knight continues moving until it has made exactly`K`moves or has moved off t
 **Example:**
 
 ```text
-Input: 3, 2, 0, 0Output: 0.0625Explanation: There are two moves (to (1,2), (2,1)) that will keep the knight on the board.From each of those positions, there are also two moves that will keep the knight on the board.The total probability the knight stays on the board is 0.0625.
+Input:
+ 3, 2, 0, 0
+
+Output:
+ 0.0625
+
+Explanation:
+ There are two moves (to (1,2), (2,1)) that will keep the knight on the board.
+From each of those positions, there are also two moves that will keep the knight on the board.
+The total probability the knight stays on the board is 0.0625.
 ```
 
 **Note:**
@@ -35,12 +44,42 @@ Input: 3, 2, 0, 0Output: 0.0625Explanation: There are two moves (to (1,2), (2,1)
 DP: python无法三维数组？？？ 所以k loop内每次新建一个arr和旧arr交替。2个初始值不同
 
 ```text
-class Solution:    def knightProbability(self, N: int, K: int, r: int, c: int) -> float:        p1 = [[1]*N for _ in range(N)] #初始1        for k in range(K):            p0 = [[0]*N for _ in range(N)]#初始0            for i in range(N):                for j in range(N):                    for x, y in ((-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)):                        ni,nj = i+x,j+y                        if 0 <= ni < N and 0 <= nj < N:                            p0[i][j] += p1[ni][nj]            p1 = p0        return  p1[r][c]/8**K
+class Solution:
+    def knightProbability(self, N: int, K: int, r: int, c: int) -> float:
+        p1 = [[1]*N for _ in range(N)] #初始1
+        for k in range(K):
+            p0 = [[0]*N for _ in range(N)]#初始0
+            for i in range(N):
+                for j in range(N):
+                    for x, y in ((-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)):
+                        ni,nj = i+x,j+y
+                        if 0 <= ni < N and 0 <= nj < N:
+                            p0[i][j] += p1[ni][nj]
+            p1 = p0
+        return  p1[r][c]/8**K
 ```
 
 用DFS的memorization，一定记得key 是k+i+j，不能只有i,j。错很久
 
 ```text
-class Solution:    def knightProbability(self, N: int, K: int, r: int, c: int) -> float:        m = {}#DICT的key tuple有k啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊        def dfs(i,j,k):                        if k == 0:                return 1.0            if (i,j,k) in m:                return m[(i,j,k)]            pp = 0.0                for x, y in ((-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)):                ni,nj = i+x,j+y                if 0 <= ni < N and 0 <= nj < N:                    pp += dfs(ni,nj,k-1)/8            m[(i,j,k)] = pp            return pp        return dfs(r,c,K)
+class Solution:
+    def knightProbability(self, N: int, K: int, r: int, c: int) -> float:
+        m = {}#DICT的key tuple有k啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+        def dfs(i,j,k):            
+            if k == 0:
+                return 1.0
+            if (i,j,k) in m:
+                return m[(i,j,k)]
+
+            pp = 0.0    
+            for x, y in ((-1, -2), (-2, -1), (-2, 1), (-1, 2), (1, 2), (2, 1), (2, -1), (1, -2)):
+                ni,nj = i+x,j+y
+                if 0 <= ni < N and 0 <= nj < N:
+                    pp += dfs(ni,nj,k-1)/8
+            m[(i,j,k)] = pp
+            return pp
+
+
+        return dfs(r,c,K)
 ```
 

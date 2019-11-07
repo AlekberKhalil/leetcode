@@ -1,6 +1,19 @@
 # DFS
 
+多线程dfs BFS:
+
+* This is really only useful if the processing of each node is expensive.  If the searching itself is what is taking most of the time then parallelization will most likely slow you down with its overhead, not speed anything up.
+* For a breath first search, an unordered search, and possibly certain others, you can do the searching itself in parallel, and not just the consuming of each node, but for a depth first search that is not possible.  There is only ever one node to do next, unlike a breath first search where there are 2^\(current depth\) nodes to process at the same time
+
 要给出所有方案的话。一般DFS
+
+跳着走的无需visited？
+
+比较subset和combination sum，前俩是有pos，跳着走，所以不需要visited，注意path还是需要弹入弹出，和visited不是一个东西。 
+
+Permutation是一步步走， for 循环了每步所有可能性，必须要visited去重。
+
+电话本也是一步步走，每个for loop循环每步所有可能性，不需要visited。
 
 **dfs的状态**
 
@@ -37,13 +50,19 @@ python:
 dfs: 两种方法弹入弹出path
 
 ```text
-path.append(nums[i])self.dfs(nums,i+1,path,ret)path.pop()最后ret要copy path:     ret.append(list(path)) 或者 ret.append(path[:)
+path.append(nums[i])
+self.dfs(nums,i+1,path,ret)
+path.pop()
+
+最后ret要copy path:     ret.append(list(path)) 或者 ret.append(path[:)
 ```
 
 或者
 
 ```text
-self.dfs(nums,i+1,path+[nums[i]],ret)最后直接 ret.append(path)
+self.dfs(nums,i+1,path+[nums[i]],ret)
+
+最后直接 ret.append(path)
 ```
 
 combination的去重，结合Increasing Subsequences的去重。就是当前层（forloop\)一条dfs路径不能同样的数字走两遍下去，会导致重复。

@@ -29,7 +29,8 @@ The most difficult test case for this problem has a time limit of 3 seconds.
 ## SAMPLE INPUT \(file stamps.in\)
 
 ```text
-5 21 3
+5 2
+1 3
 ```
 
 ## OUTPUT FORMAT
@@ -49,6 +50,24 @@ The most difficult test case for this problem has a time limit of 3 seconds.
 初始化都是最大数，f0=0。loop先V 后分组的value
 
 ```text
-class Stamps:    def getMaxAmount(self,K,N,values):        maxValue = max(values)*K        f = [maxValue+1]*(maxValue+1)        f[0] = 0        for j in range(1,maxValue + 1):            for v in values:                if j>=v:                    f[j] = min(f[j],f[j-v] + 1)            if f[j] > K:                return j-1        return maxValueobj = Stamps()ret = obj.getMaxAmount(5,2,[1,3])print(ret)
+class Stamps:
+    def getMaxAmount(self,K,N,values):
+        maxValue = max(values)*K
+        f = [maxValue+1]*(maxValue+1)
+        f[0] = 0
+
+
+        for j in range(1,maxValue + 1):
+            for v in values:
+                if j>=v:
+                    f[j] = min(f[j],f[j-v] + 1)
+            if f[j] > K:
+                return j-1
+
+        return maxValue
+
+obj = Stamps()
+ret = obj.getMaxAmount(5,2,[1,3])
+print(ret)
 ```
 

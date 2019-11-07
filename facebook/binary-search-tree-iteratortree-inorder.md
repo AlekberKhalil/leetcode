@@ -17,6 +17,46 @@ recursive的话就是直接Inorder做完存在List里。然后控制List的index
 follow up: post order，一样遍历，就是捕捉stack pop的瞬间
 
 ```text
-# Definition for a  binary tree node# class TreeNode(object):#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = Noneclass BSTIterator(object):    def __init__(self, root):        """        :type root: TreeNode        """        self.stack = []        self.cur = root    def hasNext(self):        """        :rtype: bool        """        return self.cur or self.stack    def next(self):        """        :rtype: int        """        while self.cur:            self.stack.append(self.cur)            self.cur = self.cur.left        res = self.stack.pop()        self.cur = res.right        return res.val# Your BSTIterator will be called like this:# i, v = BSTIterator(root), []# while i.hasNext(): v.append(i.next())
+# Definition for a  binary tree node
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class BSTIterator(object):
+    def __init__(self, root):
+        """
+        :type root: TreeNode
+        """
+        self.stack = []
+        self.cur = root
+
+    def hasNext(self):
+        """
+        :rtype: bool
+        """
+        return self.cur or self.stack
+
+
+    def next(self):
+        """
+        :rtype: int
+        """
+
+        while self.cur:
+            self.stack.append(self.cur)
+            self.cur = self.cur.left
+        res = self.stack.pop()
+        self.cur = res.right
+
+        return res.val
+
+
+
+
+# Your BSTIterator will be called like this:
+# i, v = BSTIterator(root), []
+# while i.hasNext(): v.append(i.next())
 ```
 

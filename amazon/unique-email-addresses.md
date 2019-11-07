@@ -19,7 +19,9 @@ Given a list of `emails`, we send one email to each address in the list.  How ma
 **Example 1:**
 
 ```text
-Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]Output: 2Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails
+Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]
+Output: 2
+Explanation: "testemail@leetcode.com" and "testemail@lee.tcode.com" actually receive mails
 ```
 
 **Note:**
@@ -35,6 +37,13 @@ Input: ["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","tes
 split和join正好相反，这里用replace去掉所有.
 
 ```text
-class Solution:    def numUniqueEmails(self, emails: List[str]) -> int:        res = set()        for e in emails:            ls = e.split('@')            ls[0] = ls[0].split('+')[0].replace('.','')            res.add(ls[0] +'@' + ls[1])        return len(res)
+class Solution:
+    def numUniqueEmails(self, emails: List[str]) -> int:
+        res = set()
+        for e in emails:
+            ls = e.split('@')
+            ls[0] = ls[0].split('+')[0].replace('.','')
+            res.add(ls[0] +'@' + ls[1])
+        return len(res)
 ```
 

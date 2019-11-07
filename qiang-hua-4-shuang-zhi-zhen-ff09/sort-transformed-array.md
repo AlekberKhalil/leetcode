@@ -9,13 +9,33 @@ Expected time complexity:**O\(n\)**
 **Example 1:**
 
 ```text
-Input: nums = [-4,-2,2,4], a = 1, b = 3, c = 5Output: [3,9,15,33]
+Input: 
+nums = 
+[-4,-2,2,4]
+, a = 
+1
+, b = 
+3
+, c = 
+5
+Output: 
+[3,9,15,33]
 ```
 
 **Example 2:**
 
 ```text
-Input: nums = [-4,-2,2,4], a = -1, b = 3, c = 5Output: [-23,-5,1,7]
+Input: 
+nums = 
+[-4,-2,2,4]
+, a = 
+-1
+, b = 
+3
+, c = 
+5
+Output: 
+[-23,-5,1,7]
 ```
 
 分析
@@ -23,6 +43,10 @@ Input: nums = [-4,-2,2,4], a = -1, b = 3, c = 5Output: [-23,-5,1,7]
 就是map函数映射，记得用lambda
 
 ```text
-class Solution:    def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:        nl = map(lambda x: a*x**2 + b*x+c, nums)        return sorted(nl)
+class Solution:
+    def sortTransformedArray(self, nums: List[int], a: int, b: int, c: int) -> List[int]:
+
+        nl = map(lambda x: a*x**2 + b*x+c, nums)
+        return sorted(nl)
 ```
 

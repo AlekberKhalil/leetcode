@@ -29,7 +29,9 @@ dp[i + 1][j] = max{dp[i][j], dp[i][j - w[i]] + v[j]}
 V倒序才能拿到f\[i-1\]\[v\]的 否则就是f\[i\]\[v\]
 
 ```text
-for i=1..N    for v=V..0        f[v]=max{f[v],f[v-c[i]]+w[i]};
+for i=1..N
+    for v=V..0
+        f[v]=max{f[v],f[v-c[i]]+w[i]};
 ```
 
 Palindrome Partitioning II
@@ -45,11 +47,19 @@ split array largest sum
 从palindrome I II和word break I II可知 sequence dp
 
 ```text
-dp：n+1i: [1,n]j: [0,i)f[i]=f[j] && [j,i) #注意这里f[j]和s[j] 因为f[j]不含s[j]，index错位，f[j]包含的是s[j-1]的情况f[0]要初始化 i range 从1开始
+dp：n+1
+i: [1,n]
+j: [0,i)
+f[i]=f[j] && [j,i) #注意这里f[j]和s[j] 因为f[j]不含s[j]，index错位，f[j]包含的是s[j-1]的情况
+f[0]要初始化 i range 从1开始
 ```
 
 ```text
-dp: ni:[0,n-1]j:[0,i]#包含if[i] = f[j-1] && [j,i] #这里s[j]和f[j-1] 因为f[j-1]含s[j-1] 所以s[i]对应当前要求的f[i]要单独判断j=0的情况，因为有f[j-1]
+dp: n
+i:[0,n-1]
+j:[0,i]#包含i
+f[i] = f[j-1] && [j,i] #这里s[j]和f[j-1] 因为f[j-1]含s[j-1] 所以s[i]对应当前要求的f[i]
+要单独判断j=0的情况，因为有f[j-1]
 ```
 
 DP问题：[https://zhengyang2015.gitbooks.io/lintcode/house\_robber\_392.html](https://zhengyang2015.gitbooks.io/lintcode/house_robber_392.html)
@@ -64,22 +74,29 @@ DP问题：[https://zhengyang2015.gitbooks.io/lintcode/house\_robber\_392.html](
 
 4 有环时候去头或者尾，做完再比较哪个大：House Robber II
 
-5 设置2个状态，2个状态交替由对方得到。Wiggle Subsequence
+5 设置2个状态，2个状态交替由对方得到。Wiggle Subsequence, Longest Turbulent Subarray
 
 6 区间循环
 
 ```text
-for ln in range(1,n+1):                        for start in range(1,n+1-ln):
+for ln in range(1,n+1):            
+            for start in range(1,n+1-ln):
 ```
 
 7 字串长度 = unique substring数: Unique Substrings in Wraparound String
 
-8 前两天得到第三天的，python可以同时赋值：Delete and Earn，house robber
+8 前两天得到第三天的，python可以同时赋值：Delete and Earn，house robber， Paint Fence
+
+或者是一个pos有2个状态，比如min,max\(Maximum Product Subarray\)，类似5
 
 9 状态类dp，一个人可以有多个选择，can I win, Campus Bikes II. 用bit数组来表示每个人的状态。dp\[i\]\[bit status\] \(bit status = 1&lt;&lt; j\]
 
 ```text
-bitwise notenum | (1<<k): set num's k-th bit as 1num & (1<<k): get num's k-th bitint prev = s ^ (1 << j);
+bitwise note
+num | (1<<k): set num's k-th bit as 1
+num & (1<<k): get num's k-th bit
+
+int prev = s ^ (1 << j);
 ```
 
 10 博弈类问题
@@ -88,7 +105,13 @@ bitwise notenum | (1<<k): set num's k-th bit as 1num & (1<<k): get num's k-th bi
 
 11 只和前面某个词有关的，和LIS，如果是和前面几个数有关的，比如fibonacii,等比数列，或者山峰最长长度。以2个数取出来，然后往后顺次找序列。
 
+LIS和Russian doll,都可以用数组bisect.bisect\_left找出Index做，原因是每个当前i都要和前面所有0-i比较找出自己位置。比前面都大就res++，否则插入前面位置，等于更新dp里那个位置时候最大的数。
+
 或者2个数出来，根据diff去后面list找第三个数字是否存在。
 
+13 背包 01背包要求满，初始化为infinite 因为都不满开始。不求满求最优，初始0因为有valid值
+
 12 做不出来的时候考虑top down，dfs的分治法，对比dp的bottom up
+
+13 飞机问题 ：Cheapest Flights Within K Stops
 

@@ -6,7 +6,14 @@ For example,
 `[1,2,3]`have the following permutations:
 
 ```text
-[  [1,2,3],  [1,3,2],  [2,1,3],  [2,3,1],  [3,1,2],  [3,2,1]]
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
 ```
 
 分析
@@ -16,6 +23,29 @@ For example,
 答案
 
 ```text
-class Solution {    public List<List<Integer>> permute(int[] nums) {    List<List<Integer>> ret = new ArrayList<List<Integer>>();        List<Integer> path = new ArrayList<Integer>();        dfs(nums, ret, path, 0);        return ret;    }    private void dfs(int[] nums, List<List<Integer>> ret, List<Integer> path, int pos){        if(path.size() == nums.length){            ret.add(new ArrayList<Integer>(path));        }               for(int i = 0; i < nums.length; i++){            if(path.contains(nums[i]))                continue;            path.add(nums[i]);            dfs(nums, ret, path, i+1);            path.remove(path.size()-1);        }    }}
+class Solution {
+    public List<List<Integer>> permute(int[] nums) {
+    List<List<Integer>> ret = new ArrayList<List<Integer>>();
+        List<Integer> path = new ArrayList<Integer>();
+
+        dfs(nums, ret, path, 0);
+
+        return ret;
+    }
+
+    private void dfs(int[] nums, List<List<Integer>> ret, List<Integer> path, int pos){
+        if(path.size() == nums.length){
+            ret.add(new ArrayList<Integer>(path));
+        }       
+
+        for(int i = 0; i < nums.length; i++){
+            if(path.contains(nums[i]))
+                continue;
+            path.add(nums[i]);
+            dfs(nums, ret, path, i+1);
+            path.remove(path.size()-1);
+        }
+    }
+}
 ```
 

@@ -40,6 +40,23 @@ BFS，最后一个node记得用i== n-1判断
 利用链表特性。每层都建个dummy。然后dummy指向前一层root。左右依次加入链表
 
 ```text
+class Solution:    # @param root, a tree link node    # @return nothing    
+	def connect(self, root):        
+		while root:
+			dummy = TreeLinkNode(0)
+			curc = dummy
+			while root:
+			    if root.left:
+			        curc.next = root.left
+			        curc = curc.next
+			    if root.right:
+			        curc.next = root.right
+			        curc = curc.next
+			    root = root.next
+			root = dummy.next
+```
+
+```text
 # Definition for binary tree with next pointer.# class TreeLinkNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = None#         self.next = Noneclass Solution:    # @param root, a tree link node    # @return nothing    def connect(self, root):        while root:            dummy = TreeLinkNode(0)            curc = dummy            while root:                if root.left:                    curc.next = root.left                    curc = curc.next                if root.right:                    curc.next = root.right                    curc = curc.next                root = root.next            root = dummy.next
 ```
 

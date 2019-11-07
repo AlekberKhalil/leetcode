@@ -19,13 +19,25 @@ Problem Correction
 Given`t=87`,`dur=[20,25,19,37]`,return`[20,37]`
 
 ```text
-Explanation:87-30=5720+25=45,57-45=1220+19=39,57-39=1920+37=57,57-57=025+19=44,57-44=1325+37=62,57<6219+37=56,57-56=1
+Explanation:
+87-30=57
+20+25=45,57-45=12
+20+19=39,57-39=19
+20+37=57,57-57=0
+25+19=44,57-44=13
+25+37=62,57
+<
+62
+19+37=56,57-56=1
 ```
 
 Given`t=67`,`dur=[20,17,19,18]`,return`[17,20]`
 
 ```text
-Explanation:67-30=3717+20=37,18+19=37The longest movie in the first group is 20，and 19 in the second grouo, so output`[17,20]`
+Explanation:
+67-30=37
+17+20=37,18+19=37
+The longest movie in the first group is 20，and 19 in the second grouo, so output`[17,20]`
 ```
 
 分析
@@ -33,6 +45,36 @@ Explanation:67-30=3717+20=37,18+19=37The longest movie in the first group is 20�
 双指针 two sum closest，记得要sort
 
 ```text
-class Solution:    """    @param t: the length of the flight    @param dur: the length of movies    @return: output the lengths of two movies    """    def aerial_Movie(self, t, dur):        # Write your code here        target = t - 30        if not dur:            return []        dur.sort()        mindiff=float('inf')        s,e = 0,len(dur)-1        res = []        while s < e:            localsum = dur[s] + dur[e]            diff = target - localsum            if diff == 0:                return [dur[s],dur[e]]            else:                if diff < 0:                    e -= 1                else:                    if diff < mindiff:                        mindiff = diff                        res = [dur[s],dur[e]]                    s +=1        return res
+class Solution:
+    """
+    @param t: the length of the flight
+    @param dur: the length of movies
+    @return: output the lengths of two movies
+    """
+    def aerial_Movie(self, t, dur):
+        # Write your code here
+        target = t - 30
+        if not dur:
+            return []
+        dur.sort()
+        mindiff=float('inf')
+        s,e = 0,len(dur)-1
+        res = []
+        while s < e:
+            localsum = dur[s] + dur[e]
+            diff = target - localsum
+            if diff == 0:
+                return [dur[s],dur[e]]
+            else:
+                if diff < 0:
+                    e -= 1
+                else:
+                    if diff < mindiff:
+                        mindiff = diff
+                        res = [dur[s],dur[e]]
+                    s +=1
+
+
+        return res
 ```
 

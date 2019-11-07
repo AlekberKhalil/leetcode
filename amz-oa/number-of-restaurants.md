@@ -17,11 +17,13 @@ Problem Correction
 ## Example
 
 ```text
-Given : n = 2 , List = [[0,0],[1,1],[2,2]]Return : [[0,0],[1,1]]
+Given : n = 2 , List = [[0,0],[1,1],[2,2]]
+Return : [[0,0],[1,1]]
 ```
 
 ```text
-Given : n = 3,List = [[0,1],[1,2],[2,1],[1,0]]Return :[[0,1],[1,2],[2,1]]
+Given : n = 3,List = [[0,1],[1,2],[2,1],[1,0]]
+Return :[[0,1],[1,2],[2,1]]
 ```
 
 分析
@@ -31,6 +33,52 @@ Given : n = 3,List = [[0,1],[1,2],[2,1],[1,0]]Return :[[0,1],[1,2],[2,1]]
 错了很久的是 q传入 时候被改变。顺序变了不能用q找出该有的顺序了。
 
 ```text
-class Solution:    """    @param restaurant:    @param n:    @return: nothing    """    def nearestRestaurant(self, restaurant, n):        # Write your code here        q = []        res = []        if not restaurant or not n or n > len(restaurant):            return res         for ii,i in enumerate(restaurant):            q.append((ii,i[0]**2 + i[1]**2))        qq = q[:]        p = self.findNth(qq,0,len(q)-1,n)        cnt = 0        for v in q:            if v[1] <= p[1] and cnt < n:                res.append(restaurant[v[0]])                cnt +=1        return res    def findNth(self,q,s,e,n):        # if s==e:        #     return q[s]        l ,r = s,e        p = q[l]        while l < r:            while l < r and q[r][1] >= p[1]:                r -= 1            q[l] = q[r]            while l < r and q[l][1] <= p[1]:                l += 1            q[r] = q[l]        q[l] = p        if l == n-1:            return q[l]        elif l < n-1:            return self.findNth(q,l+1,e,n)        else:            return self.findNth(q,s,l-1,n)
+class Solution:
+    """
+    @param restaurant:
+    @param n:
+    @return: nothing
+    """
+    def nearestRestaurant(self, restaurant, n):
+        # Write your code here
+        q = []
+        res = []
+        if not restaurant or not n or n > len(restaurant):
+            return res 
+
+        for ii,i in enumerate(restaurant):
+            q.append((ii,i[0]**2 + i[1]**2))
+        qq = q[:]
+        p = self.findNth(qq,0,len(q)-1,n)
+
+        cnt = 0
+        for v in q:
+            if v[1] <= p[1] and cnt < n:
+                res.append(restaurant[v[0]])
+                cnt +=1
+        return res
+
+
+    def findNth(self,q,s,e,n):
+        # if s==e:
+        #     return q[s]
+
+        l ,r = s,e
+        p = q[l]
+        while l < r:
+            while l < r and q[r][1] >= p[1]:
+                r -= 1
+            q[l] = q[r]
+
+            while l < r and q[l][1] <= p[1]:
+                l += 1
+            q[r] = q[l]
+        q[l] = p
+        if l == n-1:
+            return q[l]
+        elif l < n-1:
+            return self.findNth(q,l+1,e,n)
+        else:
+            return self.findNth(q,s,l-1,n)
 ```
 

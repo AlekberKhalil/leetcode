@@ -7,19 +7,31 @@ The expression string contains only**non-negative**integers,`+`,`-`,`*`,`/`opera
 **Example 1:**
 
 ```text
-Input: "3+2*2"Output: 7
+Input: 
+"3+2*2"
+
+Output:
+ 7
 ```
 
 **Example 2:**
 
 ```text
-Input: " 3/2 "Output: 1
+Input:
+ " 3/2 "
+
+Output:
+ 1
 ```
 
 **Example 3:**
 
 ```text
-Input: " 3+5 / 2 "Output: 5
+Input:
+ " 3+5 / 2 "
+
+Output:
+ 5
 ```
 
 分析
@@ -31,6 +43,38 @@ Input: " 3+5 / 2 "Output: 5
 /的时候 3/2和-3/2要额外处理。用ceil和floor
 
 ```text
-class Solution:    def calculate(self, s):        """        :type s: str        :rtype: int        """        stack = []        op ='+'        snum =''        n = len(s)        res = 0        for ii,i in enumerate(s):            if i.isdigit():                snum += i            if i in "+-*/" or ii == n-1:                if op == '+':                    stack.append(int(snum))                elif op == '-':                    stack.append(-int(snum))                elif op == '*':                    cur = stack.pop()                    stack.append(cur*int(snum))                elif op == '/':                    cur = stack.pop()/int(snum)                    stack.append(math.floor(cur)) if cur >= 0 else stack.append(math.ceil(cur))                snum =''                op = i        for i in stack :            res += i        return res
+class Solution:
+    def calculate(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        stack = []
+        op ='+'
+        snum =''
+        n = len(s)
+        res = 0
+        for ii,i in enumerate(s):
+            if i.isdigit():
+                snum += i
+            if i in "+-*/" or ii == n-1:
+                if op == '+':
+                    stack.append(int(snum))
+                elif op == '-':
+                    stack.append(-int(snum))
+                elif op == '*':
+                    cur = stack.pop()
+                    stack.append(cur*int(snum))
+                elif op == '/':
+                    cur = stack.pop()/int(snum)
+                    stack.append(math.floor(cur)) if cur >= 0 else stack.append(math.ceil(cur))
+                snum =''
+                op = i
+
+        for i in stack :
+            res += i
+
+
+        return res
 ```
 

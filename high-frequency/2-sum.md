@@ -15,6 +15,20 @@ The function twoSum should return indices of the two numbers such that they add 
 解答：
 
 ```text
-    public int[] twoSum(int[] nums, int target) {        int[] ret = new int[2];        // if(nums == null || nums.length == 0)        //     return ret;        HashMap<Integer, Integer> sumMap = new HashMap<Integer, Integer>();        for(int i = 0; i < nums.length; i++){            if(sumMap.containsKey(target - nums[i])){                ret[0] = i;                ret[1] = sumMap.get(target - nums[i]);            }else{                sumMap.put(nums[i], i);            }        }        return ret;    }
+    public int[] twoSum(int[] nums, int target) {
+        int[] ret = new int[2];
+        // if(nums == null || nums.length == 0)
+        //     return ret;
+        HashMap<Integer, Integer> sumMap = new HashMap<Integer, Integer>();
+        for(int i = 0; i < nums.length; i++){
+            if(sumMap.containsKey(target - nums[i])){
+                ret[0] = i;
+                ret[1] = sumMap.get(target - nums[i]);
+            }else{
+                sumMap.put(nums[i], i);
+            }
+        }
+        return ret;
+    }
 ```
 

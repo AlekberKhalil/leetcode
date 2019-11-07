@@ -19,10 +19,72 @@ Return the largest sum.
 解法：
 
 ```text
-public int maxTwoSubArrays(ArrayList<Integer> nums) {        // write your code        int minSum =0;        int sum = 0;        int[] left = new int[nums.size()];        int[] right = new int[nums.size()];        int max = Integer.MIN_VALUE;        for(int i = 0; i < nums.size(); i++){            sum += nums.get(i);            max = Math.max(max, sum-minSum);//还是要算前面所有数的最大值，而不是到当前截止（错几次了）            minSum = Math.min(minSum, sum);            left[i] = max;//保留Max给数组赋值        }        minSum = 0;        sum = 0;        max = Integer.MIN_VALUE;        for(int i = nums.size()-1; i >= 0; i--){            sum += nums.get(i);            max = Math.max(max, sum-minSum);            minSum = Math.min(minSum, sum);            right[i] = max;        }        max = Integer.MIN_VALUE;        for(int i = 0; i < nums.size()-1; i++){            max = Math.max(max, left[i] + right[i+1]);//错开以为        }        return max;    }
+public int maxTwoSubArrays(ArrayList<Integer> nums) {
+        // write your code
+        int minSum =0;
+        int sum = 0;
+        int[] left = new int[nums.size()];
+        int[] right = new int[nums.size()];
+        int max = Integer.MIN_VALUE;
+
+
+        for(int i = 0; i < nums.size(); i++){
+            sum += nums.get(i);
+            max = Math.max(max, sum-minSum);//还是要算前面所有数的最大值，而不是到当前截止（错几次了）
+            minSum = Math.min(minSum, sum);
+            left[i] = max;//保留Max给数组赋值
+        }
+        minSum = 0;
+        sum = 0;
+        max = Integer.MIN_VALUE;
+
+        for(int i = nums.size()-1; i >= 0; i--){
+            sum += nums.get(i);
+            max = Math.max(max, sum-minSum);
+            minSum = Math.min(minSum, sum);
+            right[i] = max;
+        }
+
+        max = Integer.MIN_VALUE;
+        for(int i = 0; i < nums.size()-1; i++){
+            max = Math.max(max, left[i] + right[i+1]);//错开以为
+        }
+
+
+        return max;
+    }
 ```
 
 ```text
-    public int maxTwoSubArrays(ArrayList<Integer> nums) {        // write your code        int localMax =0;        int[] left = new int[nums.size()+1];        int[] right = new int[nums.size()+1];        int n = nums.size();        left[0] = Integer.MIN_VALUE;        //left数组右移一位，正好和right对应了。        for(int i = 0; i < n; i++){            localMax += nums.get(i);            left[i + 1] = Math.max(left[i], localMax);//还是要算前面所有数的最大值，而不是到当前截止（错几次了）            localMax = Math.max(localMax, 0);        }        localMax = 0;        right[n] = Integer.MIN_VALUE;        for(int i = n - 1; i >= 0; i--){            localMax += nums.get(i);            right[i] = Math.max(right[i + 1], localMax);            localMax = Math.max(localMax, 0);        }        int max = Integer.MIN_VALUE;        for(int i = 1; i < n; i++){            max = Math.max(max, left[i] + right[i]);        }        return max;    }
+    public int maxTwoSubArrays(ArrayList<Integer> nums) {
+        // write your code
+        int localMax =0;
+        int[] left = new int[nums.size()+1];
+        int[] right = new int[nums.size()+1];
+        int n = nums.size();
+        left[0] = Integer.MIN_VALUE;
+        //left数组右移一位，正好和right对应了。
+        for(int i = 0; i < n; i++){
+            localMax += nums.get(i);
+            left[i + 1] = Math.max(left[i], localMax);//还是要算前面所有数的最大值，而不是到当前截止（错几次了）
+            localMax = Math.max(localMax, 0);
+
+        }
+        localMax = 0;
+        right[n] = Integer.MIN_VALUE;
+        for(int i = n - 1; i >= 0; i--){
+            localMax += nums.get(i);
+            right[i] = Math.max(right[i + 1], localMax);
+            localMax = Math.max(localMax, 0);
+        }
+
+
+        int max = Integer.MIN_VALUE;
+        for(int i = 1; i < n; i++){
+            max = Math.max(max, left[i] + right[i]);
+        }
+
+        return max;
+    }
 ```
 

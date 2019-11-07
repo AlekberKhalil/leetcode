@@ -13,6 +13,17 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 需要注意的一点是，当连续两天上涨的时候，利润依然等于\(p\[2\] - p\[1\]\) + \(p\[3\] - p\[2\]\)。也就是如果在p\[2\]不出手，和卖出再买入，是一样的。
 
 ```text
-public int maxProfit(int[] prices) {        // 贪心算法，只要有赚就买        if(prices == null || prices.length == 0 )            return 0;        int diff, profit = 0;//初始化每次都错！！！        for(int i = 1; i < prices.length; i++){            diff = prices[i] - prices[i-1];            if(diff > 0)                profit += diff;            }            return profit;    }
+public int maxProfit(int[] prices) {
+        // 贪心算法，只要有赚就买
+        if(prices == null || prices.length == 0 )
+            return 0;
+        int diff, profit = 0;//初始化每次都错！！！
+        for(int i = 1; i < prices.length; i++){
+            diff = prices[i] - prices[i-1];
+            if(diff > 0)
+                profit += diff;
+            }
+            return profit;
+    }
 ```
 

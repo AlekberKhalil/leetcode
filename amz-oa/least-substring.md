@@ -27,13 +27,15 @@ Problem Correction
 Give`s = "aabbbc", k = 2`, return`4`
 
 ```text
-Explaination:we can get "aa", "bb", "b", "c" four substring.
+Explaination:
+we can get "aa", "bb", "b", "c" four substring.
 ```
 
 Give`s = "aabbbc", k = 3`, return`3`
 
 ```text
-Explaination:we can get "aa", "bbb", "c" three substring.
+Explaination:
+we can get "aa", "bbb", "c" three substring.
 ```
 
 分析
@@ -43,6 +45,17 @@ Explaination:we can get "aa", "bbb", "c" three substring.
 不是很懂
 
 ```text
-    # def getAns(self, s, k):    #     # Write your code here    #     cnt = 1    #     res = 1    #     sLen = len(s)    #     cur = s[0]    #     for i in range(1,sLen):    #         if cnt == k or s[i] != s[i-1]:    #             res += 1     #             cnt = 0    #         cnt += 1    #     return res
+    # def getAns(self, s, k):
+    #     # Write your code here
+    #     cnt = 1
+    #     res = 1
+    #     sLen = len(s)
+    #     cur = s[0]
+    #     for i in range(1,sLen):
+    #         if cnt == k or s[i] != s[i-1]:
+    #             res += 1 
+    #             cnt = 0
+    #         cnt += 1
+    #     return res
 ```
 

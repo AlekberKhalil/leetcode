@@ -19,6 +19,28 @@ binary search。记得判断Nums数组，还有不要把最后判断再写进whi
 答案
 
 ```text
-public int findPosition(int[] nums, int target) {        if(nums == null || nums.length == 0){            return -1;        }        int s = 0, e = nums.length - 1;        while(s + 1 < e){            int m = s + (e - s)/2;            if(nums[m] < target){                s = m;            }else{                e = m;            }        }        if(nums[s] == target){                return s;            }            if(nums[e] == target){                return e;            }            return -1;}
+public int findPosition(int[] nums, int target) {
+        if(nums == null || nums.length == 0){
+            return -1;
+        }
+        int s = 0, e = nums.length - 1;
+
+        while(s + 1 < e){
+            int m = s + (e - s)/2;
+            if(nums[m] < target){
+                s = m;
+            }else{
+                e = m;
+            }
+        }
+
+        if(nums[s] == target){
+                return s;
+            }
+            if(nums[e] == target){
+                return e;
+            }
+            return -1;
+}
 ```
 

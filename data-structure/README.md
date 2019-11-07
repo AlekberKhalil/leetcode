@@ -40,3 +40,54 @@ Minheap
 
 如果顶格开始，从0开始 则_left child_: i\*2+1, _right child_:i\*2+2 _parent ：_\(i-1\)/2
 
+**Priority Queue java implementation**
+
+```text
+//priority queue
+PriorityQueue<int[]> queue = new PriorityQueue<>((a, b) -> (a[0] - b[0]));
+PriorityQueue<Integer> queue = new PriorityQueue<>(10, Collections.reverseOrder());
+Queue<ListNode> q = new PriorityQueue<ListNode>(k, new Comparator<ListNode>(){
+            public int compare(ListNode a, ListNode b){
+                return a.val - b.val;
+            }
+        });
+
+//sort
+humans.sort((lhs, rhs) -> {
+    if (lhs.getName().equals(rhs.getName())) {
+        return lhs.getAge() - rhs.getAge();
+    } else {
+        return lhs.getName().compareTo(rhs.getName());
+    }
+});
+humans.sort((h1, h2) -> h1.getName().compareTo(h2.getName()));
+Collections.sort(edges, new Comparator<Edge>() {
+            @Override
+            public int compare(Edge o1, Edge o2) {
+                if(o1.x!=o2.x){
+                    return o1.x-o2.x;
+                }
+                if(o1.isStart && o2.isStart){
+                    return o2.height-o1.height;//进入高度从大到小
+                }
+                if(!o1.isStart && !o2.isStart){
+                    return o1.height-o2.height;//出来高度从小到大
+                }
+
+                return o1.isStart ? -1 : 1;//同x，start先end后
+            }
+        });
+
+
+
+//comparator
+Comparator<int[]> comparator = (e1, e2) -> e1[0] == e2[0] ? e1[1] - e2[1] : e1[0] - e2[0];
+       Arrays.sort(envelopes, comp);
+Comparator<Human> comparator = (h1, h2) -> h1.getName().compareTo(h2.getName());
+class PairComparator implements Comparator<Pair> {
+    public int compare(Pair a, Pair b) {
+        return a.val - b.val;
+    }
+}
+```
+

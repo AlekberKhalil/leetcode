@@ -13,6 +13,19 @@ For example, given the list of temperatures `T = [73, 74, 75, 71, 69, 72, 76, 73
 stack里存的是Index
 
 ```text
-class Solution:    def dailyTemperatures(self, T: List[int]) -> List[int]:        s = []        res = [0]*len(T)        for i,x in enumerate(T):                       while s and T[s[-1]] < x:                lastIndex = s.pop()                res[lastIndex] = i-lastIndex            s.append(i)        return res                                                        
+class Solution:
+    def dailyTemperatures(self, T: List[int]) -> List[int]:
+        s = []
+        res = [0]*len(T)
+        for i,x in enumerate(T):           
+            while s and T[s[-1]] < x:
+                lastIndex = s.pop()
+                res[lastIndex] = i-lastIndex
+            s.append(i)
+        return res
+                
+                
+                
+        
 ```
 

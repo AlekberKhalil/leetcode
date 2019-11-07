@@ -11,6 +11,20 @@ Given an array of integers, the majority number is the number that occurs more t
 解法：
 
 ```text
-public int majorityNumber(ArrayList<Integer> nums) {        // write your code        int count = 0, ret = -1;        for(int i = 0; i < nums.size(); i++){            if(count == 0){                ret = nums.get(i);                count = 1;            }else if(nums.get(i) != ret){                count--;            }else{                count++;            }        }        return ret;    }
+public int majorityNumber(ArrayList<Integer> nums) {
+        // write your code
+        int count = 0, ret = -1;
+        for(int i = 0; i < nums.size(); i++){
+            if(count == 0){
+                ret = nums.get(i);
+                count = 1;
+            }else if(nums.get(i) != ret){
+                count--;
+            }else{
+                count++;
+            }
+        }
+        return ret;
+    }
 ```
 

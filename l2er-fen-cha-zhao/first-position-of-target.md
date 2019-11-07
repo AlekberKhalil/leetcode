@@ -15,6 +15,38 @@ If the array is`[1, 2, 3, 3, 4, 5, 10]`, for given target`3`, return`2`.
 答案
 
 ```text
-class Solution {    /**     * @param nums: The integer array.     * @param target: Target to find.     * @return: The first position of target. Position starts from 0.     */    public int binarySearch(int[] nums, int target) {        //write your code here        if(nums.length == 0)            return -1;        int s = 0;        int e = nums.length-1;        int m;        while(s+1 < e){            m = s + (e - s)/2;            if(nums[m] >= target)                e = m;            else                s = m;        }        if(nums[s] == target)            return s;        if(nums[e] == target)            return e;            return -1;    }}
+class Solution {
+    /**
+     * @param nums: The integer array.
+     * @param target: Target to find.
+     * @return: The first position of target. Position starts from 0.
+     */
+    public int binarySearch(int[] nums, int target) {
+        //write your code here
+        if(nums.length == 0)
+            return -1;
+
+        int s = 0;
+        int e = nums.length-1;
+        int m;
+
+        while(s+1 < e){
+            m = s + (e - s)/2;
+
+            if(nums[m] >= target)
+                e = m;
+            else
+                s = m;
+        }
+
+        if(nums[s] == target)
+            return s;
+
+        if(nums[e] == target)
+            return e;
+
+            return -1;
+    }
+}
 ```
 

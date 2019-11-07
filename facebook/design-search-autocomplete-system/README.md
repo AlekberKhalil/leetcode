@@ -66,6 +66,64 @@ Trie, 每个Node\(i\)里存所有words，然后一个map： word-&gt;times。
 注意dict不能dict\[index\]，只能dict.get\(key\)
 
 ```text
-#import collectionsclass TrieNode:    def __init__(self):        self.children = dict()        self.sentences = set()class AutocompleteSystem():    def __init__(self, sentences, times):        """        :type sentences: List[str]        :type times: List[int]        """        self.trie = TrieNode()        self.buffer = ''        self.stimes = {} #collections.defaultdict(int)        for s,t in zip(sentences,times):            self.stimes[s] = t            self.addSentence(s)        self.tnode = self.trie    def insert(self,c):        """        :type c: str        :rtype: List[str]        """        ans = []        if c != '#':            self.buffer += c            if self.tnode: self.tnode = self.tnode.children.get(c)            if self.tnode: ans = sorted(self.tnode.sentences,key = lambda x:(-self.stimes[x], x))[:3]        else:            self.stimes[self.buffer] += 1            self.addSentence(self.buffer)            self.buffer = ''            self.tnode = self.trie        return ans    def addSentence(self,sentence):        cur = self.trie        for c in sentence:            child = cur.children.get(c)            if child is None:                child = TrieNode()                cur.children[c] = child            cur = child            child.sentences.add(sentence)obj = AutocompleteSystem(["i love you", "island","ironman", "i love leetcode"], [5,3,2,2])param_1 = obj.insert('i')#for i in obj.stimes.items():print(list(obj.stimes.keys())[0])#print (param_1)
+#import collections
+class TrieNode:
+    def __init__(self):
+        self.children = dict()
+        self.sentences = set()
+
+class AutocompleteSystem():
+    def __init__(self, sentences, times):
+        """
+        :type sentences: List[str]
+        :type times: List[int]
+        """
+        self.trie = TrieNode()
+        self.buffer = ''
+        self.stimes = {} #collections.defaultdict(int)
+        for s,t in zip(sentences,times):
+            self.stimes[s] = t
+            self.addSentence(s)
+        self.tnode = self.trie
+
+    def insert(self,c):
+        """
+        :type c: str
+        :rtype: List[str]
+        """
+        ans = []
+        if c != '#':
+            self.buffer += c
+            if self.tnode: self.tnode = self.tnode.children.get(c)
+            if self.tnode: ans = sorted(self.tnode.sentences,key = lambda x:(-self.stimes[x], x))[:3]
+
+        else:
+            self.stimes[self.buffer] += 1
+            self.addSentence(self.buffer)
+            self.buffer = ''
+            self.tnode = self.trie
+        return ans
+
+    def addSentence(self,sentence):
+        cur = self.trie
+        for c in sentence:
+            child = cur.children.get(c)
+            if child is None:
+                child = TrieNode()
+                cur.children[c] = child
+            cur = child
+            child.sentences.add(sentence)
+
+
+
+
+
+
+
+obj = AutocompleteSystem(["i love you", "island","ironman", "i love leetcode"], [5,3,2,2])
+param_1 = obj.insert('i')
+#for i in obj.stimes.items():
+print(list(obj.stimes.keys())[0])
+#print (param_1)
 ```
 

@@ -13,6 +13,29 @@ You may assume that each input would have exactly one solution.
 解法：
 
 ```text
-    public int threeSumClosest(int[] nums, int target) {        int sum = 0, minDiff = Integer.MAX_VALUE;        Arrays.sort(nums);        for(int j = 0; j < nums.length - 2; j++){                int first = nums[j], start = j + 1, end = nums.length - 1;                            while(start < end){                    int second = nums[start], third = nums[end];                    int localSum = first + second + third;                    int diff = Math.abs(target - localSum);                    if(diff < minDiff){                        sum = localSum;                        minDiff = diff;                    }                    if(localSum < target){                        start ++;                                           }else{                        end --;                    }                                               }        }        return sum;            }
+    public int threeSumClosest(int[] nums, int target) {
+        int sum = 0, minDiff = Integer.MAX_VALUE;
+        Arrays.sort(nums);
+        for(int j = 0; j < nums.length - 2; j++){
+
+                int first = nums[j], start = j + 1, end = nums.length - 1;            
+                while(start < end){
+                    int second = nums[start], third = nums[end];
+                    int localSum = first + second + third;
+                    int diff = Math.abs(target - localSum);
+                    if(diff < minDiff){
+                        sum = localSum;
+                        minDiff = diff;
+                    }
+                    if(localSum < target){
+                        start ++;                       
+                    }else{
+                        end --;
+                    }                               
+                }
+
+        }
+        return sum;        
+    }
 ```
 

@@ -33,6 +33,51 @@ return new int\[\]{left, right};
 答案
 
 ```text
-class Solution {    public int[] searchRange(int[] nums, int target) {        if(nums == null || nums.length == 0){            return new int[]{-1, -1};        }        int s = 0, e = nums.length - 1, left = 0, right = e;        while(s + 1 < e){            int m = s + (e - s)/2;            if(nums[m] < target){                s = m;            }else{                e = m;            }        }        if(nums[s] == target){            left = s;        }else if(nums[e] == target){            left = e;        }else{            return new int[]{-1, -1};        }        s  = 0 ; e = nums.length - 1;        while(s + 1 < e){            int m = s + (e - s)/2;            if(nums[m] <= target){                s = m;            }else{                e = m;            }        }        if(nums[e] == target){            right = e;        }else if(nums[s] == target){            right = s;        }else{            return new int[]{-1, -1};        }        return new int[]{left, right};    }}
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        if(nums == null || nums.length == 0){
+            return new int[]{-1, -1};
+        }
+        int s = 0, e = nums.length - 1, left = 0, right = e;
+
+        while(s + 1 < e){
+            int m = s + (e - s)/2;
+            if(nums[m] < target){
+                s = m;
+            }else{
+                e = m;
+            }
+        }
+
+        if(nums[s] == target){
+            left = s;
+        }else if(nums[e] == target){
+            left = e;
+        }else{
+            return new int[]{-1, -1};
+        }
+
+
+        s  = 0 ; e = nums.length - 1;
+        while(s + 1 < e){
+            int m = s + (e - s)/2;
+            if(nums[m] <= target){
+                s = m;
+            }else{
+                e = m;
+            }
+        }
+
+        if(nums[e] == target){
+            right = e;
+        }else if(nums[s] == target){
+            right = s;
+        }else{
+            return new int[]{-1, -1};
+        }
+
+        return new int[]{left, right};
+    }
+}
 ```
 

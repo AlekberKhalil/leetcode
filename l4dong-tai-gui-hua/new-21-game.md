@@ -9,25 +9,47 @@ Alice stops drawing numbers when she gets`K`or more points. What is the probabil
 **Example 1:**
 
 ```text
-Input: N = 10, K = 1, W = 10Output: 1.00000Explanation:  Alice gets a single card, then stops.
+Input: 
+N = 10, K = 1, W = 10
+
+Output: 
+1.00000
+
+Explanation: 
+ Alice gets a single card, then stops.
 ```
 
 **Example 2:**
 
 ```text
-Input: N = 6, K = 1, W = 10Output: 0.60000Explanation:  Alice gets a single card, then stops.In 6 out of W = 10 possibilities, she is at or below N = 6 points.
+Input: 
+N = 6, K = 1, W = 10
+
+Output: 
+0.60000
+
+Explanation: 
+ Alice gets a single card, then stops.
+In 6 out of W = 10 possibilities, she is at or below N = 6 points.
 ```
 
 **Example 3:**
 
 ```text
-Input: N = 21, K = 17, W = 10Output: 0.73278
+Input: 
+N = 21, K = 17, W = 10
+
+Output: 
+0.73278
 ```
 
 **Note:**
 
 ```text
-0 <= K <= N <= 100001 <= W <= 10000Answers will be accepted as correct if they are within 10^-5 of the correct answer.The judging time limit has been reduced for this question.
+0 <= K <= N <= 10000
+1 <= W <= 10000
+Answers will be accepted as correct if they are within 10^-5 of the correct answer.
+The judging time limit has been reduced for this question.
 ```
 
 分析：
@@ -39,6 +61,18 @@ Input: N = 21, K = 17, W = 10Output: 0.73278
 K后p\[i\]不增加了。因为不能再多pick了。
 
 ```text
-class Solution:    def new21Game(self, N: int, K: int, W: int) -> float:        if K==0 or N >= K + W:            return 1         p = [1] + [0]*N        wsum = 1        for i in range(1,N+1):            p[i] = wsum/W            if i < K:                wsum += p[i] #还可以继续选，所以p一直增加，之后不增了。            if i >= W:                wsum -= p[i-W] #可以从前W个数跳过来。        return sum(p[K:])
+class Solution:
+    def new21Game(self, N: int, K: int, W: int) -> float:
+        if K==0 or N >= K + W:
+            return 1 
+        p = [1] + [0]*N
+        wsum = 1
+        for i in range(1,N+1):
+            p[i] = wsum/W
+            if i < K:
+                wsum += p[i] #还可以继续选，所以p一直增加，之后不增了。
+            if i >= W:
+                wsum -= p[i-W] #可以从前W个数跳过来。
+        return sum(p[K:])
 ```
 

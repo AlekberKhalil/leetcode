@@ -9,13 +9,40 @@ The order of output does not matter.
 **Example 1:**
 
 ```text
-Input:s: "cbaebabacd" p: "abc"Output:[0, 6]Explanation:The substring with start index = 0 is "cba", which is an anagram of "abc".The substring with start index = 6 is "bac", which is an anagram of "abc".
+Input:
+
+s: "cbaebabacd" p: "abc"
+
+
+Output:
+
+[0, 6]
+
+
+Explanation:
+
+The substring with start index = 0 is "cba", which is an anagram of "abc".
+The substring with start index = 6 is "bac", which is an anagram of "abc".
 ```
 
 **Example 2:**
 
 ```text
-Input:s: "abab" p: "ab"Output:[0, 1, 2]Explanation:The substring with start index = 0 is "ab", which is an anagram of "ab".The substring with start index = 1 is "ba", which is an anagram of "ab".The substring with start index = 2 is "ab", which is an anagram of "ab".
+Input:
+
+s: "abab" p: "ab"
+
+
+Output:
+
+[0, 1, 2]
+
+
+Explanation:
+
+The substring with start index = 0 is "ab", which is an anagram of "ab".
+The substring with start index = 1 is "ba", which is an anagram of "ab".
+The substring with start index = 2 is "ab", which is an anagram of "ab".
 ```
 
 分析
@@ -41,6 +68,30 @@ anagram 顺序不需要，所以Map
 map和s,e总是要++/--
 
 ```text
-class Solution:    def findAnagrams(self, s: str, p: str) -> List[int]:        mm = collections.defaultdict(int)        count = 0        for i in p:            mm[i] +=1        l = len(s)        ss,e,counter =0,0,len(p)        res = []        while e < l :             if mm[s[e]] > 0:                counter -= 1            mm[s[e]] -= 1            e += 1            while counter == 0:                if e - ss == len(p): #e已经到了下一位 所以可以直接用长度                    res.append(ss)                if mm[s[ss]] == 0:                    counter += 1                mm[s[ss]] += 1                ss += 1        return res
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        mm = collections.defaultdict(int)
+        count = 0
+        for i in p:
+            mm[i] +=1
+
+        l = len(s)
+
+        ss,e,counter =0,0,len(p)
+        res = []
+        while e < l : 
+            if mm[s[e]] > 0:
+                counter -= 1
+            mm[s[e]] -= 1
+            e += 1
+            while counter == 0:
+                if e - ss == len(p): #e已经到了下一位 所以可以直接用长度
+                    res.append(ss)
+
+                if mm[s[ss]] == 0:
+                    counter += 1
+                mm[s[ss]] += 1
+                ss += 1
+        return res
 ```
 

@@ -20,6 +20,30 @@ Output: \[\[1,2,6\], \[1,3,5\], \[2,3,4\]\]
 不可重复取，加上条件
 
 ```text
-class Solution:    """    @param num: Given the candidate numbers    @param target: Given the target number    @return: All the combinations that sum to target    """    def combinationSum3(self, k,n):        # write your code here        ret = []        self.dfs(k,n, ret, [], 1)        return ret    def dfs(self, k,n, ret, path, start):        if n == 0 and k == 0:            ret.append(list(path))            return        for i in range(start,10):            if i > n:                return            path.append(i)            self.dfs(k-1, n-i, ret, path, i+1)            path.pop()
+class Solution:
+    """
+    @param num: Given the candidate numbers
+    @param target: Given the target number
+    @return: All the combinations that sum to target
+    """
+    def combinationSum3(self, k,n):
+        # write your code here
+
+        ret = []
+        self.dfs(k,n, ret, [], 1)
+        return ret
+
+    def dfs(self, k,n, ret, path, start):
+        if n == 0 and k == 0:
+            ret.append(list(path))
+            return
+
+        for i in range(start,10):
+            if i > n:
+                return
+
+            path.append(i)
+            self.dfs(k-1, n-i, ret, path, i+1)
+            path.pop()
 ```
 

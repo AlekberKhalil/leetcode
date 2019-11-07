@@ -10,19 +10,22 @@ If there is no non-empty subarray with sum at least `K`, return `-1`.
 **Example 1:**
 
 ```text
-Input: A = [1], K = 1Output: 1
+Input: A = [1], K = 1
+Output: 1
 ```
 
 **Example 2:**
 
 ```text
-Input: A = [1,2], K = 4Output: -1
+Input: A = [1,2], K = 4
+Output: -1
 ```
 
 **Example 3:**
 
 ```text
-Input: A = [2,-1,2], K = 3Output: 3
+Input: A = [2,-1,2], K = 3
+Output: 3
 ```
 
 **Note:**
@@ -40,6 +43,27 @@ Input: A = [2,-1,2], K = 3Output: 3
 
 
 ```text
-class Solution:    def shortestSubarray(self, A: List[int], K: int) -> int:        B = [0]        for i in A:            B.append(B[-1]+i)        s = []        res = float('inf')        for i,b in enumerate(B):            if not s:                s.append(i)            else:                while s and B[s[-1]] > b: s.pop() #useless, pop out                while s and B[s[0]] <= b - K:                     res = min(res,i - s[0])                    s.pop(0)                s.append(i)        return res if res!= float('inf') else -1                                                                
+class Solution:
+    def shortestSubarray(self, A: List[int], K: int) -> int:
+        B = [0]
+        for i in A:
+            B.append(B[-1]+i)
+        s = []
+        res = float('inf')
+        for i,b in enumerate(B):
+            if not s:
+                s.append(i)
+            else:
+                while s and B[s[-1]] > b: s.pop() #useless, pop out
+                while s and B[s[0]] <= b - K: 
+                    res = min(res,i - s[0])
+                    s.pop(0)
+                s.append(i)
+        return res if res!= float('inf') else -1
+            
+            
+                
+            
+            
 ```
 

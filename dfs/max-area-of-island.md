@@ -7,7 +7,26 @@ Find the maximum area of an island in the given 2D array. \(If there is no islan
 **Example 1:**
 
 ```text
-[[0,0,1,0,0,0,0,1,0,0,0,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,1,1,0,1,0,0,0,0,0,0,0,0], [0,1,0,0,1,1,0,0,1,0,1,0,0], [0,1,0,0,1,1,0,0,1,1,1,0,0], [0,0,0,0,0,0,0,0,0,0,1,0,0], [0,0,0,0,0,0,0,1,1,1,0,0,0], [0,0,0,0,0,0,0,1,1,0,0,0,0]]
+[[0,0,1,0,0,0,0,1,0,0,0,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,1,1,0,1,0,0,0,0,0,0,0,0],
+ [0,1,0,0,1,1,0,0,
+1
+,0,
+1
+,0,0],
+ [0,1,0,0,1,1,0,0,
+1
+,
+1
+,
+1
+,0,0],
+ [0,0,0,0,0,0,0,0,0,0,
+1
+,0,0],
+ [0,0,0,0,0,0,0,1,1,1,0,0,0],
+ [0,0,0,0,0,0,0,1,1,0,0,0,0]]
 ```
 
 Given the above grid, return
@@ -35,13 +54,60 @@ dfs
 每次dfs是一个连通块，计算每块里面多少个。 这里visited直接设置Matrix = -1
 
 ```text
-class Solution:    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:        if not grid or not grid[0]:            return 0        n,m = len(grid),len(grid[0])        d = [-1, 0, 1, 0, -1]        def dfs(i,j):            nonlocal cnt            if grid[i][j] != 1:                return            grid[i][j] = -1            for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:                if 0 <= x < n and 0 <= y < m and grid[x][y] == 1:                    cnt += 1                    dfs(x,y)        res = 0                    for i in range(n):            for j in range(m):                if grid[i][j] == 1:                    cnt = 1                    dfs(i,j)                    res = max(res,cnt)        return res
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n,m = len(grid),len(grid[0])
+
+        d = [-1, 0, 1, 0, -1]
+
+        def dfs(i,j):
+            nonlocal cnt
+            if grid[i][j] != 1:
+                return
+            grid[i][j] = -1
+            for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:
+                if 0 <= x < n and 0 <= y < m and grid[x][y] == 1:
+                    cnt += 1
+                    dfs(x,y)
+
+        res = 0            
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1:
+                    cnt = 1
+                    dfs(i,j)
+                    res = max(res,cnt)
+        return res
 ```
 
 dfs II
 
 ```text
-class Solution:    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:        if not grid or not grid[0]:            return 0        n,m = len(grid),len(grid[0])        d = [-1,0,1,0,-1]        def dfs(x,y):            grid[x][y] = -1            cnt = 1            for nx,ny in [(x+d[i],y+d[i+1]) for i in range(4)]:                if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] == 1:                    cnt += dfs(nx,ny)            return cnt        res = 0        for i in range(n):            for j in range(m):                if grid[i][j] == 1:                    temp = dfs(i,j)                    res = max(res,temp)        return res                
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n,m = len(grid),len(grid[0])
+        d = [-1,0,1,0,-1]
+        def dfs(x,y):
+            grid[x][y] = -1
+            cnt = 1
+            for nx,ny in [(x+d[i],y+d[i+1]) for i in range(4)]:
+                if 0 <= nx < n and 0 <= ny < m and grid[nx][ny] == 1:
+                    cnt += dfs(nx,ny)
+            return cnt
+        res = 0
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1:
+                    temp = dfs(i,j)
+                    res = max(res,temp)
+        return res
+    
+
+            
 ```
 
 BFS
@@ -49,6 +115,92 @@ BFS
 visited在出栈时候设置就一直错，非要在入栈时候设置才行，不知道为什么
 
 ```text
-class Solution:    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:        if not grid or not grid[0]:            return 0        n,m = len(grid),len(grid[0])        d = [-1, 0, 1, 0, -1]        def bfs(a,b)->int:            cnt = 1            q = [(a,b)]            grid[a][b] = -1            while q:                i,j = q.pop(0)                              for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:                    if 0 <= x < n and 0 <= y < m and grid[x][y] == 1:                        cnt += 1                        q.append((x,y))                        grid[x][y] = -1            return cnt        res = 0                    for i in range(n):            for j in range(m):                if grid[i][j] == 1:                                        cnt = bfs(i,j)                    res = max(res,cnt)        return res
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n,m = len(grid),len(grid[0])
+
+        d = [-1, 0, 1, 0, -1]
+
+        def bfs(a,b)->int:
+            cnt = 1
+            q = [(a,b)]
+            grid[a][b] = -1
+            while q:
+                i,j = q.pop(0)              
+                for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:
+                    if 0 <= x < n and 0 <= y < m and grid[x][y] == 1:
+                        cnt += 1
+                        q.append((x,y))
+                        grid[x][y] = -1
+            return cnt
+
+        res = 0            
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1:                    
+                    cnt = bfs(i,j)
+                    res = max(res,cnt)
+        return res
+```
+
+Union find
+
+用了size和rank,记得最后取size的时候再find一次，很重要！！！
+
+```text
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        if not grid or not grid[0]:
+            return 0
+        n,m = len(grid),len(grid[0])
+        f = list(range(n*m))
+        rank = [0]*(n*m)
+        size = [1]*(n*m)
+        d = [-1, 0, 1, 0, -1]
+        def find(x):
+            if f[x] == x:
+                return x
+            f[x] = find(f[x])
+            return f[x]
+        
+        def union(x,y):
+            # if x== y:return False
+            fx,fy = find(x),find(y)
+            if fx == fy:
+                return size[fx]
+            if rank[fy] > rank[fx]:
+                f[fx] = fy
+                size[fy] += size[fx]
+                return size[fy]
+                
+            elif rank[fy] < rank[fx]:
+                f[fy] = fx
+                size[fx] += size[fy]
+                return size[fx]
+            else:
+                f[fy] = fx
+                rank[fx] += 1
+                size[fx] += size[fy]
+                return size[fx]
+            
+                
+        res = 0
+        for i in range(n):
+            for j in range(m):
+                if grid[i][j] == 1:
+                    temp = size[find(i*m+j)] #再find一次
+                    for x, y in [(i + d[k], j + d[k + 1]) for k in range(4)]:
+                        if 0 <= x < n and 0 <= y < m and grid[x][y] == 1 :
+                            temp = max(res,union(x*m+y,i*m+j))
+                    res = max(res,temp)           
+                            
+       
+        return res
+        
+    
+
+            
 ```
 

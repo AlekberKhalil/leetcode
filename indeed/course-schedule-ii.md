@@ -29,6 +29,43 @@ bfs，注意此处input的课程顺序是反序。visited == numCourses 既用�
 输出的结果包括所有课程，是图里所有路径而非单条最短路径。
 
 ```text
-class Solution {    public int[] findOrder(int numCourses, int[][] prerequisites) {        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors        Queue<Integer> q = new LinkedList<Integer>();//bfs        int[] indegree = new int[numCourses];//indegree出度        int[] ret = new int[numCourses];        for(int[] p : prerequisites){            indegree[p[0]] ++;            if(neighbors.containsKey(p[1])){                neighbors.get(p[1]).add(p[0]);            }else{                List<Integer> ns = new ArrayList<Integer>();                ns.add(p[0]);                neighbors.put(p[1], ns);            }        }        for(int i = 0; i < indegree.length; i ++){            if(indegree[i] == 0){                q.offer(i);            }        }        int visited = 0;        while(!q.isEmpty()){            int cur = q.poll();            ret[visited ++] = cur;            if(neighbors.containsKey(cur)){              for(int i : neighbors.get(cur)){                indegree[i] --;                if(indegree[i] == 0){                    q.offer(i);                }            }            }        }         return visited == numCourses ? ret : new int[0];    }}
+class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors
+        Queue<Integer> q = new LinkedList<Integer>();//bfs
+        int[] indegree = new int[numCourses];//indegree出度
+        int[] ret = new int[numCourses];
+        for(int[] p : prerequisites){
+            indegree[p[0]] ++;
+            if(neighbors.containsKey(p[1])){
+                neighbors.get(p[1]).add(p[0]);
+            }else{
+                List<Integer> ns = new ArrayList<Integer>();
+                ns.add(p[0]);
+                neighbors.put(p[1], ns);
+            }
+        }
+        for(int i = 0; i < indegree.length; i ++){
+            if(indegree[i] == 0){
+                q.offer(i);
+            }
+        }
+        int visited = 0;
+        while(!q.isEmpty()){
+            int cur = q.poll();
+            ret[visited ++] = cur;
+            if(neighbors.containsKey(cur)){
+              for(int i : neighbors.get(cur)){
+                indegree[i] --;
+                if(indegree[i] == 0){
+                    q.offer(i);
+                }
+            }
+            }
+
+        }
+         return visited == numCourses ? ret : new int[0];
+    }
+}
 ```
 

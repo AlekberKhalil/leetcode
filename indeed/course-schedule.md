@@ -46,6 +46,42 @@ There are a total of 2 courses to take. To take course 1 you should have finishe
 有环的话入度不为0不会被加入queue,所以不可达。
 
 ```text
-class Solution {    public boolean canFinish(int numCourses, int[][] prerequisites) {        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors        Queue<Integer> q = new LinkedList<Integer>();//bfs        int[] indegree = new int[numCourses];//indegree出度        int cnt = numCourses;        for(int[] p : prerequisites){            indegree[p[0]] ++;            if(neighbors.containsKey(p[1])){                neighbors.get(p[1]).add(p[0]);            }else{                List<Integer> ns = new ArrayList<Integer>();                ns.add(p[0]);                neighbors.put(p[1], ns);            }        }        for(int i = 0; i < indegree.length; i ++){            if(indegree[i] == 0){                q.offer(i);            }        }        while(!q.isEmpty()){            int cur = q.poll();            cnt --;            if(neighbors.containsKey(cur)){              for(int i : neighbors.get(cur)){                indegree[i] --;                if(indegree[i] == 0){                    q.offer(i);                }            }            }        }        return cnt == 0;    }}
+class Solution {
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        Map<Integer, List<Integer>> neighbors = new HashMap<Integer, List<Integer>>();//node and its neighbors
+        Queue<Integer> q = new LinkedList<Integer>();//bfs
+        int[] indegree = new int[numCourses];//indegree出度
+        int cnt = numCourses;
+        for(int[] p : prerequisites){
+            indegree[p[0]] ++;
+            if(neighbors.containsKey(p[1])){
+                neighbors.get(p[1]).add(p[0]);
+            }else{
+                List<Integer> ns = new ArrayList<Integer>();
+                ns.add(p[0]);
+                neighbors.put(p[1], ns);
+            }
+        }
+        for(int i = 0; i < indegree.length; i ++){
+            if(indegree[i] == 0){
+                q.offer(i);
+            }
+        }
+        while(!q.isEmpty()){
+            int cur = q.poll();
+            cnt --;
+            if(neighbors.containsKey(cur)){
+              for(int i : neighbors.get(cur)){
+                indegree[i] --;
+                if(indegree[i] == 0){
+                    q.offer(i);
+                }
+            }
+            }
+
+        }
+        return cnt == 0;
+    }
+}
 ```
 

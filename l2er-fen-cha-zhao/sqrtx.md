@@ -15,7 +15,30 @@ Compute and return the square root ofx.
 答案
 
 ```text
-class Solution {    public int mySqrt(int x) {       if(x == 0)           return 0;        long s = 1, e = x;        while(s + 1 < e){            long m = s + (e - s) / 2;            if(m * m <= x){                s = m;            }else{                e = m;            }        }//此处先判断s的话也行        if(e * e <= x){            return (int)e;        }        return (int)s;    }}
+class Solution {
+    public int mySqrt(int x) {
+       if(x == 0)
+           return 0;
+        long s = 1, e = x;
+
+        while(s + 1 < e){
+            long m = s + (e - s) / 2;
+            if(m * m <= x){
+                s = m;
+            }else{
+                e = m;
+            }
+        }
+
+//此处先判断s的话也行
+        if(e * e <= x){
+            return (int)e;
+        }
+
+        return (int)s;
+
+    }
+}
 ```
 
 用花花模板，只能闭区间，开区间那个不行
@@ -23,7 +46,17 @@ class Solution {    public int mySqrt(int x) {       if(x == 0)           return
 用m &gt; x / m 不用m\*m&gt;x是为了防止溢出，不过Python没事
 
 ```text
-class Solution:    def mySqrt(self, x: int) -> int:        l,r = 1,x        while l <= r:            m = l + (r-l)//2 #要取整数，得到是上限，结果要去1            if m > x / m:                r = m - 1            else:                l = m + 1        return l-1
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l,r = 1,x
+        while l <= r:
+            m = l + (r-l)//2 #要取整数，得到是上限，结果要去1
+            if m > x / m:
+                r = m - 1
+
+            else:
+                l = m + 1
+        return l-1
 ```
 
 newton
@@ -33,6 +66,13 @@ newton
 ```
 
 ```text
-class Solution:    def mySqrt(self, x: int) -> int:                if not x:            return x        r = x        while r*r > x :            r = (r + x//r) // 2        return r
+class Solution:
+    def mySqrt(self, x: int) -> int:        
+        if not x:
+            return x
+        r = x
+        while r*r > x :
+            r = (r + x//r) // 2
+        return r
 ```
 

@@ -8,7 +8,9 @@ For example, given the array sales = \[1, 2, 3, 4, 6\],we see that 1+2+3=6，Usi
 #### Example
 
 ```text
-Example:Input : [1, 2, 3, 4, 6]Output : 3
+Example:
+Input : [1, 2, 3, 4, 6]
+Output : 3
 ```
 
 #### Notice
@@ -22,6 +24,31 @@ Example:Input : [1, 2, 3, 4, 6]Output : 3
 左右presum，然后loop 比较左右sum。 right要reverse 2次，算的时候和用的时候
 
 ```text
-class Solution:    """    @param sales: a integer array    @return: return a Integer    """    import itertools    def BalancedSalesArray(self, sales):        # write your code here        left,right = [],[]        leftsum = rightsum = 0        n = len(sales)        for i in range(n):            leftsum += sales[i]             left.append(leftsum)            rightsum += sales[n-1-i]            right.append(rightsum)                    n = len(sales)        for i in range(n):            if left[i] == right[n-1-i]:                return i         return -1                    
+class Solution:
+    """
+    @param sales: a integer array
+    @return: return a Integer
+    """
+    import itertools
+    def BalancedSalesArray(self, sales):
+        # write your code here
+        left,right = [],[]
+        leftsum = rightsum = 0
+        n = len(sales)
+        for i in range(n):
+            leftsum += sales[i] 
+            left.append(leftsum)
+            rightsum += sales[n-1-i]
+            right.append(rightsum)
+            
+
+        n = len(sales)
+        for i in range(n):
+            if left[i] == right[n-1-i]:
+                return i 
+        return -1
+        
+        
+    
 ```
 
