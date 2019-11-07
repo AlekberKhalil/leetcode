@@ -64,7 +64,7 @@ DP问题：[https://zhengyang2015.gitbooks.io/lintcode/house\_robber\_392.html](
 
 4 有环时候去头或者尾，做完再比较哪个大：House Robber II
 
-5 设置2个状态，2个状态交替由对方得到。Wiggle Subsequence, Longest Turbulent Subarray
+5 设置2个状态，2个状态交替由对方得到。Wiggle Subsequence
 
 6 区间循环
 
@@ -74,9 +74,7 @@ for ln in range(1,n+1):                        for start in range(1,n+1-ln):
 
 7 字串长度 = unique substring数: Unique Substrings in Wraparound String
 
-8 前两天得到第三天的，python可以同时赋值：Delete and Earn，house robber， Paint Fence
-
-或者是一个pos有2个状态，比如min,max\(Maximum Product Subarray\)，类似5
+8 前两天得到第三天的，python可以同时赋值：Delete and Earn，house robber
 
 9 状态类dp，一个人可以有多个选择，can I win, Campus Bikes II. 用bit数组来表示每个人的状态。dp\[i\]\[bit status\] \(bit status = 1&lt;&lt; j\]
 
@@ -90,13 +88,7 @@ bitwise notenum | (1<<k): set num's k-th bit as 1num & (1<<k): get num's k-th bi
 
 11 只和前面某个词有关的，和LIS，如果是和前面几个数有关的，比如fibonacii,等比数列，或者山峰最长长度。以2个数取出来，然后往后顺次找序列。
 
-LIS和Russian doll,都可以用数组bisect.bisect\_left找出Index做，原因是每个当前i都要和前面所有0-i比较找出自己位置。比前面都大就res++，否则插入前面位置，等于更新dp里那个位置时候最大的数。
-
 或者2个数出来，根据diff去后面list找第三个数字是否存在。
 
-13 背包 01背包要求满，初始化为infinite 因为都不满开始。不求满求最优，初始0因为有valid值
-
 12 做不出来的时候考虑top down，dfs的分治法，对比dp的bottom up
-
-13 飞机问题 ：Cheapest Flights Within K Stops
 

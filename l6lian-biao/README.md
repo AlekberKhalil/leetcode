@@ -1,13 +1,5 @@
 # L6\_链表（快慢指针）
 
-reverse linked list,Add Two Numbers II: 先把dummy和cur都相等，然后cur往后走。记得cur先铺好next,然后再跳到next：   cur.next = ...., cur = cur.next
-
-一步步走，不要next.next跳。可以每次先node.next = ....然后再node = node.next.
-
-2种reverse方法,都是循环首位相接
-
-
-
 2种reverse方法,都是循环首位相接
 
 只改变中间指针指向

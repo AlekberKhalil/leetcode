@@ -19,7 +19,7 @@ You may assume that you have an infinite number of each kind of coin.
 
 分析
 
-01背包，装满背包。p\[0\] = 0
+p\[0\] = 0
 
 ```text
 class Solution(object):    def coinChange(self, coins, amount):        """        :type coins: List[int]        :type amount: int        :rtype: int        """        p = [float('inf')]*(amount+1)        p[0] =0        for i in range(1,amount+1):            for c in coins:                if i - c >=0:                    p[i] = min(p[i],p[i-c]+1)        return p[amount] if p[amount]!=float('inf') else -1

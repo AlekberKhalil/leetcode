@@ -28,7 +28,7 @@ What if the BST is modified \(insert/delete operations\) often and you need to f
 # Definition for a binary tree node.# class TreeNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = Noneclass Solution:    def kthSmallest(self, root: TreeNode, k: int) -> int:                 res = None        def helper(root):            nonlocal res,k            # if not root:            #     return            if root.left:                helper(root.left)            k -= 1            if k == 0 :                res = root.val                return            if root.right:                helper(root.right)        helper(root)        return res
 ```
 
-iterative
+recursive
 
 ```text
 # Definition for a binary tree node.# class TreeNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = Noneclass Solution:    def kthSmallest(self, root: TreeNode, k: int) -> int:        stack = []        cur = root        while cur or stack: #错在Not stack...            while cur:                stack.append(cur)                cur = cur.left            cur = stack.pop()            k -= 1            if not k:                return cur.val            cur = cur.right

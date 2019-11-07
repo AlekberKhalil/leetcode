@@ -38,9 +38,3 @@ python
 class Solution:    def maxProduct(self, nums: List[int]) -> int:        n = len(nums)        dp = [1] + [i for i in nums]        mdp = [1] + [i for i in nums]        res = float('-inf')        for i in range(1,n+1):            dp[i] = max(dp[i],dp[i-1]*nums[i-1],mdp[i-1]*nums[i-1])            mdp[i] = min(mdp[i],mdp[i-1]*nums[i-1],dp[i-1]*nums[i-1])            res = max(res,dp[i])        return res
 ```
 
-因为只和前面状态min,max相关，并且当前态就能比较出res，只要设置这3个变量即可
-
-```text
-class Solution:    def maxProduct(self, nums: List[int]) -> int:                mn,mx,res = 1,1,float('-inf')        for i in nums:            mn,mx = min(i, mn*i,mx*i),max(i,mx*i,mn*i)            res = max(mn,mx,res)        return res
-```
-

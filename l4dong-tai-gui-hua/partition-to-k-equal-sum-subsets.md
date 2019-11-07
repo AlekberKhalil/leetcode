@@ -34,9 +34,3 @@ dfs
 class Solution:    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:        sm = sum(nums)        if sm % k !=0:            return False        target = sm//k        n = len(nums)        seen =set()        #分成K组，每组还是combination sum        def dfs(cursum,ni,gi):            if gi == 1:                return True            if cursum == target:                return dfs(0,0,gi-1)#nums从0开始，有seen不怕重复            for i in range(ni,n):                if i not in seen:                    seen.add(i)                    if dfs(cursum+nums[i],i+1,gi):                        return True                                        seen.remove(i)            return False        return dfs(0,0,k)
 ```
 
-另一种dfs， loop groups
-
-```text
-class Solution:    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:        target,rem = divmod(sum(nums), k)        if rem != 0:            return False        n = len(nums)                nums.sort(reverse=True)        groups = [target] * k                def dfs(pos):            if pos ==n:                return True                        for i in range(k):                if nums[pos] <= groups[i]:                    groups[i] -= nums[pos]                    if dfs(pos+1):                        return True                    groups[i] += nums[pos]            return False        return dfs(0)
-```
-

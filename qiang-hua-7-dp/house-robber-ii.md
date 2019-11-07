@@ -23,6 +23,6 @@ Input: [1,2,3,1]Output: 4Explanation: Rob house 1 (money = 1) and then rob house
 注意这里yes 和No交换进行的方法
 
 ```text
-class Solution:    def rob(self, nums):        """        :type nums: List[int]        :rtype: int        """        if not nums:            return 0        n = len(nums)        if n == 1:            return nums[0]        nums1 = nums[:n-1]        nums2 = nums[1:]        f1 = self.canDo(nums1)        f2 = self.canDo(nums2)        return max(f1,f2)    def canDo(self, nums):                r = len(nums)        ppre=pre=cur = 0        for i in range(r):            cur = max(pre,ppre+nums[i])            ppre,pre = pre,cur        return cur
+class Solution:    def rob(self, nums):        """        :type nums: List[int]        :rtype: int        """        if not nums:            return 0        n = len(nums)        if n == 1:            return nums[0]        nums1 = nums[:n-1]        nums2 = nums[1:]        f1 = self.canDo(nums1)        f2 = self.canDo(nums2)        return max(f1,f2)    def canDo(self, nums):                r = len(nums)        y=n=cur = 0        for i in range(r):            cur = max(n,y+nums[i])            y,n = n,cur        return cur
 ```
 

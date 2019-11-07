@@ -16,8 +16,6 @@ Given \[1,2,3,4\] and interval = \[1,3\], return 4. The possible answers are:
 
 1.二分法，等于固定尾部寻头。presum先做
 
-分别为第一个大于或等于prefixSum\[i\] - high的位置，即最左边的位置，以及最后一个小于或等于prefixSum\[i\] - low的位置，即最右边的位置。 看上去这是两种二分搜索，但这里有个小技巧，那就是把后一个条件稍稍修改，变成第一个大于或等于prefixSum\[i\] - low + 1的位置，等效于我们把需要找的位置往后移了一位。
-
 ```text
 子数组和落在区间里pre[i]-3<=pre[j]<=pre[i]-1
 ```

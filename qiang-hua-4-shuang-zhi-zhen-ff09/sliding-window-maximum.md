@@ -47,6 +47,6 @@ python
 ```
 
 ```text
-class Solution:    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:        if not nums:            return []        dq = collections.deque()        for i in range(k-1):            self.inQueue(dq, nums[i])#初始只到k-1,不到k，并且这里也要pop q if necessary        l = len(nums)        res = []        for i in range(k-1, l):            self.inQueue(dq, nums[i])            res.append(dq[0])            self.outQueue(dq, nums[i-k+1])        return res    def inQueue(self, dq:collections.deque, k: int):        while dq and dq[-1]  < k:            dq.pop()        dq.append(k)    def outQueue(self, dq:collections.deque, k: int):        if dq[0] == k:            dq.popleft()
+class Solution:    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:        if not nums:            return []        dq = collections.deque()        for i in range(k-1):            self.inQueue(dq, nums[i])        l = len(nums)        res = []        for i in range(k-1, l):            self.inQueue(dq, nums[i])            res.append(dq[0])            self.outQueue(dq, nums[i-k+1])        return res    def inQueue(self, dq:collections.deque, k: int):        while dq and dq[-1]  < k:            dq.pop()        dq.append(k)    def outQueue(self, dq:collections.deque, k: int):        if dq[0] == k:            dq.popleft()
 ```
 
