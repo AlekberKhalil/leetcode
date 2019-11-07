@@ -17,28 +17,6 @@ Given`[1,3,2]`, the max area of the container is`2`.
 答案
 
 ```text
-public class Solution {
-    /*
-     * @param heights: a vector of integers
-     * @return: an integer
-     */
-    public int maxArea(int[] heights) {
-        // write your code here
-        int n = heights.length;
-        int start = 0, end = n-1;
-        int area = 0;
-        while(start < end){
-            if(heights[end] > heights[start]){
-                area = Math.max(area, heights[start] * (end - start));
-                start ++;
-            }
-            else{
-                area = Math.max(area, heights[end] * (end - start));
-                end --;
-            }
-        }
-        return area;
-    }
-}
+public class Solution {    /*     * @param heights: a vector of integers     * @return: an integer     */    public int maxArea(int[] heights) {        // write your code here        int n = heights.length;        int start = 0, end = n-1;        int area = 0;        while(start < end){            if(heights[end] > heights[start]){                area = Math.max(area, heights[start] * (end - start));                start ++;            }            else{                area = Math.max(area, heights[end] * (end - start));                end --;            }        }        return area;    }}
 ```
 

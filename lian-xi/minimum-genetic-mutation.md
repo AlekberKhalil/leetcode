@@ -17,35 +17,19 @@ Now, given 3 things - start, end, bank, your task is to determine what is the mi
 **Example 1:**
 
 ```text
-Input:
-"AACCGGTT"
-"AACCGGTA"
-["AACCGGTA"]
-Output: 1
-Explanation:
-start: "AACCGGTT"
-end:  "AACCGGTA"
-bank: ["AACCGGTA"]
+Input:"AACCGGTT""AACCGGTA"["AACCGGTA"]Output: 1Explanation:start: "AACCGGTT"end:  "AACCGGTA"bank: ["AACCGGTA"]
 ```
 
 **Example 2:**
 
 ```text
-Input:
-"AACCGGTT"
-"AAACGGTA"
-["AACCGGTA", "AACCGCTA", "AAACGGTA"]
-Output: 2
+Input:"AACCGGTT""AAACGGTA"["AACCGGTA", "AACCGCTA", "AAACGGTA"]Output: 2
 ```
 
 **Example 3:**
 
 ```text
-Input:
-"AAAAACCC"
-"AACCCCCC"
-["AAAACCCC", "AAACCCCC", "AACCCCCC"]
-Output: 3
+Input:"AAAAACCC""AACCCCCC"["AAAACCCC", "AAACCCCC", "AACCCCCC"]Output: 3
 ```
 
 #### Notice
@@ -59,34 +43,6 @@ Output: 3
 BFS
 
 ```text
-class Solution:
-    """
-    @param start: 
-    @param end: 
-    @param bank: 
-    @return: the minimum number of mutations needed to mutate from "start" to "end"
-    """
-    def minMutation(self, start, end, bank):
-        # Write your code here
-        chars = ["A", "C", "G", "T"]
-        bank = set(bank)
-        def bfs():
-            q = [start]
-            distance = {start:0}
-            while q:
-                cur = q.pop(0)
-                if cur == end:
-                   return distance[cur]
-                for i in range(len(cur)):
-                    for j in chars:
-                        nw = cur[:i] + j + cur[i+1:]
-                        if nw in bank and nw not in distance:
-                            distance[nw] = distance[cur] + 1
-                            q.append(nw)
-            return -1
-        return bfs()
-                            
-            
-
+class Solution:    """    @param start:     @param end:     @param bank:     @return: the minimum number of mutations needed to mutate from "start" to "end"    """    def minMutation(self, start, end, bank):        # Write your code here        chars = ["A", "C", "G", "T"]        bank = set(bank)        def bfs():            q = [start]            distance = {start:0}            while q:                cur = q.pop(0)                if cur == end:                   return distance[cur]                for i in range(len(cur)):                    for j in chars:                        nw = cur[:i] + j + cur[i+1:]                        if nw in bank and nw not in distance:                            distance[nw] = distance[cur] + 1                            q.append(nw)            return -1        return bfs()                                        
 ```
 

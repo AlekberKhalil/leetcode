@@ -11,9 +11,7 @@ You are given a helper function`bool knows(a, b)`which tells you whether A knows
 Given n =`2`
 
 ```text
-2 // next n * (n - 1) lines 
-0 knows 1
-1 does not know 0
+2 // next n * (n - 1) lines 0 knows 11 does not know 0
 ```
 
 return`1`// 1 is celebrity
@@ -29,31 +27,6 @@ There will be exactly one celebrity if he/she is in the party. Return the celebr
 题目意思是一个人可以认识几个人，所以while那里不能直接break
 
 ```text
-"""
-The knows API is already defined for you.
-@param a, person a
-@param b, person b
-@return a boolean, whether a knows b
-you can call Celebrity.knows(a, b)
-"""
-
-
-class Solution:
-    # @param {int} n a party with n people
-    # @return {int} the celebrity's label or -1
-    def findCelebrity(self, n):
-        # Write your code here
-        s,e=0,n-1
-        while s<e:
-            if Celebrity.knows(s, e):
-                s+=1
-            else:
-                e-=1
-        for i in range(0,n):
-            if i == e or (Celebrity.knows(i, e) and not Celebrity.knows(e, i)):
-                continue
-            else:
-                return -1
-        return e
+"""The knows API is already defined for you.@param a, person a@param b, person b@return a boolean, whether a knows byou can call Celebrity.knows(a, b)"""class Solution:    # @param {int} n a party with n people    # @return {int} the celebrity's label or -1    def findCelebrity(self, n):        # Write your code here        s,e=0,n-1        while s<e:            if Celebrity.knows(s, e):                s+=1            else:                e-=1        for i in range(0,n):            if i == e or (Celebrity.knows(i, e) and not Celebrity.knows(e, i)):                continue            else:                return -1        return e
 ```
 

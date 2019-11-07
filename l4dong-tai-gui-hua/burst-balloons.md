@@ -25,22 +25,7 @@ Find the maximum coins you can collect by bursting the balloons wisely.
 **Example:**
 
 ```text
-Input:
-[3,1,5,8]
-Output:
-167 
-
-Explanation: 
-nums = [3,1,5,8] --
->
- [3,5,8] --
->
-   [3,8]   --
->
-  [8]  --
->
- []
-             coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+Input:[3,1,5,8]Output:167 Explanation: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []             coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
 ```
 
 分析
@@ -50,26 +35,6 @@ nums = [3,1,5,8] --
 数组前后延长1考虑边界
 
 ```text
-class Solution:
-    def maxCoins(self, nums: List[int]) -> int:
-        n = len(nums)
-        p = [[1]*(n+2) for _ in range(n+2)]#初始化为1
-        nums = [1]+nums+[1]#数组延长就不用考虑边界
-
-        def helper(s,e):
-            if s > e:
-                return 0
-            if p[s][e]!=1:
-                return p[s][e]
-            mx = float('-inf')
-            for k in range(s,e+1):                
-                val = nums[s-1]*nums[k]*nums[e+1]#s,e区间全部没了，取外面的。
-                left = helper(s,k-1)
-                right = helper(k+1,e)
-                mx = max(mx,left+right+val)
-
-            p[s][e] = mx
-            return mx
-        return helper(1,n)
+class Solution:    def maxCoins(self, nums: List[int]) -> int:        n = len(nums)        p = [[1]*(n+2) for _ in range(n+2)]#初始化为1        nums = [1]+nums+[1]#数组延长就不用考虑边界        def helper(s,e):            if s > e:                return 0            if p[s][e]!=1:                return p[s][e]            mx = float('-inf')            for k in range(s,e+1):                                val = nums[s-1]*nums[k]*nums[e+1]#s,e区间全部没了，取外面的。                left = helper(s,k-1)                right = helper(k+1,e)                mx = max(mx,left+right+val)            p[s][e] = mx            return mx        return helper(1,n)
 ```
 

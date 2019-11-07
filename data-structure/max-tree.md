@@ -9,11 +9,7 @@ The root is the maximum number in the array The left subtree and right subtree a
 Example Given`[2, 5, 6, 0, 3, 1]`, the max tree constructed by this array is:
 
 ```text
-    6
-   / \
-  5   3
- /   / \
-2   0   1
+    6   / \  5   3 /   / \2   0   1
 ```
 
 Challenge`O(n)`time and memory.
@@ -38,49 +34,10 @@ loop through the array, 建立一个stack, 对于每一个elment nums\[i\]
 recursive版本
 
 ```text
-public class Solution {
-    //recursive
-    public TreeNode constructMaximumBinaryTree(int[] nums) {
-        return helper(nums, 0, nums.length-1);
-    }
-    public TreeNode helper(int[] nums, int left, int right){
-        if(left > right)
-            return null;
-        int maxPos = left;
-        for(int i = left+1; i <= right; i++){
-            if(nums[maxPos] < nums[i]){
-                maxPos = i;
-            }
-        }
-
-        TreeNode root = new TreeNode(nums[maxPos]);
-        root.left = helper(nums, left, maxPos-1);
-        root.right = helper(nums, maxPos+1, right);
-        return root;
-    }
-}
+public class Solution {    //recursive    public TreeNode constructMaximumBinaryTree(int[] nums) {        return helper(nums, 0, nums.length-1);    }    public TreeNode helper(int[] nums, int left, int right){        if(left > right)            return null;        int maxPos = left;        for(int i = left+1; i <= right; i++){            if(nums[maxPos] < nums[i]){                maxPos = i;            }        }        TreeNode root = new TreeNode(nums[maxPos]);        root.left = helper(nums, left, maxPos-1);        root.right = helper(nums, maxPos+1, right);        return root;    }}
 ```
 
 ```java
-public class Solution {
-    public TreeNode constructMaximumBinaryTree(int[] nums) {
-        Stack<TreeNode> s = new Stack<TreeNode>();
-        for(int n : nums){
-            TreeNode node = new TreeNode(n);
-            while(!s.empty() && s.peek().val <= n){
-                node.left = s.pop(); //一直pop到左边最远比它小
-            }
-            if(!s.empty())
-                s.peek().right = node;//下一个就比它大了
-            s.push(node); //无论如何加入栈内
-        }
-
-        TreeNode ret = s.pop();
-        while(!s.empty()) {
-            ret = s.pop();//是弹出第一个元素，最大那个
-        }
-        return ret;
-    }
-}
+public class Solution {    public TreeNode constructMaximumBinaryTree(int[] nums) {        Stack<TreeNode> s = new Stack<TreeNode>();        for(int n : nums){            TreeNode node = new TreeNode(n);            while(!s.empty() && s.peek().val <= n){                node.left = s.pop(); //一直pop到左边最远比它小            }            if(!s.empty())                s.peek().right = node;//下一个就比它大了            s.push(node); //无论如何加入栈内        }        TreeNode ret = s.pop();        while(!s.empty()) {            ret = s.pop();//是弹出第一个元素，最大那个        }        return ret;    }}
 ```
 

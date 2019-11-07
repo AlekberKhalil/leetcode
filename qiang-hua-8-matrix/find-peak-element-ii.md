@@ -40,8 +40,7 @@ If you come up with an algorithm that you thought it is O\(n log m\) or O\(m log
 4. 数组初始化arraylist
 
 ```text
-        List<Integer> ret = Arrays.asList(x, y);
-        new ArrayList<>( Arrays.asList(1,2,3) )
+        List<Integer> ret = Arrays.asList(x, y);        new ArrayList<>( Arrays.asList(1,2,3) )
 ```
 
 复杂度分析  
@@ -52,136 +51,12 @@ If you come up with an algorithm that you thought it is O\(n log m\) or O\(m log
 答案
 
 ```text
-public List<Integer> findPeak(int[][] matrix) {
-        if(matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0)
-            return null;
-        int n = matrix.length, m = matrix[0].length;
-        int sr = 1, er = n - 2, sc = 1, ec = m - 2, mid, temp;
-        while(sr + 1 < er && sc + 1 < ec){
-            mid = sr + (er - sr)/2;
-            temp = getMax(matrix, mid, sr, er,true);
-            if(matrix[mid][temp] < matrix[mid - 1][temp]){
-                er = mid;
-            }else if(matrix[mid][temp] < matrix[mid + 1][temp]){
-                sr = mid;
-            }else{
-                er = mid;
-            }
-
-            mid = sc + (ec - sc)/2;
-            temp = getMax(matrix, mid, sc, ec, false);
-            if(matrix[temp][mid] < matrix[temp][mid - 1]){
-                ec = mid;
-            }else if(matrix[temp][mid] < matrix[temp][mid - 1]){
-                sc = mid;
-            }else{
-                ec = mid;
-            }
-        }
-        int a  = matrix[sr][sc], x = sr, y = sc;
-        if(a < matrix[sr][ec]){
-            a = matrix[sr][ec];
-            x = sr;
-            y = ec;
-        }
-        if(a < matrix[er][sc]){
-            a = matrix[er][sc];
-            x = er;
-            y = sc;
-        }
-        if(a < matrix[er][ec]){
-            a = matrix[er][ec];
-            x = er;
-            y = ec;
-        }
-        List<Integer> ret = Arrays.asList(x, y);
-        //new ArrayList<>( Arrays.asList(1,2,3) )
-        return ret;
-    }
-
-    private int getMax(int[][] matrix, int mid, int s, int e, boolean isRow) {
-        int max = Integer.MIN_VALUE, ret = 0;
-        if (isRow) {
-
-            for (int i = s; i <= e; i++) {
-                if (matrix[mid][i] > max) {
-                    ret = i;
-                }
-            }
-            return ret;
-        } else {
-            for (int i = s; i <= e; i++) {
-                if (matrix[i][mid] > max) {
-                    ret = i;
-                }
-            }
-            return ret;
-        }
-
-    }
+public List<Integer> findPeak(int[][] matrix) {        if(matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0)            return null;        int n = matrix.length, m = matrix[0].length;        int sr = 1, er = n - 2, sc = 1, ec = m - 2, mid, temp;        while(sr + 1 < er && sc + 1 < ec){            mid = sr + (er - sr)/2;            temp = getMax(matrix, mid, sr, er,true);            if(matrix[mid][temp] < matrix[mid - 1][temp]){                er = mid;            }else if(matrix[mid][temp] < matrix[mid + 1][temp]){                sr = mid;            }else{                er = mid;            }            mid = sc + (ec - sc)/2;            temp = getMax(matrix, mid, sc, ec, false);            if(matrix[temp][mid] < matrix[temp][mid - 1]){                ec = mid;            }else if(matrix[temp][mid] < matrix[temp][mid - 1]){                sc = mid;            }else{                ec = mid;            }        }        int a  = matrix[sr][sc], x = sr, y = sc;        if(a < matrix[sr][ec]){            a = matrix[sr][ec];            x = sr;            y = ec;        }        if(a < matrix[er][sc]){            a = matrix[er][sc];            x = er;            y = sc;        }        if(a < matrix[er][ec]){            a = matrix[er][ec];            x = er;            y = ec;        }        List<Integer> ret = Arrays.asList(x, y);        //new ArrayList<>( Arrays.asList(1,2,3) )        return ret;    }    private int getMax(int[][] matrix, int mid, int s, int e, boolean isRow) {        int max = Integer.MIN_VALUE, ret = 0;        if (isRow) {            for (int i = s; i <= e; i++) {                if (matrix[mid][i] > max) {                    ret = i;                }            }            return ret;        } else {            for (int i = s; i <= e; i++) {                if (matrix[i][mid] > max) {                    ret = i;                }            }            return ret;        }    }
 ```
 
 其实如果中间大于两边已经是峰值了，可以直接返回。
 
 ```text
-public List<Integer> findPeak(int[][] matrix) {
-        List<Integer> ret = new ArrayList<Integer>();
-        if(matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0)
-            return ret;
-        int n = matrix.length, m = matrix[0].length;
-        int sr = 1, er = n - 2, sc = 1, ec = m - 2, mid, temp;
-        while(sr + 1 < er && sc + 1 < ec){
-            mid = sr + (er - sr)/2;
-            temp = getMax(matrix, mid, sr, er,true);
-            if(matrix[mid][temp] < matrix[mid - 1][temp]){
-                er = mid;
-            }else if(matrix[mid][temp] < matrix[mid + 1][temp]){
-                sr = mid;
-            }else{
-                sr = mid;
-                er = mid;
-                ret = Arrays.asList(sr, er);
-                break;
-            }
-
-            mid = sc + (ec - sc)/2;
-            temp = getMax(matrix, mid, sc, ec, false);
-            if(matrix[temp][mid] < matrix[temp][mid - 1]){
-                ec = mid;
-            }else if(matrix[temp][mid] < matrix[temp][mid - 1]){
-                sc = mid;
-            }else{
-                sc = mid;
-                ec = mid;
-                ret = Arrays.asList(sc, ec);
-                break;
-            }
-        }
-
-//        List<Integer> ret = Arrays.asList(x, y);
-        //new ArrayList<>( Arrays.asList(1,2,3) )
-        return ret;
-    }
-
-    private int getMax(int[][] matrix, int mid, int s, int e, boolean isRow) {
-        int max = Integer.MIN_VALUE, ret = 0;
-        if (isRow) {
-
-            for (int i = s; i <= e; i++) {
-                if (matrix[mid][i] > max) {
-                    ret = i;
-                }
-            }
-            return ret;
-        } else {
-            for (int i = s; i <= e; i++) {
-                if (matrix[i][mid] > max) {
-                    ret = i;
-                }
-            }
-            return ret;
-        }
-
-    }
+public List<Integer> findPeak(int[][] matrix) {        List<Integer> ret = new ArrayList<Integer>();        if(matrix == null || matrix.length == 0 || matrix[0] == null || matrix[0].length == 0)            return ret;        int n = matrix.length, m = matrix[0].length;        int sr = 1, er = n - 2, sc = 1, ec = m - 2, mid, temp;        while(sr + 1 < er && sc + 1 < ec){            mid = sr + (er - sr)/2;            temp = getMax(matrix, mid, sr, er,true);            if(matrix[mid][temp] < matrix[mid - 1][temp]){                er = mid;            }else if(matrix[mid][temp] < matrix[mid + 1][temp]){                sr = mid;            }else{                sr = mid;                er = mid;                ret = Arrays.asList(sr, er);                break;            }            mid = sc + (ec - sc)/2;            temp = getMax(matrix, mid, sc, ec, false);            if(matrix[temp][mid] < matrix[temp][mid - 1]){                ec = mid;            }else if(matrix[temp][mid] < matrix[temp][mid - 1]){                sc = mid;            }else{                sc = mid;                ec = mid;                ret = Arrays.asList(sc, ec);                break;            }        }//        List<Integer> ret = Arrays.asList(x, y);        //new ArrayList<>( Arrays.asList(1,2,3) )        return ret;    }    private int getMax(int[][] matrix, int mid, int s, int e, boolean isRow) {        int max = Integer.MIN_VALUE, ret = 0;        if (isRow) {            for (int i = s; i <= e; i++) {                if (matrix[mid][i] > max) {                    ret = i;                }            }            return ret;        } else {            for (int i = s; i <= e; i++) {                if (matrix[i][mid] > max) {                    ret = i;                }            }            return ret;        }    }
 ```
 

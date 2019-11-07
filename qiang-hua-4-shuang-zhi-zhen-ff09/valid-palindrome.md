@@ -23,32 +23,6 @@ For the purpose of this problem, we define empty string as valid palindrome.
 答案
 
 ```text
-public class Solution {
-    /*
-     * @param s: A string
-     * @return: Whether the string is a valid palindrome
-     */
-    public boolean isPalindrome(String s) {
-        // write your code here
-        if(s == null)
-            return false;
-        int left = 0, right = s.length() - 1;
-        char[] cs = s.toCharArray();
-        while(left < right){
-            while(left < right && !isLetter(cs[left]))
-                left ++;
-            while(left < right && !isLetter(cs[right]))
-                right --;
-            if(Character.toLowerCase(cs[left ++]) != Character.toLowerCase(cs[right --])){
-                return false;
-            }
-        }
-        return true;
-    }
-    //判断字母和数字
-    private boolean isLetter(char ch){
-        return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9'));
-    }
-}
+public class Solution {    /*     * @param s: A string     * @return: Whether the string is a valid palindrome     */    public boolean isPalindrome(String s) {        // write your code here        if(s == null)            return false;        int left = 0, right = s.length() - 1;        char[] cs = s.toCharArray();        while(left < right){            while(left < right && !isLetter(cs[left]))                left ++;            while(left < right && !isLetter(cs[right]))                right --;            if(Character.toLowerCase(cs[left ++]) != Character.toLowerCase(cs[right --])){                return false;            }        }        return true;    }    //判断字母和数字    private boolean isLetter(char ch){        return ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z') || (ch >= '0' && ch <= '9'));    }}
 ```
 

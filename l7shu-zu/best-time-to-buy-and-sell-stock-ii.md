@@ -9,20 +9,6 @@ Design an algorithm to find the maximum profit. You may complete as many transac
 贪心法，每次有利润就入，就是今天比昨天大。prev = prices\[0\]
 
 ```text
-class Solution {
-    public int maxProfit(int[] prices) {
-        if(prices == null || prices.length == 0)
-            return 0;
-        int prev = prices[0];
-        int sum = 0;
-        for(int p : prices){
-            if(p > prev){
-                sum += p - prev;               
-            }
-            prev = p;
-        }
-        return sum;
-    }
-}
+class Solution {    public int maxProfit(int[] prices) {        if(prices == null || prices.length == 0)            return 0;        int prev = prices[0];        int sum = 0;        for(int p : prices){            if(p > prev){                sum += p - prev;                           }            prev = p;        }        return sum;    }}
 ```
 

@@ -5,9 +5,7 @@ A sequence of number is called arithmetic if it consists of at least three eleme
 For example, these are arithmetic sequence:
 
 ```text
-1, 3, 5, 7, 9
-7, 7, 7, 7
-3, -1, -5, -9
+1, 3, 5, 7, 97, 7, 7, 73, -1, -5, -9
 ```
 
 The following sequence is not arithmetic.
@@ -26,9 +24,7 @@ The function should return the number of arithmetic slices in the array A.
 **Example:**
 
 ```text
-A = [1, 2, 3, 4]
-
-return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
+A = [1, 2, 3, 4]return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
 ```
 
 分析
@@ -42,21 +38,6 @@ cur = f\[j\]每次新加入数会让原先length=2的变成合法length==3，所
 同时以前的arr count不变，末尾+new element都变成新arr了，但是count还是和f\[j-1\]一样的,所以sum+=f\[j-1\]
 
 ```text
-class Solution:
-    def numberOfArithmeticSlices(self, A):
-        """
-        :type A: List[int]
-        :rtype: int
-        """
-        if not A:
-            return 0
-        sum,cur=0,0
-        for j in range(2,len(A)):
-            if A[j-1]-A[j-2] == A[j]-A[j-1]:
-                cur+=1 #f[i]=cur, 新加入数会让原先==2的变成合法，所以++1，同时以前的arr count不变，末尾+new element都变成新arr了，但是count还是和f[i-1]一样的
-                sum+=cur #加入当前的count
-            else:
-                cur=0
-        return sum
+class Solution:    def numberOfArithmeticSlices(self, A):        """        :type A: List[int]        :rtype: int        """        if not A:            return 0        sum,cur=0,0        for j in range(2,len(A)):            if A[j-1]-A[j-2] == A[j]-A[j-1]:                cur+=1 #f[i]=cur, 新加入数会让原先==2的变成合法，所以++1，同时以前的arr count不变，末尾+new element都变成新arr了，但是count还是和f[i-1]一样的                sum+=cur #加入当前的count            else:                cur=0        return sum
 ```
 

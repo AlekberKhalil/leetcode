@@ -8,38 +8,13 @@ Both the string's length andkwill not exceed 104.
 **Example 1:**
 
 ```text
-Input:
-
-s = "ABAB", k = 2
-
-
-Output:
-
-4
-
-
-Explanation:
-
-Replace the two 'A's with two 'B's or vice versa.
+Input:s = "ABAB", k = 2Output:4Explanation:Replace the two 'A's with two 'B's or vice versa.
 ```
 
 **Example 2:**
 
 ```text
-Input:
-
-s = "AABABBA", k = 1
-
-
-Output:
-
-4
-
-
-Explanation:
-
-Replace the one 'A' in the middle with 'B' and form "AABBBBA".
-The substring "BBBB" has the longest repeating letters, which is 4.
+Input:s = "AABABBA", k = 1Output:4Explanation:Replace the one 'A' in the middle with 'B' and form "AABBBBA".The substring "BBBB" has the longest repeating letters, which is 4.
 ```
 
 分析
@@ -49,17 +24,6 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 不知道为什么while不行 for可以
 
 ```text
-class Solution:
-    def characterReplacement(self, s: str, k: int) -> int:
-        res,ss,e,count,l,mm = 0,0,0,0,len(s),collections.Counter()
-        for e in range(len(s)):            
-            mm[s[e]] += 1
-            count = max(count, mm[s[e]])   
-            #e+=1
-            while e - ss - count + 1 > k:
-                mm[s[ss]] -= 1
-                ss += 1
-            res = max(res, e - ss + 1)
-        return res
+class Solution:    def characterReplacement(self, s: str, k: int) -> int:        res,ss,e,count,l,mm = 0,0,0,0,len(s),collections.Counter()        for e in range(len(s)):                        mm[s[e]] += 1            count = max(count, mm[s[e]])               #e+=1            while e - ss - count + 1 > k:                mm[s[ss]] -= 1                ss += 1            res = max(res, e - ss + 1)        return res
 ```
 

@@ -15,33 +15,6 @@ By using the read4 API, implement the function`int read(char *buf, int n)`that r
 如果writepos ==0 \(read4 return0）没有数据了返回
 
 ```text
-"""
-The read4 API is already defined for you.
-@param buf a list of characters
-@return an integer
-you can call Reader.read4(buf)
-"""
-
-
-class Solution:
-    buffer = [0]*4
-    write=readi = 0
-
-    # @param {char[]} buf destination buffer
-    # @param {int} n maximum number of characters to read
-    # @return {int} the number of characters read
-    def read(self, buf, n):
-        # Write your code here
-        for i in range(n):
-            if self.readi == self.write:
-                self.write = Reader.read4(self.buffer)
-                self.readi = 0
-                if self.write == 0:
-                    return i
-            buf[i]=self.buffer[self.readi]
-            self.readi +=1
-
-
-        return n
+"""The read4 API is already defined for you.@param buf a list of characters@return an integeryou can call Reader.read4(buf)"""class Solution:    buffer = [0]*4    write=readi = 0    # @param {char[]} buf destination buffer    # @param {int} n maximum number of characters to read    # @return {int} the number of characters read    def read(self, buf, n):        # Write your code here        for i in range(n):            if self.readi == self.write:                self.write = Reader.read4(self.buffer)                self.readi = 0                if self.write == 0:                    return i            buf[i]=self.buffer[self.readi]            self.readi +=1        return n
 ```
 

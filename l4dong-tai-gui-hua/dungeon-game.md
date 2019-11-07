@@ -27,19 +27,6 @@ For example, given the dungeon below, the initial health of the knight must be a
 从右下开始减当前格子，负数设为1，正数继续。 这样的话负格子才会累加，正格子设为1，不做考虑。
 
 ```text
-class Solution:
-    def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:
-        if not dungeon or not dungeon[0]:
-            return 0
-        n, m = len(dungeon), len(dungeon[0])
-
-        dp = [[float('inf')] * (m + 1) for i in range(n + 1)]
-        dp[n][m-1]=dp[n-1][m]=1
-        for i in range(n-1,-1,-1):
-            for j in range(m-1,-1,-1):
-                temp = min(dp[i + 1][j], dp[i][j + 1])-dungeon[i][j]                
-                dp[i][j] = 1 if temp <= 0 else temp                
-
-        return dp[0][0]
+class Solution:    def calculateMinimumHP(self, dungeon: List[List[int]]) -> int:        if not dungeon or not dungeon[0]:            return 0        n, m = len(dungeon), len(dungeon[0])        dp = [[float('inf')] * (m + 1) for i in range(n + 1)]        dp[n][m-1]=dp[n-1][m]=1        for i in range(n-1,-1,-1):            for j in range(m-1,-1,-1):                temp = min(dp[i + 1][j], dp[i][j + 1])-dungeon[i][j]                                dp[i][j] = 1 if temp <= 0 else temp                        return dp[0][0]
 ```
 

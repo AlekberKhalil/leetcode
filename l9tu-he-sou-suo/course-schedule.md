@@ -9,30 +9,13 @@ Given the total number of courses and a list of prerequisite**pairs**, is it pos
 **Example 1:**
 
 ```text
-Input:
- 2, [[1,0]] 
-
-Output: 
-true
-
-Explanation:
- There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0. So it is possible.
+Input: 2, [[1,0]] Output: trueExplanation: There are a total of 2 courses to take.              To take course 1 you should have finished course 0. So it is possible.
 ```
 
 **Example 2:**
 
 ```text
-Input:
- 2, [[1,0],[0,1]]
-
-Output: 
-false
-
-Explanation:
- There are a total of 2 courses to take. 
-             To take course 1 you should have finished course 0, and to take course 0 you should
-             also have finished course 1. So it is impossible.
+Input: 2, [[1,0],[0,1]]Output: falseExplanation: There are a total of 2 courses to take.              To take course 1 you should have finished course 0, and to take course 0 you should             also have finished course 1. So it is impossible.
 ```
 
 分析
@@ -52,23 +35,6 @@ Explanation:
 courseII 差不多。就是返回bfs,记得一定要判断bfs == n！！！！！！！
 
 ```text
-    public boolean canFinish(int n, int[][] prerequisites) {
-        ArrayList<Integer>[] G = new ArrayList[n];
-        int[] degree = new int[n];
-        ArrayList<Integer> bfs = new ArrayList();
-
-        for (int i = 0; i < n; ++i) G[i] = new ArrayList<Integer>();
-        for (int[] e : prerequisites) {
-            G[e[1]].add(e[0]);//此处方向不要反了
-            degree[e[0]]++;
-        }
-        //这里入度需要遍历所有元素，loop到N
-        for (int i = 0; i < n; ++i) if (degree[i] == 0) bfs.add(i);
-
-        for (int i = 0; i < bfs.size(); ++i)
-            for (int j: G[bfs.get(i)])
-                if (--degree[j] == 0) bfs.add(j);
-        return bfs.size() == n;
-    }
+    public boolean canFinish(int n, int[][] prerequisites) {        ArrayList<Integer>[] G = new ArrayList[n];        int[] degree = new int[n];        ArrayList<Integer> bfs = new ArrayList();        for (int i = 0; i < n; ++i) G[i] = new ArrayList<Integer>();        for (int[] e : prerequisites) {            G[e[1]].add(e[0]);//此处方向不要反了            degree[e[0]]++;        }        //这里入度需要遍历所有元素，loop到N        for (int i = 0; i < n; ++i) if (degree[i] == 0) bfs.add(i);        for (int i = 0; i < bfs.size(); ++i)            for (int j: G[bfs.get(i)])                if (--degree[j] == 0) bfs.add(j);        return bfs.size() == n;    }
 ```
 

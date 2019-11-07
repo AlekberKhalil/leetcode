@@ -29,9 +29,7 @@ dp[i + 1][j] = max{dp[i][j], dp[i][j - w[i]] + v[j]}
 V倒序才能拿到f\[i-1\]\[v\]的 否则就是f\[i\]\[v\]
 
 ```text
-for i=1..N
-    for v=V..0
-        f[v]=max{f[v],f[v-c[i]]+w[i]};
+for i=1..N    for v=V..0        f[v]=max{f[v],f[v-c[i]]+w[i]};
 ```
 
 Palindrome Partitioning II
@@ -47,19 +45,11 @@ split array largest sum
 从palindrome I II和word break I II可知 sequence dp
 
 ```text
-dp：n+1
-i: [1,n]
-j: [0,i)
-f[i]=f[j] && [j,i) #注意这里f[j]和s[j] 因为f[j]不含s[j]，index错位，f[j]包含的是s[j-1]的情况
-f[0]要初始化 i range 从1开始
+dp：n+1i: [1,n]j: [0,i)f[i]=f[j] && [j,i) #注意这里f[j]和s[j] 因为f[j]不含s[j]，index错位，f[j]包含的是s[j-1]的情况f[0]要初始化 i range 从1开始
 ```
 
 ```text
-dp: n
-i:[0,n-1]
-j:[0,i]#包含i
-f[i] = f[j-1] && [j,i] #这里s[j]和f[j-1] 因为f[j-1]含s[j-1] 所以s[i]对应当前要求的f[i]
-要单独判断j=0的情况，因为有f[j-1]
+dp: ni:[0,n-1]j:[0,i]#包含if[i] = f[j-1] && [j,i] #这里s[j]和f[j-1] 因为f[j-1]含s[j-1] 所以s[i]对应当前要求的f[i]要单独判断j=0的情况，因为有f[j-1]
 ```
 
 DP问题：[https://zhengyang2015.gitbooks.io/lintcode/house\_robber\_392.html](https://zhengyang2015.gitbooks.io/lintcode/house_robber_392.html)
@@ -79,8 +69,7 @@ DP问题：[https://zhengyang2015.gitbooks.io/lintcode/house\_robber\_392.html](
 6 区间循环
 
 ```text
-for ln in range(1,n+1):            
-            for start in range(1,n+1-ln):
+for ln in range(1,n+1):                        for start in range(1,n+1-ln):
 ```
 
 7 字串长度 = unique substring数: Unique Substrings in Wraparound String
@@ -92,11 +81,7 @@ for ln in range(1,n+1):
 9 状态类dp，一个人可以有多个选择，can I win, Campus Bikes II. 用bit数组来表示每个人的状态。dp\[i\]\[bit status\] \(bit status = 1&lt;&lt; j\]
 
 ```text
-bitwise note
-num | (1<<k): set num's k-th bit as 1
-num & (1<<k): get num's k-th bit
-
-int prev = s ^ (1 << j);
+bitwise notenum | (1<<k): set num's k-th bit as 1num & (1<<k): get num's k-th bitint prev = s ^ (1 << j);
 ```
 
 10 博弈类问题

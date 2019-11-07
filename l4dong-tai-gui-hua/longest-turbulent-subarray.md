@@ -14,23 +14,19 @@ Return the **length** of a maximum size turbulent subarray of A.
 **Example 1:**
 
 ```text
-Input: [9,4,2,10,7,8,8,1,9]
-Output: 5
-Explanation: (A[1] > A[2] < A[3] > A[4] < A[5])
+Input: [9,4,2,10,7,8,8,1,9]Output: 5Explanation: (A[1] > A[2] < A[3] > A[4] < A[5])
 ```
 
 **Example 2:**
 
 ```text
-Input: [4,8,12,16]
-Output: 2
+Input: [4,8,12,16]Output: 2
 ```
 
 **Example 3:**
 
 ```text
-Input: [100]
-Output: 1
+Input: [100]Output: 1
 ```
 
 **Note:**
@@ -45,20 +41,6 @@ Output: 1
 loop里每次res也更新得到最大。
 
 ```text
-class Solution:
-    def maxTurbulenceSize(self, A: List[int]) -> int:
-        n = len(A)
-        up,down,res=1,1,1
-        for i in range(1,n):
-            if A[i] > A[i-1]:
-                up = down+1
-                down =1
-            elif A[i] < A[i-1]:
-                down = up+1
-                up = 1
-            else:
-                up=down=1
-            res = max(res,up,down)
-        return res
+class Solution:    def maxTurbulenceSize(self, A: List[int]) -> int:        n = len(A)        up,down,res=1,1,1        for i in range(1,n):            if A[i] > A[i-1]:                up = down+1                down =1            elif A[i] < A[i-1]:                down = up+1                up = 1            else:                up=down=1            res = max(res,up,down)        return res
 ```
 

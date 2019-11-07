@@ -16,10 +16,7 @@ Return the final order of the logs.
 **Example 1:**
 
 ```text
-Input: 
-["a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo"]
-Output: 
-["g1 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"]
+Input: ["a1 9 2 3 1","g1 act car","zo4 4 7","ab1 off key dog","a8 act zoo"]Output: ["g1 act car","a8 act zoo","ab1 off key dog","a1 9 2 3 1","zo4 4 7"]
 ```
 
 分析
@@ -27,16 +24,6 @@ Output:
 字母数字拆成2个list，字母List排序后合并
 
 ```text
-class Solution:
-    def reorderLogFiles(self, logs: List[str]) -> List[str]:
-        letters,nums = [],[]
-        for l in logs:
-            if l[-1].isdigit():
-                nums.append(l)
-            else:
-                letters.append(l)
-        letters.sort(key = lambda x: (x[x.find(' '):], x[: x.find(' ')]))
-
-        return letters+nums
+class Solution:    def reorderLogFiles(self, logs: List[str]) -> List[str]:        letters,nums = [],[]        for l in logs:            if l[-1].isdigit():                nums.append(l)            else:                letters.append(l)        letters.sort(key = lambda x: (x[x.find(' '):], x[: x.find(' ')]))        return letters+nums
 ```
 

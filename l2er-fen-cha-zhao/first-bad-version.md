@@ -13,65 +13,16 @@ You are given an API`bool isBadVersion(version)`which will return whether`versio
 往后都是bad，所以每次移动end，然后判断start，再end
 
 ```text
-/* The isBadVersion API is defined in the parent class VersionControl.
-      boolean isBadVersion(int version); */
-
-public class Solution extends VersionControl {
-    public int firstBadVersion(int n) {
-
-        int s = 1, e = n;
-
-        while(s + 1 < e){
-            int m = s + (e - s)/2;
-            if(isBadVersion(m)){
-                e = m;
-            }else{
-                s = m;
-            }
-        }
-
-        if(isBadVersion(s))
-            return s;
-        else
-            return e;
-
-    }
-}
+/* The isBadVersion API is defined in the parent class VersionControl.      boolean isBadVersion(int version); */public class Solution extends VersionControl {    public int firstBadVersion(int n) {        int s = 1, e = n;        while(s + 1 < e){            int m = s + (e - s)/2;            if(isBadVersion(m)){                e = m;            }else{                s = m;            }        }        if(isBadVersion(s))            return s;        else            return e;    }}
 ```
 
 ```text
-class Solution:
-    def firstBadVersion(self, n):
-        """ 
-        :type n: int
-        :rtype: int
-        """
-        s,e=0,n
-        while s+1<e:
-            m = s+(e-s)//2
-            if isBadVersion(m):
-                e = m
-            else:
-                s = m
-        return s if isBadVersion(s) else e
+class Solution:    def firstBadVersion(self, n):        """         :type n: int        :rtype: int        """        s,e=0,n        while s+1<e:            m = s+(e-s)//2            if isBadVersion(m):                e = m            else:                s = m        return s if isBadVersion(s) else e
 ```
 
 花花木板 左闭右开
 
 ```text
-class Solution:
-    def firstBadVersion(self, n):
-        """
-        :type n: int
-        :rtype: int
-        """
-        s,e = 1,n#因为是开区间，所以应该是N+1，但是怕溢出。
-        while s < e:
-            m = s + (e-s)//2
-            if isBadVersion(m):
-                e = m
-            else:
-                s = m + 1
-        return s
+class Solution:    def firstBadVersion(self, n):        """        :type n: int        :rtype: int        """        s,e = 1,n#因为是开区间，所以应该是N+1，但是怕溢出。        while s < e:            m = s + (e-s)//2            if isBadVersion(m):                e = m            else:                s = m + 1        return s
 ```
 

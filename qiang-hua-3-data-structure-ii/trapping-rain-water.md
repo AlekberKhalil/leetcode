@@ -15,42 +15,6 @@ Given`[0,1,0,2,1,0,1,3,2,1,2,1]`, return`6`.
 然后顺序loop，cur低的话就累加入res，cur高的话作为标杆，更新标杆。
 
 ```text
-public class Solution {
-    /*
-     * @param heights: a list of integers
-     * @return: a integer
-     */
-    public int trapRainWater(int[] heights) {
-        // write your code here
-        int n = heights.length, ret = 0;
-        int left = 0,right = n-1;
-        if(left >= right)
-            return ret;
-
-        int leftHeight = heights[left];
-        int rightHeight = heights[right];
-
-        while(left < right){
-
-            if(leftHeight < rightHeight){
-                //左边
-                left ++;
-                if(leftHeight > heights[left]){
-                    ret += leftHeight - heights[left];
-                }else{
-                    leftHeight = heights[left];
-                }
-            }else{
-                right --;
-                if(rightHeight > heights[right]){
-                    ret += rightHeight - heights[right];
-                }else{
-                    rightHeight = heights[right];
-                }
-            }
-        }
-        return ret;
-    }
-}
+public class Solution {    /*     * @param heights: a list of integers     * @return: a integer     */    public int trapRainWater(int[] heights) {        // write your code here        int n = heights.length, ret = 0;        int left = 0,right = n-1;        if(left >= right)            return ret;        int leftHeight = heights[left];        int rightHeight = heights[right];        while(left < right){            if(leftHeight < rightHeight){                //左边                left ++;                if(leftHeight > heights[left]){                    ret += leftHeight - heights[left];                }else{                    leftHeight = heights[left];                }            }else{                right --;                if(rightHeight > heights[right]){                    ret += rightHeight - heights[right];                }else{                    rightHeight = heights[right];                }            }        }        return ret;    }}
 ```
 

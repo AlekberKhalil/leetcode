@@ -15,21 +15,6 @@ Return true because`"leetcode"`can be segmented as`"leet code"`.
 这里得到f\[i\]为true时就break!!!!!!!!!!!
 
 ```text
-class Solution {
-    public boolean wordBreak(String s, List<String> wordDict) {
-        int n = s.length();
-        boolean[] f = new boolean[n + 1];
-        f[0] = true;
-        for(int i = 1; i <= n; i ++){
-            for(int j = 0; j < i; j ++){
-                    if(f[j] && wordDict.contains(s.substring(j, i))){
-                        f[i] = true;#能true就出来 不要一直做
-                        break;
-                    }
-                }
-            }
-        return f[n];
-        }            
-}
+class Solution {    public boolean wordBreak(String s, List<String> wordDict) {        int n = s.length();        boolean[] f = new boolean[n + 1];        f[0] = true;        for(int i = 1; i <= n; i ++){            for(int j = 0; j < i; j ++){                    if(f[j] && wordDict.contains(s.substring(j, i))){                        f[i] = true;#能true就出来 不要一直做                        break;                    }                }            }        return f[n];        }            }
 ```
 

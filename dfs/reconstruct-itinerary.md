@@ -20,24 +20,13 @@ Given a list of airline tickets represented by pairs of departure and arrival ai
 **Example 1:**
 
 ```text
-Input: 
-[["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]
-Output: 
-["JFK", "MUC", "LHR", "SFO", "SJC"]
+Input: [["MUC", "LHR"], ["JFK", "MUC"], ["SFO", "SJC"], ["LHR", "SFO"]]Output: ["JFK", "MUC", "LHR", "SFO", "SJC"]
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-[["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]
-Output: 
-["JFK","ATL","JFK","SFO","ATL","SFO"]
-Explanation: 
-Another possible reconstruction is 
-["JFK","SFO","ATL","JFK","ATL","SFO"]
-.
-             But it is larger in lexical order.
+Input: [["JFK","SFO"],["JFK","ATL"],["SFO","ATL"],["ATL","JFK"],["ATL","SFO"]]Output: ["JFK","ATL","JFK","SFO","ATL","SFO"]Explanation: Another possible reconstruction is ["JFK","SFO","ATL","JFK","ATL","SFO"].             But it is larger in lexical order.
 ```
 
 分析
@@ -53,52 +42,12 @@ Another possible reconstruction is
 sorted\(tickets\)会自动按照第一个数然后第二个数排序，\[::-1\]之后2个都倒序了。
 
 ```text
-class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        g = {}
-        for s,a in sorted(tickets):
-            if s not in g:
-                g[s] = [a]  
-            else: g[s].append(a)
-
-        for k,v in g.items():
-            v.sort()
-
-        path = []
-        def dfs(s):
-            nonlocal path
-            if s in g:
-                while g[s]: 
-                    dfs(g[s].pop(0))   
-            path+=[s]
-
-        dfs("JFK")
-        return path[::-1]
+class Solution:    def findItinerary(self, tickets: List[List[str]]) -> List[str]:        g = {}        for s,a in sorted(tickets):            if s not in g:                g[s] = [a]              else: g[s].append(a)        for k,v in g.items():            v.sort()        path = []        def dfs(s):            nonlocal path            if s in g:                while g[s]:                     dfs(g[s].pop(0))               path+=[s]        dfs("JFK")        return path[::-1]
 ```
 
 比较这种解法的List排序的方法
 
 ```text
-class Solution:
-    def findItinerary(self, tickets: List[List[str]]) -> List[str]:
-        g = {}
-        for s,a in sorted(tickets)[::-1]:#倒序
-            if s not in g:
-                g[s] = [a]  
-            else: g[s].append(a)
-
-        # for k,v in g.items():
-        #     v.sort()
-
-        path = []
-        def dfs(s):
-            nonlocal path
-            if s in g:
-                while g[s]: 
-                    dfs(g[s].pop())   #不是pop(0)
-            path+=[s]
-
-        dfs("JFK")
-        return path[::-1]
+class Solution:    def findItinerary(self, tickets: List[List[str]]) -> List[str]:        g = {}        for s,a in sorted(tickets)[::-1]:#倒序            if s not in g:                g[s] = [a]              else: g[s].append(a)        # for k,v in g.items():        #     v.sort()        path = []        def dfs(s):            nonlocal path            if s in g:                while g[s]:                     dfs(g[s].pop())   #不是pop(0)            path+=[s]        dfs("JFK")        return path[::-1]
 ```
 

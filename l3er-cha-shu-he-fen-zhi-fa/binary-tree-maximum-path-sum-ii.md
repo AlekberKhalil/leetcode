@@ -19,13 +19,6 @@ return 4. \(1-&gt;3\)
 唯一要注意的是题目要求至少有一个点，所以左右值先和0比较后再和root值相加。
 
 ```text
-    public int maxPathSum2(TreeNode root) {
-        if(root == null)
-            return 0;
-        int left = maxPathSum2(root.left);
-        int right = maxPathSum2(root.right);
-
-        return root.val + Math.max(0, Math.max(left, right));
-    }
+    public int maxPathSum2(TreeNode root) {        if(root == null)            return 0;        int left = maxPathSum2(root.left);        int right = maxPathSum2(root.right);        return root.val + Math.max(0, Math.max(left, right));    }
 ```
 

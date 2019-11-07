@@ -7,31 +7,7 @@ According to the [definition of h-index on Wikipedia](https://en.wikipedia.org/w
 **Example:**
 
 ```text
-Input:
-citations = [0,1,3,5,6]
-Output:
- 3 
-
-Explanation: 
-[0,1,3,5,6] 
-means the researcher has 
-5
- papers in total and each of them had 
-             received 0
-, 1, 3, 5, 6
- citations respectively. 
-             Since the researcher has 
-3
- papers with 
-at least
-3
- citations each and the remaining 
-             two with 
-no more than
-3
- citations each, her h-index is 
-3
-.
+Input:citations = [0,1,3,5,6]Output: 3 Explanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had              received 0, 1, 3, 5, 6 citations respectively.              Since the researcher has 3 papers with at least3 citations each and the remaining              two with no more than3 citations each, her h-index is 3.
 ```
 
 **Note:**
@@ -59,28 +35,6 @@ If there are several possible values for _h_, the maximum one is taken as the h-
 H-index I完全一样，就是需要排序而已
 
 ```text
-class Solution:
-    def hIndex(self, citations):
-        """
-        :type citations: List[int]
-        :rtype: int
-        """
-
-        n = len(citations)
-        if n == 0:
-            return 0
-        s, e = 0, n - 1
-        while s + 1 < e:
-            m = s + (e - s) // 2
-
-            if n-m <= citations[m]:
-                e = m
-            else:
-                s = m
-        if n-s <= citations[s]:
-            return n-s
-        if n-e <= citations[e]:
-            return n-e
-        return 0
+class Solution:    def hIndex(self, citations):        """        :type citations: List[int]        :rtype: int        """        n = len(citations)        if n == 0:            return 0        s, e = 0, n - 1        while s + 1 < e:            m = s + (e - s) // 2            if n-m <= citations[m]:                e = m            else:                s = m        if n-s <= citations[s]:            return n-s        if n-e <= citations[e]:            return n-e        return 0
 ```
 

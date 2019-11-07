@@ -25,38 +25,19 @@ Given a**strictly increasing** array `A`of positive integers forming a sequence,
 * **Example 1:**
 
 ```text
-Input: 
-[1,2,3,4,5,6,7,8]
-
-Output: 
-5
-
-Explanation:
-
-The longest subsequence that is fibonacci-like: [1,2,3,5,8].
+Input: [1,2,3,4,5,6,7,8]Output: 5Explanation:The longest subsequence that is fibonacci-like: [1,2,3,5,8].
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-[1,3,7,11,12,14,18]
-
-Output: 
-3
-
-Explanation
-:
-The longest subsequence that is fibonacci-like:
-[1,11,12], [3,11,14] or [7,11,18].
+Input: [1,3,7,11,12,14,18]Output: 3Explanation:The longest subsequence that is fibonacci-like:[1,11,12], [3,11,14] or [7,11,18].
 ```
 
 **Note:**
 
 * ```text
-  3 <= A.length <= 1000
-  1 <= A[0] < A[1] < ... < A[A.length - 1] <= 10^9
-  (The time limit has been reduced by 50% for submissions in Java, C, and C++.)
+  3 <= A.length <= 10001 <= A[0] < A[1] < ... < A[A.length - 1] <= 10^9(The time limit has been reduced by 50% for submissions in Java, C, and C++.)
   ```
 
 分析
@@ -64,18 +45,6 @@ The longest subsequence that is fibonacci-like:
 任意2个数选出来做起点然后一直走下来。最后选最长的
 
 ```text
-class Solution:
-    def lenLongestFibSubseq(self, A: List[int]) -> int:
-        res = float('-inf')
-        n = len(A)
-        ss = set(A)#加快速度
-        for i in range(n):
-            for j in range(i+1,n):
-                a,b,c = A[i],A[j],2
-                while a+b in ss:
-                    a,b = b,a+b
-                    c +=1
-                res = max(res,c)
-        return res if res > 2 else 0 #没有的情况
+class Solution:    def lenLongestFibSubseq(self, A: List[int]) -> int:        res = float('-inf')        n = len(A)        ss = set(A)#加快速度        for i in range(n):            for j in range(i+1,n):                a,b,c = A[i],A[j],2                while a+b in ss:                    a,b = b,a+b                    c +=1                res = max(res,c)        return res if res > 2 else 0 #没有的情况
 ```
 

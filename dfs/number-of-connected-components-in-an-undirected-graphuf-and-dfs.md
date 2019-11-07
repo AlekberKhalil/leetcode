@@ -5,37 +5,13 @@ Given`n`nodes labeled from`0`to`n - 1`and a list of undirected edges \(each edge
 **Example 1:**
 
 ```text
-Input: 
-n = 5
- and 
-edges = [[0, 1], [1, 2], [3, 4]]
-
-
-     0          3
-     |          |
-     1 --- 2    4 
-
-
-Output: 
-2
+Input: n = 5 and edges = [[0, 1], [1, 2], [3, 4]]     0          3     |          |     1 --- 2    4 Output: 2
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-n = 5
- and 
-edges = [[0, 1], [1, 2], [2, 3], [3, 4]]
-
-
-     0           4
-     |           |
-     1 --- 2 --- 3
-
-
-Output:  
-1
+Input: n = 5 and edges = [[0, 1], [1, 2], [2, 3], [3, 4]]     0           4     |           |     1 --- 2 --- 3Output:  1
 ```
 
 **Note:**  
@@ -50,30 +26,7 @@ Union find
 nested function, find可以操作father array但是union不能操作res，可能是因为primitive value?
 
 ```text
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        if not edges or not edges[0]:
-            return n
-
-
-        f = [i for i in range(n)]
-
-        def find(x):
-            if f[x] == x:
-                return x
-            f[x] = find(f[x])
-            return f[x]
-
-
-
-        for i, j in edges:
-            px = find(i)
-            py = find(j)
-            if px != py:
-                f[px] = py
-                n -= 1
-
-        return n
+class Solution:    def countComponents(self, n: int, edges: List[List[int]]) -> int:        if not edges or not edges[0]:            return n        f = [i for i in range(n)]        def find(x):            if f[x] == x:                return x            f[x] = find(f[x])            return f[x]        for i, j in edges:            px = find(i)            py = find(j)            if px != py:                f[px] = py                n -= 1        return n
 ```
 
 dfs
@@ -83,54 +36,12 @@ dfs
 每个开端就是一个新group。
 
 ```text
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        if not edges or not edges[0]:
-            return n
-        visited = [0]*n
-        g = {i:[] for i in range(n)}
-        for x,y in edges:#无向图，2边都要加
-            g[x].append(y)
-            g[y].append(x)
-        res = 0
-        for i in range(n):
-            if not visited[i]:
-                self.dfs(g,i,visited,-1)
-                res += 1
-        return res
-    def dfs(self,g,i,visited,parent):
-        if visited[i]:
-            return
-        visited[i]=1
-        for k in g[i]:
-            if k!=parent:#无向图，要排除互相指向的情况
-                self.dfs(g,k,visited,i)
+class Solution:    def countComponents(self, n: int, edges: List[List[int]]) -> int:        if not edges or not edges[0]:            return n        visited = [0]*n        g = {i:[] for i in range(n)}        for x,y in edges:#无向图，2边都要加            g[x].append(y)            g[y].append(x)        res = 0        for i in range(n):            if not visited[i]:                self.dfs(g,i,visited,-1)                res += 1        return res    def dfs(self,g,i,visited,parent):        if visited[i]:            return        visited[i]=1        for k in g[i]:            if k!=parent:#无向图，要排除互相指向的情况                self.dfs(g,k,visited,i)
 ```
 
 BFS
 
 ```text
-class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        if not edges or not edges[0]:
-            return n
-        visited = [0]*n
-        g = {i:[] for i in range(n)}
-        for x,y in edges:#无向图，2边都要加
-            g[x].append(y)
-            g[y].append(x)
-        res = 0
-
-        for i in range(n):
-            if not visited[i]:
-                q = [i]
-                while q:
-                    cur = q.pop()
-                    visited[cur] = 1
-                    for k in g[cur]:
-                        if not visited[k]:
-                            q.append(k)
-                res += 1
-        return res
+class Solution:    def countComponents(self, n: int, edges: List[List[int]]) -> int:        if not edges or not edges[0]:            return n        visited = [0]*n        g = {i:[] for i in range(n)}        for x,y in edges:#无向图，2边都要加            g[x].append(y)            g[y].append(x)        res = 0        for i in range(n):            if not visited[i]:                q = [i]                while q:                    cur = q.pop()                    visited[cur] = 1                    for k in g[cur]:                        if not visited[k]:                            q.append(k)                res += 1        return res
 ```
 

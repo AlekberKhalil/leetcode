@@ -7,10 +7,7 @@ Count the number of**distinct**islands. An island is considered to be the same a
 **Example 1:**
 
 ```text
-11000
-10000
-00001
-00011
+11000100000000100011
 ```
 
 Given the above grid map, return
@@ -22,15 +19,13 @@ Given the above grid map, return
 Notice that:
 
 ```text
-11
-1
+111
 ```
 
 and
 
 ```text
- 1
-11
+ 111
 ```
 
 are considered
@@ -42,10 +37,7 @@ island shapes. Because if we make a 180 degrees clockwise rotation on the first 
 **Example 2:**
 
 ```text
-11100
-10001
-01001
-01110
+11100100010100101110
 ```
 
 Given the above grid map, return
@@ -57,29 +49,25 @@ Given the above grid map, return
 Here are the two distinct islands:
 
 ```text
-111
-1
+1111
 ```
 
 and
 
 ```text
-1
-1
+11
 ```
 
 Notice that:
 
 ```text
-111
-1
+1111
 ```
 
 and
 
 ```text
-1
-111
+1111
 ```
 
 are considered
@@ -95,81 +83,10 @@ island shapes. Because if we flip the first array in the up/down direction, then
 dfs每个块标记-1，然后每个块里8个方向变形加入set pool里
 
 ```text
-Scan the matrix, each time when 1 is found, search the nearby 1, push them inside a queue and mark them as -1.
-
-It is important to use the information inside the queue. As we know, the queue stands for a specific shape of an island.
-
-i. Push the island to the left upper corner by subtracting the original data with its minimum axis value.
-ii. Sort the queue and tuple it to avoid redundancy.
-iii. Find its x-axis mirror: (x,y) --> (-x,y)
-iv. Find its y-axis mirror: (x,y) --> (x,-y)
-v. Find its origin mirror: (x,y) --> (-x,-y)
-vi. Find its diagonal mirror: (x,y) --> (y,x)
-vii. Repeat 2.3, 2.4, and 2.5 on the diagonal mirror island.
-viii. Add all these 8 islands into the pool
-
-There are several tricks are used here:
-
-Augment the original matrix (grid) with a row of zeros and a column of zeros. This is to avoid the check of index every single time
-
-Instead of using another matrix to store the visited element, I directly change the value in place. -1 indicates visited. You can use a deep copy if you do not like change value in place.
-
-The element in the queue is centered by subtracting the minimum x and minimum y and then sorted, so that this shape of island will be unique.
+Scan the matrix, each time when 1 is found, search the nearby 1, push them inside a queue and mark them as -1.It is important to use the information inside the queue. As we know, the queue stands for a specific shape of an island.i. Push the island to the left upper corner by subtracting the original data with its minimum axis value.ii. Sort the queue and tuple it to avoid redundancy.iii. Find its x-axis mirror: (x,y) --> (-x,y)iv. Find its y-axis mirror: (x,y) --> (x,-y)v. Find its origin mirror: (x,y) --> (-x,-y)vi. Find its diagonal mirror: (x,y) --> (y,x)vii. Repeat 2.3, 2.4, and 2.5 on the diagonal mirror island.viii. Add all these 8 islands into the poolThere are several tricks are used here:Augment the original matrix (grid) with a row of zeros and a column of zeros. This is to avoid the check of index every single timeInstead of using another matrix to store the visited element, I directly change the value in place. -1 indicates visited. You can use a deep copy if you do not like change value in place.The element in the queue is centered by subtracting the minimum x and minimum y and then sorted, so that this shape of island will be unique.
 ```
 
 ```text
-class Solution(object):
-
-    def numDistinctIslands2(self, grid: List[List[int]]) -> int:
-
-        if not grid or not grid[0]:
-            return 0
-        n, m = len(grid), len(grid[0])
-        res = 0
-        pool = set()
-        d = [-1, 0, 1, 0, -1]
-        grid.append([0] * m)
-        for row in grid: row.append(0)
-
-        def form(q):
-            nonlocal res, pool
-            mini, minj = min(x for x, y in q), min(y for x, y in q)
-            f1 = tuple(sorted((i - mini, j - minj) for i, j in q))
-            if f1 in pool: return None
-            res += 1
-
-            maxi, maxj = max(x for x, y in f1), max(y for x, y in f1)
-            f2 = tuple(sorted((maxi - i, j) for i, j in f1))
-            f3 = tuple(sorted((i, maxj - j) for i, j in f1))
-            f4 = tuple(sorted((maxi - i, maxj - j) for i, j in f1))
-
-            f5 = tuple(sorted((j, i) for i, j in f1))
-            f6 = tuple(sorted((maxj - i, j) for i, j in f5))
-            f7 = tuple(sorted((i, maxi - j) for i, j in f5))
-            f8 = tuple(sorted((maxj - i, maxi - j) for i, j in f5))
-
-            pool |= set([f1, f2, f3, f4, f5, f6, f7, f8])
-
-
-        def bfs(i, j):
-            q = [(i, j)]
-            grid[i][j] = -1
-            nxy = [(i + d[k+1], j + d[k]) for k in range(4)]
-            for i, j in q:
-                for nx, ny in [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]:
-                    if grid[nx][ny] == 1:
-                        grid[nx][ny] = -1  # missing
-                        q.append((nx, ny))
-
-
-
-            form(q)
-
-        for i in range(n):
-            for j in range(m):
-                if grid[i][j] == 1:
-                    bfs(i, j)
-
-        return res
+class Solution(object):    def numDistinctIslands2(self, grid: List[List[int]]) -> int:        if not grid or not grid[0]:            return 0        n, m = len(grid), len(grid[0])        res = 0        pool = set()        d = [-1, 0, 1, 0, -1]        grid.append([0] * m)        for row in grid: row.append(0)        def form(q):            nonlocal res, pool            mini, minj = min(x for x, y in q), min(y for x, y in q)            f1 = tuple(sorted((i - mini, j - minj) for i, j in q))            if f1 in pool: return None            res += 1            maxi, maxj = max(x for x, y in f1), max(y for x, y in f1)            f2 = tuple(sorted((maxi - i, j) for i, j in f1))            f3 = tuple(sorted((i, maxj - j) for i, j in f1))            f4 = tuple(sorted((maxi - i, maxj - j) for i, j in f1))            f5 = tuple(sorted((j, i) for i, j in f1))            f6 = tuple(sorted((maxj - i, j) for i, j in f5))            f7 = tuple(sorted((i, maxi - j) for i, j in f5))            f8 = tuple(sorted((maxj - i, maxi - j) for i, j in f5))            pool |= set([f1, f2, f3, f4, f5, f6, f7, f8])        def bfs(i, j):            q = [(i, j)]            grid[i][j] = -1            nxy = [(i + d[k+1], j + d[k]) for k in range(4)]            for i, j in q:                for nx, ny in [(i-1,j),(i+1,j),(i,j-1),(i,j+1)]:                    if grid[nx][ny] == 1:                        grid[nx][ny] = -1  # missing                        q.append((nx, ny))            form(q)        for i in range(n):            for j in range(m):                if grid[i][j] == 1:                    bfs(i, j)        return res
 ```
 

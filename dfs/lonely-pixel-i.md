@@ -9,18 +9,7 @@ A black lonely pixel is character 'B' that located at a specific position where 
 **Example:**
 
 ```text
-Input:
-
-[['W', 'W', 'B'],
- ['W', 'B', 'W'],
- ['B', 'W', 'W']]
-
-
-Output:
- 3
-
-Explanation:
- All the three 'B's are black lonely pixels.
+Input:[['W', 'W', 'B'], ['W', 'B', 'W'], ['B', 'W', 'W']]Output: 3Explanation: All the three 'B's are black lonely pixels.
 ```
 
 **Note:**
@@ -34,27 +23,6 @@ Explanation:
 再双loop 每个row的B数，和col\[pos\]比较 都为1 res++
 
 ```text
-class Solution:
-    def findLonelyPixel(self, picture: List[List[str]]) -> int:
-        if not picture or not picture[0]:
-            return 0
-        n, m = len(picture), len(picture[0]) 
-        col = [0]*m
-        res = 0
-
-        for i in range(n):
-            for j in range(m):
-                if picture[i][j] == 'B':
-                    col[j] += 1                    
-
-        for i in range(n):
-            cnt = pos = 0
-            for j in range(m):
-                if picture[i][j] == 'B':
-                    cnt += 1
-                    pos = j
-            if cnt == 1 and col[pos] == 1:
-                res += 1
-        return res
+class Solution:    def findLonelyPixel(self, picture: List[List[str]]) -> int:        if not picture or not picture[0]:            return 0        n, m = len(picture), len(picture[0])         col = [0]*m        res = 0        for i in range(n):            for j in range(m):                if picture[i][j] == 'B':                    col[j] += 1                            for i in range(n):            cnt = pos = 0            for j in range(m):                if picture[i][j] == 'B':                    cnt += 1                    pos = j            if cnt == 1 and col[pos] == 1:                res += 1        return res
 ```
 

@@ -17,43 +17,12 @@ Above is a 3 x 7 grid. How many possible unique paths are there?
 也是dp， 第一行/列是0，f\[1\]\[1\]是1。画图就知道
 
 ```text
-class Solution {
-    public int uniquePaths(int m, int n) {
-        if(m == 0 || n == 0)
-            return 0;
-
-        int[][] f = new int[n + 1][m + 1];
-        for(int i = 1; i <= n; i ++){
-            // f[i][0] = Integer.MAX_VALUE;
-            for(int j = 1; j <= m; j ++){
-                // f[0][j] = Integer.MAX_VALUE;
-            if(i == 1 && j == 1){
-                f[i][j] = 1;
-            }else
-                f[i][j] = f[i - 1][j] + f[i][j - 1];
-            }
-        }
-        return f[n][m];
-    }
-}
+class Solution {    public int uniquePaths(int m, int n) {        if(m == 0 || n == 0)            return 0;        int[][] f = new int[n + 1][m + 1];        for(int i = 1; i <= n; i ++){            // f[i][0] = Integer.MAX_VALUE;            for(int j = 1; j <= m; j ++){                // f[0][j] = Integer.MAX_VALUE;            if(i == 1 && j == 1){                f[i][j] = 1;            }else                f[i][j] = f[i - 1][j] + f[i][j - 1];            }        }        return f[n][m];    }}
 ```
 
 index从0开始的话
 
 ```text
-class Solution:
-    def uniquePaths(self, m: int, n: int) -> int:
-        if not m or not n:
-            return 0
-        dp = [[0]*n for _ in range(m)]
-        #dp[0][0]=1
-        for i in range(m):
-            for j in range(n):
-                if i == 0 or j == 0:
-                    dp[i][j] = 1
-                else:
-                    dp[i][j] = dp[i-1][j] + dp[i][j-1]
-        return dp[m-1][n-1]
-        
+class Solution:    def uniquePaths(self, m: int, n: int) -> int:        if not m or not n:            return 0        dp = [[0]*n for _ in range(m)]        #dp[0][0]=1        for i in range(m):            for j in range(n):                if i == 0 or j == 0:                    dp[i][j] = 1                else:                    dp[i][j] = dp[i-1][j] + dp[i][j-1]        return dp[m-1][n-1]        
 ```
 

@@ -20,12 +20,7 @@ Problem Correction
 ## Example
 
 ```text
-input:
-numbers = [2,1,3]
-node1 = 1
-node2 = 3
-output:
-2
+input:numbers = [2,1,3]node1 = 1node2 = 3output:2
 ```
 
 分析
@@ -41,69 +36,6 @@ output:
 refer to:[https://www.geeksforgeeks.org/shortest-distance-between-two-nodes-in-bst/](https://www.geeksforgeeks.org/shortest-distance-between-two-nodes-in-bst/)
 
 ```text
-class Solution:
-    """
-    @param numbers: the given list
-    @param node1: the given node1
-    @param node2: the given node2
-    @return: the distance between two nodes
-    """
-
-    class TreeNode:
-        def __init__(self, val):
-            self.val = val
-            self.left = None
-            self.right = None
-
-    def bstDistance(self, numbers, node1, node2):
-        # Write your code here
-        if not numbers:
-            return 0
-        root = None
-        for ii,i in enumerate(numbers):
-            if ii == 0:
-                root = self.insertTree(i,root)
-            else:
-                self.insertTree(i, root)
-        map = {}
-        return self.getLCA(node1, node2, root, map)
-
-    def insertTree(self, i, root):
-        if root:
-            if i > root.val:
-                root.right = self.insertTree(i, root.right)
-            else:
-                root.left = self.insertTree(i, root.left)
-        else:
-            root = self.TreeNode(i)
-        return root
-
-    def getLCA(self, p, q, root, map):
-        if (root.val - p) > 0 and (root.val - q) > 0:
-            return self.getLCA(p, q, root.left, map)
-        elif (root.val - p) < 0 and (root.val - q) < 0:
-            return self.getLCA(p, q, root.right, map)
-        else:
-            a = self.getrootdist(p, root, map)
-            b = self.getrootdist(q, root, map)
-            if a >= 0 and b >= 0:
-                return a + b
-            else:
-                return -1
-
-    def getrootdist(self, i, root, map):
-        res = None
-        if i in map:
-            return map[i]
-        if not root:
-            return float('-inf')
-        if root.val == i:
-            return 0
-        elif root.val < i:
-            res = 1 + self.getrootdist(i, root.right, map)
-        else:
-            res = 1 + self.getrootdist(i, root.left, map)
-            map[i] = res
-        return res
+class Solution:    """    @param numbers: the given list    @param node1: the given node1    @param node2: the given node2    @return: the distance between two nodes    """    class TreeNode:        def __init__(self, val):            self.val = val            self.left = None            self.right = None    def bstDistance(self, numbers, node1, node2):        # Write your code here        if not numbers:            return 0        root = None        for ii,i in enumerate(numbers):            if ii == 0:                root = self.insertTree(i,root)            else:                self.insertTree(i, root)        map = {}        return self.getLCA(node1, node2, root, map)    def insertTree(self, i, root):        if root:            if i > root.val:                root.right = self.insertTree(i, root.right)            else:                root.left = self.insertTree(i, root.left)        else:            root = self.TreeNode(i)        return root    def getLCA(self, p, q, root, map):        if (root.val - p) > 0 and (root.val - q) > 0:            return self.getLCA(p, q, root.left, map)        elif (root.val - p) < 0 and (root.val - q) < 0:            return self.getLCA(p, q, root.right, map)        else:            a = self.getrootdist(p, root, map)            b = self.getrootdist(q, root, map)            if a >= 0 and b >= 0:                return a + b            else:                return -1    def getrootdist(self, i, root, map):        res = None        if i in map:            return map[i]        if not root:            return float('-inf')        if root.val == i:            return 0        elif root.val < i:            res = 1 + self.getrootdist(i, root.right, map)        else:            res = 1 + self.getrootdist(i, root.left, map)            map[i] = res        return res
 ```
 

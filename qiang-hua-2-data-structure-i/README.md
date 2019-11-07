@@ -13,24 +13,7 @@
 代码模板
 
 ```text
-public class UnionFind{
-    private int[] father = null;
-    //放射状，路径压缩
-    public int find(int x){     
-        if(father[x] == 0)          
-            return x;     
-        return father [x] = find(father[x]);//全部直接指向father，压缩路径，从列状到放射状 O（1）     
-
-    }
-//union合并key father之间合并，和子没关系
-    public void union(int a, int b){     
-        int root_a = find(a);     
-        int root_b = find(b);     
-        if(root_a != root_b){          
-            father(root_a) = root_b;     
-        }
-    }
-}
+public class UnionFind{    private int[] father = null;    //放射状，路径压缩    public int find(int x){             if(father[x] == 0)                      return x;             return father [x] = find(father[x]);//全部直接指向father，压缩路径，从列状到放射状 O（1）         }//union合并key father之间合并，和子没关系    public void union(int a, int b){             int root_a = find(a);             int root_b = find(b);             if(root_a != root_b){                      father(root_a) = root_b;             }    }}
 ```
 
 Connecting Graph 问题总结
@@ -73,10 +56,7 @@ Trie考点
 _**代码：**_
 
 ```text
-这是对单个word来说！！！！！！！Trie的insert和find都是3层代码，for里面也是3层。
-1 先定点初始this或者新建起点，cur = this;
-2 for loop里就是找pos往下走，从父到子的过程。find 和insert区别就是for loop里子空，一个新建一个返回.
-3 最后返回结果不同。
+这是对单个word来说！！！！！！！Trie的insert和find都是3层代码，for里面也是3层。1 先定点初始this或者新建起点，cur = this;2 for loop里就是找pos往下走，从父到子的过程。find 和insert区别就是for loop里子空，一个新建一个返回.3 最后返回结果不同。
 ```
 
 ## sweep-line 扫描线

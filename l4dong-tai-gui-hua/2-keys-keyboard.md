@@ -19,24 +19,7 @@ Given a number`n`. You have to get**exactly**`n`'A' on the notepad by performing
 **Example 1:**
 
 ```text
-Input:
- 3
-
-Output:
- 3
-
-Explanation:
-
-Intitally, we have one character 'A'.
-In step 1, we use 
-Copy All
- operation.
-In step 2, we use 
-Paste
- operation to get 'AA'.
-In step 3, we use 
-Paste
- operation to get 'AAA'.
+Input: 3Output: 3Explanation:Intitally, we have one character 'A'.In step 1, we use Copy All operation.In step 2, we use Paste operation to get 'AA'.In step 3, we use Paste operation to get 'AAA'.
 ```
 
 **Note:**
@@ -58,16 +41,6 @@ dp\[8\] = dp\[4\]+8/4
 贪心：每次一个数可以被N整除就加上那个数，不行再换下一个，res就是所有可以被整除的数的总和。
 
 ```text
-class Solution:
-    def minSteps(self, n: int) -> int:
-    #greedy
-        res = 0 
-        if n == 1:
-            return 0
-        for i in range(2,n+1):            
-            while n%i == 0:                
-                res+=i
-                n/=i
-        return res
+class Solution:    def minSteps(self, n: int) -> int:    #greedy        res = 0         if n == 1:            return 0        for i in range(2,n+1):                        while n%i == 0:                                res+=i                n/=i        return res
 ```
 

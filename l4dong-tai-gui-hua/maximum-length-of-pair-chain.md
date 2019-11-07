@@ -9,16 +9,7 @@ Given a set of pairs, find the length longest chain which can be formed. You nee
 **Example 1:**
 
 ```text
-Input:
- [[1,2], [2,3], [3,4]]
-
-Output:
- 2
-
-Explanation:
- The longest chain is [1,2] -
->
- [3,4]
+Input: [[1,2], [2,3], [3,4]]Output: 2Explanation: The longest chain is [1,2] -> [3,4]
 ```
 
 **Note:**
@@ -32,25 +23,7 @@ Explanation:
 dp表示到当前i 最长的chain， 2层循环，为了及时返回，第二层倒序。
 
 ```text
-class Solution:
-    def findLongestChain(self, pairs: List[List[int]]) -> int:
-        n = len(pairs)
-        f = [1]*(n+1)
-        res = 0
-        # for i in range(1,n+1):
-        #     f[i] = 1
-        pairs.sort()
-        for i in range(1,n+1):            
-            for j in range(i-1,-1,-1): #倒序是为了及时break 防止TLE
-                ca,cb = pairs[i-1]
-                pa,pb = pairs[j-1]
-                if ca > pb:
-                    f[i]  = max(f[i],f[j] + 1)
-                    break
-
-
-            res = max(res,f[i])
-        return res
+class Solution:    def findLongestChain(self, pairs: List[List[int]]) -> int:        n = len(pairs)        f = [1]*(n+1)        res = 0        # for i in range(1,n+1):        #     f[i] = 1        pairs.sort()        for i in range(1,n+1):                        for j in range(i-1,-1,-1): #倒序是为了及时break 防止TLE                ca,cb = pairs[i-1]                pa,pb = pairs[j-1]                if ca > pb:                    f[i]  = max(f[i],f[j] + 1)                    break            res = max(res,f[i])        return res
 ```
 
 按照end排序，然后一个个数顺移计算res
@@ -60,15 +33,6 @@ class Solution:
 [https://leetcode.com/problems/maximum-length-of-pair-chain/discuss/105607/4-Liner-Python-Greedy](https://leetcode.com/problems/maximum-length-of-pair-chain/discuss/105607/4-Liner-Python-Greedy)
 
 ```text
-class Solution:
-    def findLongestChain(self, pairs: List[List[int]]) -> int:
-        pairs.sort(key = lambda x: (x[1],x[0]))#记得要加括号！！！！
-
-        pre = float('-inf')
-        res = 0
-        for a, b in pairs:
-            if pre < a:
-                pre,res = b,res+1
-        return res
+class Solution:    def findLongestChain(self, pairs: List[List[int]]) -> int:        pairs.sort(key = lambda x: (x[1],x[0]))#记得要加括号！！！！        pre = float('-inf')        res = 0        for a, b in pairs:            if pre < a:                pre,res = b,res+1        return res
 ```
 

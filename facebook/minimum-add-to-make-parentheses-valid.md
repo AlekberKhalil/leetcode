@@ -42,37 +42,25 @@ Given a parentheses string, return the minimum number of parentheses we must add
 **Example 1:**
 
 ```text
-Input: 
-"())"
-Output: 
-1
+Input: "())"Output: 1
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-"((("
-Output: 
-3
+Input: "((("Output: 3
 ```
 
 **Example 3:**
 
 ```text
-Input: 
-"()"
-Output: 
-0
+Input: "()"Output: 0
 ```
 
 **Example 4:**
 
 ```text
-Input: 
-"()))(("
-Output: 
-4
+Input: "()))(("Output: 4
 ```
 
 分析
@@ -80,20 +68,6 @@ Output:
 注意这里不能单纯比较\(\)个数，也要比较出场顺序。所以counter是算顺序，）stk是算残余多少的 （
 
 ```text
-class Solution:
-    def minAddToMakeValid(self, S):
-        """
-        :type S: str
-        :rtype: int
-        """
-        left = right = 0
-        for i in S:
-            if i == '(':
-                left +=1
-            elif left<=0:#都平衡了，再多个)就不行了 所以要<=
-                right+=1
-            else:
-                left -= 1
-        return left + right
+class Solution:    def minAddToMakeValid(self, S):        """        :type S: str        :rtype: int        """        left = right = 0        for i in S:            if i == '(':                left +=1            elif left<=0:#都平衡了，再多个)就不行了 所以要<=                right+=1            else:                left -= 1        return left + right
 ```
 

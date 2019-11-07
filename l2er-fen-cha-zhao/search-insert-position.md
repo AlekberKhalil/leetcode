@@ -17,33 +17,6 @@ Here are few examples.
 答案
 
 ```text
-class Solution {
-    public int searchInsert(int[] nums, int target) {
-       if(nums == null || nums.length == 0){
-            return 0;
-        }
-        int s = 0, e = nums.length - 1;
-
-        while(s + 1 < e){
-            int m = s + (e - s)/2;
-            if(nums[m] == target){
-                return m;
-            }else if(nums[m] < target){
-                s = m;
-            }else{
-                e = m;
-            }
-        }
-
-        if(nums[s] >= target){
-            return s;
-        }
-        if(nums[e] < target){
-            return e + 1;
-        }
-        return e;
-
-    }
-}
+class Solution {    public int searchInsert(int[] nums, int target) {       if(nums == null || nums.length == 0){            return 0;        }        int s = 0, e = nums.length - 1;        while(s + 1 < e){            int m = s + (e - s)/2;            if(nums[m] == target){                return m;            }else if(nums[m] < target){                s = m;            }else{                e = m;            }        }        if(nums[s] >= target){            return s;        }        if(nums[e] < target){            return e + 1;        }        return e;    }}
 ```
 

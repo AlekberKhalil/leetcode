@@ -9,34 +9,19 @@ Given a sequence of integers, return the length of the **longest subsequence** t
 **Example 1:**
 
 ```text
-Input: 
-[1,7,4,9,2,5]
-Output: 
-6
-
-Explanation:
-The entire sequence is a wiggle sequence.
+Input: [1,7,4,9,2,5]Output: 6Explanation:The entire sequence is a wiggle sequence.
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-[1,17,5,10,13,15,10,5,16,8]
-Output: 
-7
-
-Explanation: 
-There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].
+Input: [1,17,5,10,13,15,10,5,16,8]Output: 7Explanation: There are several subsequences that achieve this length. One is [1,17,10,13,10,16,8].
 ```
 
 **Example 3:**
 
 ```text
-Input: 
-[1,2,3,4,5,6,7,8,9]
-Output: 
-2
+Input: [1,2,3,4,5,6,7,8,9]Output: 2
 ```
 
 **Follow up:**  
@@ -51,29 +36,11 @@ subarray时候 每次都要reset up / down/up&down\(==\)
 2个状态升降 up and down，交替由对方得来
 
 ```text
-if (nums[i] > nums[i-1]) u = b + 1;
-else if (nums[i] < nums[i-1]) b = u + 1;
-else 不变
+if (nums[i] > nums[i-1]) u = b + 1;else if (nums[i] < nums[i-1]) b = u + 1;else 不变
 ```
 
 ```text
-class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-
-        n = len(nums)
-        if n==0:
-            return n
-        up=down=1
-
-        for i in range(1,n):
-            if nums[i]>nums[i-1]:
-                up=down+1
-            elif nums[i]<nums[i-1]:
-                down= up+1
-
-
-
-        return max(up,down)
+class Solution:    def wiggleMaxLength(self, nums: List[int]) -> int:        n = len(nums)        if n==0:            return n        up=down=1        for i in range(1,n):            if nums[i]>nums[i-1]:                up=down+1            elif nums[i]<nums[i-1]:                down= up+1        return max(up,down)
 ```
 
 错位相减得到diff，然后diff错位相乘，计算&lt;0的总数
@@ -81,10 +48,6 @@ class Solution:
 注意这里float\('nan'\)占位，zip2个数组可以长度不一。
 
 ```text
-class Solution:
-    def wiggleMaxLength(self, nums: List[int]) -> int:
-        c = float('nan')
-        diffs = [a-b for a,b in zip([c]+nums,nums+[c]) if a-b]
-        return sum(not a*b>=0 for a,b in zip(diffs,diffs[1:]))
+class Solution:    def wiggleMaxLength(self, nums: List[int]) -> int:        c = float('nan')        diffs = [a-b for a,b in zip([c]+nums,nums+[c]) if a-b]        return sum(not a*b>=0 for a,b in zip(diffs,diffs[1:]))
 ```
 

@@ -16,30 +16,6 @@ return`true`
 如果前面全都相等，说明只有最后一位不相等，那就返回true
 
 ```text
-class Solution:
-    """
-    @param s: a string
-    @param t: a string
-    @return: true if they are both one edit distance apart or false
-    """
-    def isOneEditDistance(self, s, t):
-        # write your code here
-        m = len(s)
-        n = len(t)
-        if abs(m - n) > 1:
-            return False
-        if s == t:
-            return False
-        if m<n:
-            s,t,m,n = t,s,n,m #make sure s is always longer one
-        i=0
-        while i<n:
-            if s[i] == t[i]:
-                i+=1
-            else:
-                if s[i+1:]==t[i:] or s[i+1:]==t[i+1:]:#insert or delete or replace
-                    return True
-                return False
-        return True
+class Solution:    """    @param s: a string    @param t: a string    @return: true if they are both one edit distance apart or false    """    def isOneEditDistance(self, s, t):        # write your code here        m = len(s)        n = len(t)        if abs(m - n) > 1:            return False        if s == t:            return False        if m<n:            s,t,m,n = t,s,n,m #make sure s is always longer one        i=0        while i<n:            if s[i] == t[i]:                i+=1            else:                if s[i+1:]==t[i:] or s[i+1:]==t[i+1:]:#insert or delete or replace                    return True                return False        return True
 ```
 

@@ -66,74 +66,7 @@ Autocomplete System里curWord记录当前走的char。
 排序用key = lambda x: \(-x\[0\],x\[1\]\)。先拍freq再排string
 
 ```text
-class Node:
-    def __init__(self, c):
-        self.c = c
-        self.words = set() #去重复word
-        self.children = {}
-        self.hasWord =False
-
-class Trie:
-    def __init__(self):
-        self.root = Node('')
-        self.curNode = self.root
-    
-    def insert(self, word):
-        cur = self.root
-        for w in word:
-            if w not in cur.children:
-                n = Node(w)
-                cur.children[w] = n
-            cur.children[w].words.add(word) #已经存在的话也要加word
-            cur = cur.children[w]
-        cur.hasWord = True
-        cur.words.add(word) #走到最后也要加入word
-    
-    def find(self, c):     
-        if not self.curNode:#起头就不对的word直接返回
-            return []
-        if c not in self.curNode.children:
-            self.curNode = None #设置flag，开始就不对的话 将来也不必往下走了。否则会从头起
-            return []
-        self.curNode = self.curNode.children[c]
-        return self.curNode.words
-                                
-class AutocompleteSystem:
-
-    def __init__(self, sentences: List[str], times: List[int]):
-        self.wordFreq = dict(zip(sentences,times))
-        self.curWord = ''
-        self.trie = Trie()
-        for s in sentences:
-            self.trie.insert(s)
-        #self.trie.curNode = self.trie.root
-
-    def input(self, c: str) -> List[str]:
-        if c == '#':
-            if self.curWord in self.wordFreq:
-                self.wordFreq[self.curWord] += 1
-            else:
-                self.wordFreq[self.curWord] = 1
-                self.trie.insert(self.curWord)
-            self.curWord = ''
-            self.trie.curNode = self.trie.root
-            return []
-        else:
-            self.curWord += c
-            wl = list(self.trie.find(c))
-            tl = sorted([(self.wordFreq[w],w) for w in wl], key = lambda x: (-x[0],x[1]))
-            
-            
-            return [x[1] for x in tl[:3]]
-            
-            
-        
-        
-
-
-# Your AutocompleteSystem object will be instantiated and called as such:
-# obj = AutocompleteSystem(sentences, times)
-# param_1 = obj.input(c)
+class Node:    def __init__(self, c):        self.c = c        self.words = set() #去重复word        self.children = {}        self.hasWord =Falseclass Trie:    def __init__(self):        self.root = Node('')        self.curNode = self.root        def insert(self, word):        cur = self.root        for w in word:            if w not in cur.children:                n = Node(w)                cur.children[w] = n            cur.children[w].words.add(word) #已经存在的话也要加word            cur = cur.children[w]        cur.hasWord = True        cur.words.add(word) #走到最后也要加入word        def find(self, c):             if not self.curNode:#起头就不对的word直接返回            return []        if c not in self.curNode.children:            self.curNode = None #设置flag，开始就不对的话 将来也不必往下走了。否则会从头起            return []        self.curNode = self.curNode.children[c]        return self.curNode.words                                class AutocompleteSystem:    def __init__(self, sentences: List[str], times: List[int]):        self.wordFreq = dict(zip(sentences,times))        self.curWord = ''        self.trie = Trie()        for s in sentences:            self.trie.insert(s)        #self.trie.curNode = self.trie.root    def input(self, c: str) -> List[str]:        if c == '#':            if self.curWord in self.wordFreq:                self.wordFreq[self.curWord] += 1            else:                self.wordFreq[self.curWord] = 1                self.trie.insert(self.curWord)            self.curWord = ''            self.trie.curNode = self.trie.root            return []        else:            self.curWord += c            wl = list(self.trie.find(c))            tl = sorted([(self.wordFreq[w],w) for w in wl], key = lambda x: (-x[0],x[1]))                                    return [x[1] for x in tl[:3]]                                        # Your AutocompleteSystem object will be instantiated and called as such:# obj = AutocompleteSystem(sentences, times)# param_1 = obj.input(c)
 ```
 
 

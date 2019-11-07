@@ -13,39 +13,19 @@ Return`true` if and only if you can enter every room.
 1. **Example 1:**
 
 ```text
-Input: 
-[[1],[2],[3],[]]
-
-Output: 
-true
-
-Explanation:  
-
-We start in room 0, and pick up key 1.
-We then go to room 1, and pick up key 2.
-We then go to room 2, and pick up key 3.
-We then go to room 3.  Since we were able to go to every room, we return true.
+Input: [[1],[2],[3],[]]Output: trueExplanation:  We start in room 0, and pick up key 1.We then go to room 1, and pick up key 2.We then go to room 2, and pick up key 3.We then go to room 3.  Since we were able to go to every room, we return true.
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-[[1,3],[3,0,1],[2],[0]]
-
-Output: 
-false
-
-Explanation: 
-We can't enter the room with number 2.
+Input: [[1,3],[3,0,1],[2],[0]]Output: falseExplanation: We can't enter the room with number 2.
 ```
 
 **Note:**
 
 ```text
-1 <= rooms.length <= 1000
-0 <= rooms[i].length <= 1000
-The number of keys in all rooms combined is at most 3000.
+1 <= rooms.length <= 10000 <= rooms[i].length <= 1000The number of keys in all rooms combined is at most 3000.
 ```
 
 分析
@@ -53,22 +33,7 @@ The number of keys in all rooms combined is at most 3000.
 除了初始入栈visited也入0，后面是出栈时入visited
 
 ```text
-class Solution:
-    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
-        q = []+rooms[0]
-        v = set()
-        v.add(0)
-        while q:
-            cur = q.pop()
-            if cur in v:
-                continue
-            v.add(cur)
-
-            for u in rooms[cur]:
-                if u not in v:
-                    q.append(u)
-
-        return len(v) == len(rooms)
+class Solution:    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:        q = []+rooms[0]        v = set()        v.add(0)        while q:            cur = q.pop()            if cur in v:                continue            v.add(cur)            for u in rooms[cur]:                if u not in v:                    q.append(u)        return len(v) == len(rooms)
 ```
 
 DFS
@@ -76,17 +41,6 @@ DFS
 起始点开始，每个房间走下去
 
 ```text
-class Solution:
-    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:        
-        v = set()
-        def dfs(i):
-            if i in v:
-                return
-            v.add(i)
-            for j in rooms[i]:
-                dfs(j)
-
-        dfs(0)            
-        return len(v) == len(rooms)
+class Solution:    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:                v = set()        def dfs(i):            if i in v:                return            v.add(i)            for j in rooms[i]:                dfs(j)        dfs(0)                    return len(v) == len(rooms)
 ```
 

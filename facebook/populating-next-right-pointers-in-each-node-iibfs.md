@@ -3,11 +3,7 @@
 Given a binary tree
 
 ```text
-struct TreeLinkNode {
-  TreeLinkNode *left;
-  TreeLinkNode *right;
-  TreeLinkNode *next;
-}
+struct TreeLinkNode {  TreeLinkNode *left;  TreeLinkNode *right;  TreeLinkNode *next;}
 ```
 
 Populate each next pointer to point to its next right node. If there is no next right node, the next pointer should be set to`NULL`.
@@ -24,21 +20,13 @@ Initially, all next pointers are set to`NULL`.
 Given the following binary tree,
 
 ```text
-     1
-   /  \
-  2    3
- / \    \
-4   5    7
+     1   /  \  2    3 / \    \4   5    7
 ```
 
 After calling your function, the tree should look like:
 
 ```text
-  1 -> NULL
-   /  \
-  2 -> 3 -> NULL
- / \    \
-4-> 5 -> 7 -> NULL
+  1 -> NULL   /  \  2 -> 3 -> NULL / \    \4-> 5 -> 7 -> NULL
 ```
 
 分析
@@ -46,63 +34,12 @@ After calling your function, the tree should look like:
 BFS，最后一个node记得用i== n-1判断
 
 ```text
-# Definition for binary tree with next pointer.
-# class TreeLinkNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-#         self.next = None
-
-class Solution:
-    # @param root, a tree link node
-    # @return nothing
-    def connect(self, root):
-        if not root:
-            return root
-        q=[root]
-        while q:
-            n = len(q)
-            for i in range(n):
-                cur = q.pop(0)
-                if i == n-1:
-                    cur.next =None
-                else:
-                    cur.next = q[0]
-
-                if cur.left:
-                    q.append(cur.left)
-                if cur.right:
-                    q.append(cur.right)
+# Definition for binary tree with next pointer.# class TreeLinkNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = None#         self.next = Noneclass Solution:    # @param root, a tree link node    # @return nothing    def connect(self, root):        if not root:            return root        q=[root]        while q:            n = len(q)            for i in range(n):                cur = q.pop(0)                if i == n-1:                    cur.next =None                else:                    cur.next = q[0]                if cur.left:                    q.append(cur.left)                if cur.right:                    q.append(cur.right)
 ```
 
 利用链表特性。每层都建个dummy。然后dummy指向前一层root。左右依次加入链表
 
 ```text
-# Definition for binary tree with next pointer.
-# class TreeLinkNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-#         self.next = None
-
-class Solution:
-    # @param root, a tree link node
-    # @return nothing
-    def connect(self, root):
-
-        while root:
-            dummy = TreeLinkNode(0)
-            curc = dummy
-            while root:
-                if root.left:
-                    curc.next = root.left
-                    curc = curc.next
-                if root.right:
-                    curc.next = root.right
-                    curc = curc.next
-                root = root.next
-            root = dummy.next
+# Definition for binary tree with next pointer.# class TreeLinkNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = None#         self.next = Noneclass Solution:    # @param root, a tree link node    # @return nothing    def connect(self, root):        while root:            dummy = TreeLinkNode(0)            curc = dummy            while root:                if root.left:                    curc.next = root.left                    curc = curc.next                if root.right:                    curc.next = root.right                    curc = curc.next                root = root.next            root = dummy.next
 ```
 

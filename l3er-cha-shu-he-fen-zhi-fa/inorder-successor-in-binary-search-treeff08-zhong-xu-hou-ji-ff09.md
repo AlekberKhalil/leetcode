@@ -13,34 +13,13 @@ Note: If the given node has no in-order successor in the tree, return `null`.
 iterative
 
 ```text
-    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        TreeNode ret = null;
-        while(root != null){
-            if(root.val > p.val){
-                ret = root;
-                root = root.left;
-            }else{
-                root = root.right;
-            }
-        }
-
-        return ret;
-    }
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {        TreeNode ret = null;        while(root != null){            if(root.val > p.val){                ret = root;                root = root.left;            }else{                root = root.right;            }        }        return ret;    }
 ```
 
 recursive
 
 ```text
-    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {
-        if(root == null)
-        return null;
-        if(root.val > p.val){
-            TreeNode left = inorderSuccessor(root.left, p);
-            return left != null ? left : root;
-        }else{
-            return inorderSuccessor(root.right, p);
-        }
-    }
+    public TreeNode inorderSuccessor(TreeNode root, TreeNode p) {        if(root == null)        return null;        if(root.val > p.val){            TreeNode left = inorderSuccessor(root.left, p);            return left != null ? left : root;        }else{            return inorderSuccessor(root.right, p);        }    }
 ```
 
 ## Predecessor
@@ -48,35 +27,12 @@ recursive
 iterative
 
 ```text
-public TreeNode predecessor(TreeNode root, TreeNode p) {
-    TreeNode ret = null;
-    while(root != null){
-        if(root.val < p.val){
-            ret = root;
-            root = root.right;
-        }else{
-            root = root.left;           
-        }
-    }
-    return ret;
-}
+public TreeNode predecessor(TreeNode root, TreeNode p) {    TreeNode ret = null;    while(root != null){        if(root.val < p.val){            ret = root;            root = root.right;        }else{            root = root.left;                   }    }    return ret;}
 ```
 
 recursive
 
 ```text
-public TreeNode predecessor(TreeNode root, TreeNode p) {
-    if(root == null)
-        return null;
-
-    if(root.val < p.val){
-        TreeNode right =  predecessor(root.right, p);
-        return right != null : right : root;
-    }elsel{
-        return predecessor(root.left, p);
-
-    }
-
-}
+public TreeNode predecessor(TreeNode root, TreeNode p) {    if(root == null)        return null;    if(root.val < p.val){        TreeNode right =  predecessor(root.right, p);        return right != null : right : root;    }elsel{        return predecessor(root.left, p);    }}
 ```
 

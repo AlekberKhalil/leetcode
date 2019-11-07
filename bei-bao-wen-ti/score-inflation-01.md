@@ -21,11 +21,7 @@ Your program should determine the number of problems we should take from each ca
 ## SAMPLE INPUT \(file inflate.in\)
 
 ```text
-300 4
-100 60
-250 120
-120 100
-35 20
+300 4100 60250 120120 10035 20
 ```
 
 ## OUTPUT FORMAT
@@ -41,18 +37,6 @@ A single line with the maximum number of points possible given the constraints.
 为什么time是顺序？？？？？？？？？？？？？？？
 
 ```text
-class ScoreInflation:
-    def maxScore(self,M,N,points,times):
-        f = [0]*(M+1)
-        for i in range(N):
-            for j in range(times[i] ,M+1):
-                f[j] = max(f[j], f[j-times[i]]+points[i])
-        return f[M]
-
-points = [10,250,120,35]
-times = [60,120,100,20]
-s = ScoreInflation()
-ret = s.maxScore(300,4,points,times)
-print(ret)
+class ScoreInflation:    def maxScore(self,M,N,points,times):        f = [0]*(M+1)        for i in range(N):            for j in range(times[i] ,M+1):                f[j] = max(f[j], f[j-times[i]]+points[i])        return f[M]points = [10,250,120,35]times = [60,120,100,20]s = ScoreInflation()ret = s.maxScore(300,4,points,times)print(ret)
 ```
 

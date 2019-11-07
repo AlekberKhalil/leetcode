@@ -11,13 +11,7 @@ Given the below binary tree and
 ,
 
 ```text
-              5
-             / \
-            4   8
-           /   / \
-          11  13  4
-         /  \      \
-        7    2      1
+              5             / \            4   8           /   / \          11  13  4         /  \      \        7    2      1
 ```
 
 return true, as there exist a root-to-leaf path`5->4->11->2`which sum is 22.
@@ -27,46 +21,12 @@ return true, as there exist a root-to-leaf path`5->4->11->2`which sum is 22.
 DFS
 
 ```text
-class Solution {
-    public boolean hasPathSum(TreeNode root, int sum) {
-        if(root == null)
-            return false;
-        return dfs(root, sum);
-    }
-
-    public boolean dfs(TreeNode root, int sum){
-
-        if(root.left == null && root.right == null && root.val == sum){          
-             return true;            
-        }
-        boolean ret = false;
-
-        if(root.left != null){
-           ret |= dfs(root.left, sum - root.val);
-        }
-
-        if(root.right != null){
-           ret |= dfs(root.right, sum - root.val);
-        }
-
-        return ret;
-    }       
-
-}
+class Solution {    public boolean hasPathSum(TreeNode root, int sum) {        if(root == null)            return false;        return dfs(root, sum);    }    public boolean dfs(TreeNode root, int sum){        if(root.left == null && root.right == null && root.val == sum){                       return true;                    }        boolean ret = false;        if(root.left != null){           ret |= dfs(root.left, sum - root.val);        }        if(root.right != null){           ret |= dfs(root.right, sum - root.val);        }        return ret;    }       }
 ```
 
 分治法
 
 ```text
-class Solution {
-    public boolean hasPathSum(TreeNode root, int sum) {
-        if(root == null)
-            return false;
-        if(root.left == null && root.right == null)
-            return root.val == sum;
-        return hasPathSum(root.left, sum - root.val)
-            || hasPathSum(root.right, sum - root.val);
-    }   
-}
+class Solution {    public boolean hasPathSum(TreeNode root, int sum) {        if(root == null)            return false;        if(root.left == null && root.right == null)            return root.val == sum;        return hasPathSum(root.left, sum - root.val)            || hasPathSum(root.right, sum - root.val);    }   }
 ```
 

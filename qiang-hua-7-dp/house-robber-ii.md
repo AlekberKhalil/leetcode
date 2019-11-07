@@ -7,29 +7,13 @@ Given a list of non-negative integers representing the amount of money of each h
 **Example 1:**
 
 ```text
-Input:
- [2,3,2]
-
-Output:
- 3
-
-Explanation:
- You cannot rob house 1 (money = 2) and then rob house 3 (money = 2),
-             because they are adjacent houses.
+Input: [2,3,2]Output: 3Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2),             because they are adjacent houses.
 ```
 
 **Example 2:**
 
 ```text
-Input:
- [1,2,3,1]
-
-Output:
- 4
-
-Explanation:
- Rob house 1 (money = 1) and then rob house 3 (money = 3).
-             Total amount you can rob = 1 + 3 = 4.
+Input: [1,2,3,1]Output: 4Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).             Total amount you can rob = 1 + 3 = 4.
 ```
 
 分析
@@ -39,33 +23,6 @@ Explanation:
 注意这里yes 和No交换进行的方法
 
 ```text
-class Solution:
-    def rob(self, nums):
-        """
-        :type nums: List[int]
-        :rtype: int
-        """
-        if not nums:
-            return 0
-
-
-        n = len(nums)
-        if n == 1:
-            return nums[0]
-        nums1 = nums[:n-1]
-        nums2 = nums[1:]
-        f1 = self.canDo(nums1)
-        f2 = self.canDo(nums2)
-        return max(f1,f2)
-
-    def canDo(self, nums):        
-        r = len(nums)
-        ppre=pre=cur = 0
-
-        for i in range(r):
-            cur = max(pre,ppre+nums[i])
-            ppre,pre = pre,cur
-
-        return cur
+class Solution:    def rob(self, nums):        """        :type nums: List[int]        :rtype: int        """        if not nums:            return 0        n = len(nums)        if n == 1:            return nums[0]        nums1 = nums[:n-1]        nums2 = nums[1:]        f1 = self.canDo(nums1)        f2 = self.canDo(nums2)        return max(f1,f2)    def canDo(self, nums):                r = len(nums)        ppre=pre=cur = 0        for i in range(r):            cur = max(pre,ppre+nums[i])            ppre,pre = pre,cur        return cur
 ```
 

@@ -7,18 +7,13 @@ Given an array of integers, how many three numbers can be found in the array, so
 Given array S =`[3,4,6,7]`, return`3`. They are:
 
 ```text
-[3,4,6]
-[3,6,7]
-[4,6,7]
+[3,4,6][3,6,7][4,6,7]
 ```
 
 Given array S =`[4,4,4,4]`, return`4`. They are:
 
 ```text
-[4(1),4(2),4(3)]
-[4(1),4(2),4(4)]
-[4(1),4(3),4(4)]
-[4(2),4(3),4(4)]
+[4(1),4(2),4(3)][4(1),4(2),4(4)][4(1),4(3),4(4)][4(2),4(3),4(4)]
 ```
 
 分析：
@@ -38,29 +33,6 @@ Given array S =`[4,4,4,4]`, return`4`. They are:
 答案：
 
 ```text
-public class Solution {
-    /*
-     * @param S: A list of integers
-     * @return: An integer
-     */
-    public int triangleCount(int[] S) {
-        // write your code here
-        int n = S.length;
-        Arrays.sort(S);
-        int count = 0;
-        for(int i = 0; i < n; i ++){
-            int start = 0, end = i-1;
-            while(start < end){
-                if(S[start] + S[end] > S[i]) {
-                    count+= end-start;//??????
-                    end --;
-                }else{
-                    start ++;
-                }
-            }
-        }
-        return count;
-    }
-}
+public class Solution {    /*     * @param S: A list of integers     * @return: An integer     */    public int triangleCount(int[] S) {        // write your code here        int n = S.length;        Arrays.sort(S);        int count = 0;        for(int i = 0; i < n; i ++){            int start = 0, end = i-1;            while(start < end){                if(S[start] + S[end] > S[i]) {                    count+= end-start;//??????                    end --;                }else{                    start ++;                }            }        }        return count;    }}
 ```
 

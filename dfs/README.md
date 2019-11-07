@@ -50,19 +50,13 @@ python:
 dfs: 两种方法弹入弹出path
 
 ```text
-path.append(nums[i])
-self.dfs(nums,i+1,path,ret)
-path.pop()
-
-最后ret要copy path:     ret.append(list(path)) 或者 ret.append(path[:)
+path.append(nums[i])self.dfs(nums,i+1,path,ret)path.pop()最后ret要copy path:     ret.append(list(path)) 或者 ret.append(path[:)
 ```
 
 或者
 
 ```text
-self.dfs(nums,i+1,path+[nums[i]],ret)
-
-最后直接 ret.append(path)
+self.dfs(nums,i+1,path+[nums[i]],ret)最后直接 ret.append(path)
 ```
 
 combination的去重，结合Increasing Subsequences的去重。就是当前层（forloop\)一条dfs路径不能同样的数字走两遍下去，会导致重复。

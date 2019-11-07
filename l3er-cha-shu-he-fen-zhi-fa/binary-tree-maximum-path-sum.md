@@ -8,9 +8,7 @@ For example:
 Given the below binary tree,
 
 ```text
-       1
-      / \
-     2   3
+       1      / \     2   3
 ```
 
 Return`6`.
@@ -30,46 +28,6 @@ maxPath=Math.max\(maxPath,left.singlePath+right.singlePath+root.val \)//再和�
 先算根节点到任意点singlePath，可不取所以最小是0。再任意点到任意点，必须要取值，所以极值是Integer.MIN\_VALUE
 
 ```text
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
-
-class Solution { 
-    private class ResultType{
-        int simplePath;
-        int multiPath;
-
-        public ResultType(int simplePath, int multiPath){
-            this.simplePath = simplePath;
-            this.multiPath = multiPath;
-        }        
-    }
-    public int maxPathSum(TreeNode root) {
-        if(root == null)
-            return 0;
-        return helper(root).multiPath;        
-    }
-
-    public ResultType helper(TreeNode root){
-        if(root == null)
-            return new ResultType(0, Integer.MIN_VALUE);
-        ResultType left = helper(root.left);
-        ResultType right = helper(root.right);
-        //simple仅一头固定，所以只能左右中选一个
-        int simplePath =  Math.max(Math.max(left.simplePath, right.simplePath) + root.val, 0);        
-
-        int multiPath = Math.max(left.multiPath, right.multiPath);
-        //multi可以两支都选
-        multiPath = Math.max(multiPath, left.simplePath + right.simplePath + root.val);        
-
-        return new ResultType(simplePath, multiPath);
-    }
-}
+/** * Definition for a binary tree node. * public class TreeNode { *     int val; *     TreeNode left; *     TreeNode right; *     TreeNode(int x) { val = x; } * } */class Solution {     private class ResultType{        int simplePath;        int multiPath;        public ResultType(int simplePath, int multiPath){            this.simplePath = simplePath;            this.multiPath = multiPath;        }            }    public int maxPathSum(TreeNode root) {        if(root == null)            return 0;        return helper(root).multiPath;            }    public ResultType helper(TreeNode root){        if(root == null)            return new ResultType(0, Integer.MIN_VALUE);        ResultType left = helper(root.left);        ResultType right = helper(root.right);        //simple仅一头固定，所以只能左右中选一个        int simplePath =  Math.max(Math.max(left.simplePath, right.simplePath) + root.val, 0);                int multiPath = Math.max(left.multiPath, right.multiPath);        //multi可以两支都选        multiPath = Math.max(multiPath, left.simplePath + right.simplePath + root.val);                return new ResultType(simplePath, multiPath);    }}
 ```
 

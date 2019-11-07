@@ -19,48 +19,6 @@ return`4->5->1->2->3->NULL`.
 * 从head开始，走到null，p != null
 
 ```text
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode rotateRight(ListNode head, int k) {        
-        if(head == null || head.next == null){
-            return head;
-        }
-        int len = 0;
-        ListNode p = head;
-        while(p != null){
-            p = p.next;
-            len++;
-        }
-        k = k % len;
-        if(k == 0)
-            return head;
-
-        ListNode h1 = head;
-        ListNode prev = head;
-
-        for(int i = 0; i < k; i ++){
-            if(prev != null)
-                prev = prev.next;
-        }
-        while(prev!=null && prev.next != null){
-            head = head.next;
-            prev = prev.next;
-        }
-        p = head;
-        head = head.next;
-        p.next = null;
-        if(prev != null)
-            prev.next = h1;
-        return head;
-
-    }
-}
+/** * Definition for singly-linked list. * public class ListNode { *     int val; *     ListNode next; *     ListNode(int x) { val = x; } * } */class Solution {    public ListNode rotateRight(ListNode head, int k) {                if(head == null || head.next == null){            return head;        }        int len = 0;        ListNode p = head;        while(p != null){            p = p.next;            len++;        }        k = k % len;        if(k == 0)            return head;        ListNode h1 = head;        ListNode prev = head;        for(int i = 0; i < k; i ++){            if(prev != null)                prev = prev.next;        }        while(prev!=null && prev.next != null){            head = head.next;            prev = prev.next;        }        p = head;        head = head.next;        p.next = null;        if(prev != null)            prev.next = h1;        return head;    }}
 ```
 

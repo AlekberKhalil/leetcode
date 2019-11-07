@@ -5,21 +5,13 @@ Given an array of integers`nums`and a positive integer`k`, find whether it's pos
 **Example 1:**
 
 ```text
-Input:
- nums = [4, 3, 2, 3, 5, 2, 1], k = 4
-
-Output:
- True
-
-Explanation:
- It's possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
+Input: nums = [4, 3, 2, 3, 5, 2, 1], k = 4Output: TrueExplanation: It's possible to divide it into 4 subsets (5), (1, 4), (2,3), (2,3) with equal sums.
 ```
 
 **Note:**
 
 ```text
-1 <= k <= len(nums) <= 16.
-0 < nums[i] < 10000.
+1 <= k <= len(nums) <= 16.0 < nums[i] < 10000.
 ```
 
 分析
@@ -29,24 +21,7 @@ Explanation:
 DP:用01背包，尝试失败。
 
 ```text
-class Solution:
-    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        sm = sum(nums)
-        if sm % k !=0:
-            return False
-        t = sm//4
-        n = len(nums)
-        f = [[False]*(t+1) for _ in range(k)]       
-
-        for i in range(n):
-            for kk in range(k):
-                f[kk][0] = True  
-                for v in range(t,nums[i]-1,-1):
-                        f[kk][v] |= f[kk][v-nums[i]]
-        res = False
-        for i in range(k):
-            res |= f[i][t]
-        return res
+class Solution:    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:        sm = sum(nums)        if sm % k !=0:            return False        t = sm//4        n = len(nums)        f = [[False]*(t+1) for _ in range(k)]               for i in range(n):            for kk in range(k):                f[kk][0] = True                  for v in range(t,nums[i]-1,-1):                        f[kk][v] |= f[kk][v-nums[i]]        res = False        for i in range(k):            res |= f[i][t]        return res
 ```
 
 dfs
@@ -56,55 +31,12 @@ dfs
 记住下一组nums从头起，要不nums有值跳过没取到。有seen不会重复
 
 ```text
-class Solution:
-    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        sm = sum(nums)
-        if sm % k !=0:
-            return False
-        target = sm//k
-        n = len(nums)
-        seen =set()
-        #分成K组，每组还是combination sum
-        def dfs(cursum,ni,gi):
-            if gi == 1:
-                return True
-            if cursum == target:
-                return dfs(0,0,gi-1)#nums从0开始，有seen不怕重复
-            for i in range(ni,n):
-                if i not in seen:
-                    seen.add(i)
-                    if dfs(cursum+nums[i],i+1,gi):
-                        return True                    
-                    seen.remove(i)
-            return False
-
-        return dfs(0,0,k)
+class Solution:    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:        sm = sum(nums)        if sm % k !=0:            return False        target = sm//k        n = len(nums)        seen =set()        #分成K组，每组还是combination sum        def dfs(cursum,ni,gi):            if gi == 1:                return True            if cursum == target:                return dfs(0,0,gi-1)#nums从0开始，有seen不怕重复            for i in range(ni,n):                if i not in seen:                    seen.add(i)                    if dfs(cursum+nums[i],i+1,gi):                        return True                                        seen.remove(i)            return False        return dfs(0,0,k)
 ```
 
 另一种dfs， loop groups
 
 ```text
-class Solution:
-    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:
-        target,rem = divmod(sum(nums), k)
-        if rem != 0:
-            return False
-        n = len(nums)
-        
-        nums.sort(reverse=True)
-        groups = [target] * k
-        
-        def dfs(pos):
-            if pos ==n:
-                return True
-            
-            for i in range(k):
-                if nums[pos] <= groups[i]:
-                    groups[i] -= nums[pos]
-                    if dfs(pos+1):
-                        return True
-                    groups[i] += nums[pos]
-            return False
-        return dfs(0)
+class Solution:    def canPartitionKSubsets(self, nums: List[int], k: int) -> bool:        target,rem = divmod(sum(nums), k)        if rem != 0:            return False        n = len(nums)                nums.sort(reverse=True)        groups = [target] * k                def dfs(pos):            if pos ==n:                return True                        for i in range(k):                if nums[pos] <= groups[i]:                    groups[i] -= nums[pos]                    if dfs(pos+1):                        return True                    groups[i] += nums[pos]            return False        return dfs(0)
 ```
 

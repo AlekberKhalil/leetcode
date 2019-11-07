@@ -20,42 +20,6 @@ Given`[1, 0, 1, 2]`, sort it in-place to`[0, 1, 1, 2]`.
 答案;
 
 ```text
-class Solution {
-    /**
-     * @param nums: A list of integer which is 0, 1 or 2 
-     * @return: nothing
-     */
-    public void sortColors(int[] nums) {
-        // write your code here
-        if(nums == null || nums.length == 0)
-            return;
-        qsort(nums, 0, nums.length - 1);
-    }
-
-    public void qsort(int[] nums, int l, int r){
-        if(l >= r) return;
-        int index = partition(nums, l, r);
-        qsort(nums, l, index-1);
-        qsort(nums, index+1, r);
-    }
-
-    private int partition(int[] nums, int l, int r){
-        int left = l, right = r;
-        int pivot = nums[left];
-        while(left < right){
-            while(left < right && nums[right] >= pivot){
-                right --;
-            }
-            nums[left] = nums[right];
-
-            while(left < right && nums[left] <= pivot){
-                left ++;
-            }
-            nums[right] = nums[left];
-        }
-        nums[left] = pivot;
-        return left;
-    }
-}
+class Solution {    /**     * @param nums: A list of integer which is 0, 1 or 2      * @return: nothing     */    public void sortColors(int[] nums) {        // write your code here        if(nums == null || nums.length == 0)            return;        qsort(nums, 0, nums.length - 1);    }    public void qsort(int[] nums, int l, int r){        if(l >= r) return;        int index = partition(nums, l, r);        qsort(nums, l, index-1);        qsort(nums, index+1, r);    }    private int partition(int[] nums, int l, int r){        int left = l, right = r;        int pivot = nums[left];        while(left < right){            while(left < right && nums[right] >= pivot){                right --;            }            nums[left] = nums[right];            while(left < right && nums[left] <= pivot){                left ++;            }            nums[right] = nums[left];        }        nums[left] = pivot;        return left;    }}
 ```
 

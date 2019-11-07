@@ -20,10 +20,7 @@ The largest impossible number \(if it exists\) will be no larger than 2,000,000,
 ## SAMPLE INPUT \(file nuggets.in\)
 
 ```text
-3
-3
-6
-10
+33610
 ```
 
 ## OUTPUT FORMAT
@@ -51,31 +48,6 @@ can[j] = can[j-nuggets[i]] or can[j]
 ```
 
 ```text
-class Nuggets:
-    def getMaxNum(self,N,nuggets):
-        sorted(nuggets)
-        maxValue = nuggets[-1]*nuggets[-2]
-
-        ngcd = nuggets[0]
-        for n in nuggets[1:]:
-            ngcd = gcd(ngcd,n)
-        if ngcd != 1:
-            return 0
-
-        can = [0]*(maxValue+1)
-        can[0] = 1
-
-        for i in range(N):
-            for j in range(nuggets[i], maxValue+1):
-                can[j] = can[j-nuggets[i]] or can[j]
-
-        for i in range(len(can)-1, -1,-1):
-            if not can[i]:
-                return i
-        return maxValue
-nuggets = [3,6,10]
-n = Nuggets()
-ret = n.getMaxNum(3,nuggets)
-print(ret)
+class Nuggets:    def getMaxNum(self,N,nuggets):        sorted(nuggets)        maxValue = nuggets[-1]*nuggets[-2]        ngcd = nuggets[0]        for n in nuggets[1:]:            ngcd = gcd(ngcd,n)        if ngcd != 1:            return 0        can = [0]*(maxValue+1)        can[0] = 1        for i in range(N):            for j in range(nuggets[i], maxValue+1):                can[j] = can[j-nuggets[i]] or can[j]        for i in range(len(can)-1, -1,-1):            if not can[i]:                return i        return maxValuenuggets = [3,6,10]n = Nuggets()ret = n.getMaxNum(3,nuggets)print(ret)
 ```
 

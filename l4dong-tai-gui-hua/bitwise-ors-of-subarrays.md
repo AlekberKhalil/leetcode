@@ -9,39 +9,19 @@ Return the number of possible results. \(Results that occur more than once are o
 **Example 1:**
 
 ```text
-Input: 
-[0]
-Output: 
-1
-Explanation: 
-
-There is only one possible result: 0.
+Input: [0]Output: 1Explanation: There is only one possible result: 0.
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-[1,1,2]
-Output: 
-3
-Explanation: 
-
-The possible subarrays are [1], [1], [2], [1, 1], [1, 2], [1, 1, 2].
-These yield the results 1, 1, 2, 1, 3, 3.
-There are 3 unique values, so the answer is 3.
+Input: [1,1,2]Output: 3Explanation: The possible subarrays are [1], [1], [2], [1, 1], [1, 2], [1, 1, 2].These yield the results 1, 1, 2, 1, 3, 3.There are 3 unique values, so the answer is 3.
 ```
 
 **Example 3:**
 
 ```text
-Input: 
-[1,2,4]
-Output: 
-6
-Explanation: 
-
-The possible results are 1, 2, 3, 4, 6, and 7.
+Input: [1,2,4]Output: 6Explanation: The possible results are 1, 2, 3, 4, 6, and 7.
 ```
 
 **Note:**
@@ -71,12 +51,6 @@ The possible results are 1, 2, 3, 4, 6, and 7.
 需要存当前的bit or的set，新来的数和所有数bit or,**再加上自己。每次cur都union 入res**
 
 ```text
-class Solution:
-    def subarrayBitwiseORs(self, A: List[int]) -> int:        
-        cur,res = set(),set()
-        for i in A:
-            cur = {i|j for j in cur} | {i}
-            res |= cur
-        return len(res)
+class Solution:    def subarrayBitwiseORs(self, A: List[int]) -> int:                cur,res = set(),set()        for i in A:            cur = {i|j for j in cur} | {i}            res |= cur        return len(res)
 ```
 

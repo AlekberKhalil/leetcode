@@ -10,19 +10,7 @@ Rotation is not allowed.
 **Example:**
 
 ```text
-Input: 
-[[5,4],[6,4],[6,7],[2,3]]
-Output: 
-3 
-
-Explanation: T
-he maximum number of envelopes you can Russian doll is 
-3
- ([2,3] =
->
- [5,4] =
->
- [6,7]).
+Input: [[5,4],[6,4],[6,7],[2,3]]Output: 3 Explanation: The maximum number of envelopes you can Russian doll is 3 ([2,3] => [5,4] => [6,7]).
 ```
 
 分析
@@ -36,20 +24,6 @@ he maximum number of envelopes you can Russian doll is
 4 dp这里存的是某位置最大的height。
 
 ```text
-class Solution:
-    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:
-        envelopes.sort(key = lambda x : (x[0],-x[1]))
-        n = len(envelopes)
-        dp = []
-        res = 0
-
-        for w,h in envelopes:
-            ind = bisect.bisect_left(dp,h)
-            if ind == len(dp):
-                dp.append(h)
-                res+=1
-            else:
-                dp[ind] = h
-        return res
+class Solution:    def maxEnvelopes(self, envelopes: List[List[int]]) -> int:        envelopes.sort(key = lambda x : (x[0],-x[1]))        n = len(envelopes)        dp = []        res = 0        for w,h in envelopes:            ind = bisect.bisect_left(dp,h)            if ind == len(dp):                dp.append(h)                res+=1            else:                dp[ind] = h        return res
 ```
 

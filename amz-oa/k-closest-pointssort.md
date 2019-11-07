@@ -23,31 +23,6 @@ return`[[1,1],[2,5],[4,4]]`
 **minheap pop k times**
 
 ```text
-"""
-Definition for a point.
-class Point:
-    def __init__(self, a=0, b=0):
-        self.x = a
-        self.y = b
-"""
-
-class Solution:
-    """
-    @param points: a list of points
-    @param origin: a point
-    @param k: An integer
-    @return: the k closest points
-    """
-    def kClosest(self, points, origin, k):
-        # write your code here
-        n = len(points)
-        if k > n:
-            return []
-        nList = [[(i.x  - origin.x)**2 + (i.y-origin.y)**2,i.x,i.y] for i in points]
-        nList.sort()
-        res = []
-        for i in range(k):
-            res.append(Point(nList[i][1],nList[i][2]))
-        return res
+"""Definition for a point.class Point:    def __init__(self, a=0, b=0):        self.x = a        self.y = b"""class Solution:    """    @param points: a list of points    @param origin: a point    @param k: An integer    @return: the k closest points    """    def kClosest(self, points, origin, k):        # write your code here        n = len(points)        if k > n:            return []        nList = [[(i.x  - origin.x)**2 + (i.y-origin.y)**2,i.x,i.y] for i in points]        nList.sort()        res = []        for i in range(k):            res.append(Point(nList[i][1],nList[i][2]))        return res
 ```
 

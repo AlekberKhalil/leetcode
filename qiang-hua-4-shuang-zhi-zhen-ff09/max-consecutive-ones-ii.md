@@ -5,15 +5,7 @@ Given a binary array, find the maximum number of consecutive 1s in this array if
 **Example 1:**
 
 ```text
-Input:
- [1,0,1,1,0]
-
-Output:
- 4
-
-Explanation:
- Flip the first zero will get the the maximum number of consecutive 1s.
-    After flipping, the maximum number of consecutive 1s is 4.
+Input: [1,0,1,1,0]Output: 4Explanation: Flip the first zero will get the the maximum number of consecutive 1s.    After flipping, the maximum number of consecutive 1s is 4.
 ```
 
 **Note:**
@@ -38,16 +30,6 @@ What if the input numbers come in one by one as an**infinite stream**? In other 
 还是Map思想，不过就2个数，直接判断counter了
 
 ```text
-class Solution:
-    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
-        s,e,counter, ll,maxLen=0,0,0, len(nums),0
-        while e < ll:
-            counter = counter if nums[e] == 1 else counter+1
-            e = e+1
-            while counter > 1:
-                counter = counter if nums[s] == 1 else counter-1
-                s = s+1
-            maxLen = max(maxLen, e - s)
-        return maxLen
+class Solution:    def findMaxConsecutiveOnes(self, nums: List[int]) -> int:        s,e,counter, ll,maxLen=0,0,0, len(nums),0        while e < ll:            counter = counter if nums[e] == 1 else counter+1            e = e+1            while counter > 1:                counter = counter if nums[s] == 1 else counter-1                s = s+1            maxLen = max(maxLen, e - s)        return maxLen
 ```
 

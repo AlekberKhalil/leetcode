@@ -31,24 +31,6 @@ Please optimize your algorithm to use less time and space. The input size may be
 3、如果不满足2，比如19后面应该接2而不是20，这时候应该将19除以10再加一，比如n=500，399的下一个应该是4，那就是除以十，个位还是9，继续除以10，得到3，加一得到4。
 
 ```text
-class Solution:
-    def lexicalOrder(self, n):
-        """
-        :type n: int
-        :rtype: List[int]
-        """
-        cur = 1
-        ret = []
-        for i in range(n):
-            ret.append(cur)
-            if cur*10 <=n:
-                cur *= 10
-            elif cur%10!=9 and cur+1<=n:
-                cur += 1
-            else:
-                while (cur//10)%10 == 9:
-                    cur//=10
-                cur=(cur//10)+1
-        return ret
+class Solution:    def lexicalOrder(self, n):        """        :type n: int        :rtype: List[int]        """        cur = 1        ret = []        for i in range(n):            ret.append(cur)            if cur*10 <=n:                cur *= 10            elif cur%10!=9 and cur+1<=n:                cur += 1            else:                while (cur//10)%10 == 9:                    cur//=10                cur=(cur//10)+1        return ret
 ```
 

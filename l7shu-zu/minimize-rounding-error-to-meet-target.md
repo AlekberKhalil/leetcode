@@ -7,31 +7,13 @@ Return the string`"-1"`if the rounded array is impossible to sum to`target`. Oth
 **Example 1:**
 
 ```text
-Input: 
-prices = 
-["0.700","2.800","4.900"]
-, target = 
-8
-Output: 
-"1.000"
-Explanation: 
-
-Use Floor, Ceil and Ceil operations to get (0.7 - 0) + (3 - 2.8) + (5 - 4.9) = 0.7 + 0.2 + 0.1 = 1.0 .
+Input: prices = ["0.700","2.800","4.900"], target = 8Output: "1.000"Explanation: Use Floor, Ceil and Ceil operations to get (0.7 - 0) + (3 - 2.8) + (5 - 4.9) = 0.7 + 0.2 + 0.1 = 1.0 .
 ```
 
 **Example 2:**
 
 ```text
-Input: 
-prices = 
-["1.500","2.500","3.500"]
-, target = 
-10
-Output: 
-"-1"
-Explanation: 
-
-It is impossible to meet the target.
+Input: prices = ["1.500","2.500","3.500"], target = 10Output: "-1"Explanation: It is impossible to meet the target.
 ```
 
 **Note:**
@@ -69,17 +51,6 @@ int和floor差不多，也是切头，3 = 3.000 True
 format用法：**"{:.3f}".format\(res\)**
 
 ```text
-from math import ceil,floor
-class Solution:
-    def minimizeError(self, prices: List[str], target: int) -> str:
-        prices = list(map(float,prices))
-        lg,sm = int(sum(map(ceil,prices))),sum(map(int,prices))
-        if not sm<=target<=lg:
-            return "-1"
-        m = lg-target
-        prices = list(filter(lambda x: x!=int(x),prices))
-        prices.sort(key = lambda x: (x-int(x)))
-        res = sum(x-int(x) for x in prices[:m]) + sum(ceil(x)-x for x in prices[m:])
-        return "{:.3f}".format(res)
+from math import ceil,floorclass Solution:    def minimizeError(self, prices: List[str], target: int) -> str:        prices = list(map(float,prices))        lg,sm = int(sum(map(ceil,prices))),sum(map(int,prices))        if not sm<=target<=lg:            return "-1"        m = lg-target        prices = list(filter(lambda x: x!=int(x),prices))        prices.sort(key = lambda x: (x-int(x)))        res = sum(x-int(x) for x in prices[:m]) + sum(ceil(x)-x for x in prices[m:])        return "{:.3f}".format(res)
 ```
 

@@ -15,29 +15,6 @@ Design an algorithm to find the maximum profit. You may complete at most two tra
 解答：
 
 ```text
-public int maxProfit(int[] prices) {
-        // write your code here
-        if(prices == null || prices.length == 0 )
-            return 0;
-        int minPrice = prices[0];//初始化又错了！！！
-        int[] left = new int[prices.length];
-        for(int i = 1; i < prices.length; i++){
-            left[i] = Math.max(prices[i] - minPrice, left[i-1]);//还是选择前i个最大的利润
-            minPrice = Math.min(minPrice, prices[i]);
-        }
-
-         int[] right = new int[prices.length];
-         int maxPrice = prices[prices.length-1];
-        for(int i = prices.length-2; i >= 0; i--){
-            right[i] = Math.max(maxPrice - prices[i], right[i+1]);
-            maxPrice = Math.max(maxPrice, prices[i]);
-        }
-
-        int ret = 0;
-        for(int i = 0; i < prices.length; i++){
-            ret = Math.max(ret, left[i] + right[i]);
-        }
-        return ret;
-    }
+public int maxProfit(int[] prices) {        // write your code here        if(prices == null || prices.length == 0 )            return 0;        int minPrice = prices[0];//初始化又错了！！！        int[] left = new int[prices.length];        for(int i = 1; i < prices.length; i++){            left[i] = Math.max(prices[i] - minPrice, left[i-1]);//还是选择前i个最大的利润            minPrice = Math.min(minPrice, prices[i]);        }         int[] right = new int[prices.length];         int maxPrice = prices[prices.length-1];        for(int i = prices.length-2; i >= 0; i--){            right[i] = Math.max(maxPrice - prices[i], right[i+1]);            maxPrice = Math.max(maxPrice, prices[i]);        }        int ret = 0;        for(int i = 0; i < prices.length; i++){            ret = Math.max(ret, left[i] + right[i]);        }        return ret;    }
 ```
 

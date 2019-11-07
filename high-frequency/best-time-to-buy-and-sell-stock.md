@@ -13,17 +13,6 @@ If you were only permitted to complete at most one transaction \(ie, buy one and
 解答：
 
 ```text
-public int maxProfit(int[] prices) {
-        // write your code here
-        if(prices == null || prices.length == 0 )
-        return 0;
-        int minPrice = Integer.MAX_VALUE, maxP = 0;//初始化每次都错！！！
-        for(int i = 0; i < prices.length; i++){
-            maxP = Math.max((prices[i] - minPrice), maxP);
-            minPrice = Math.min(minPrice, prices[i]);
-        }
-        return maxP;
-
-    }
+public int maxProfit(int[] prices) {        // write your code here        if(prices == null || prices.length == 0 )        return 0;        int minPrice = Integer.MAX_VALUE, maxP = 0;//初始化每次都错！！！        for(int i = 0; i < prices.length; i++){            maxP = Math.max((prices[i] - minPrice), maxP);            minPrice = Math.min(minPrice, prices[i]);        }        return maxP;    }
 ```
 

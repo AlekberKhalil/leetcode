@@ -1,6 +1,10 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Monotonic Queue/Stack](monotonic-queue-stack/README.md)
+  * [Online Stock Span](monotonic-queue-stack/online-stock-span.md)
+  * [Daily Temperatures](monotonic-queue-stack/daily-temperatures.md)
+  * [Shortest Subarray with Sum at Least K](monotonic-queue-stack/shortest-subarray-with-sum-at-least-k.md)
 * [Wish](wish/README.md)
   * [Get Relations](wish/get-relations.md)
 * [braze OA](braze-oa.md)
@@ -67,6 +71,7 @@
   * [3Sum Smaller](high-frequency/3sum-smaller.md)
   * [Best Time to Buy and Sell Stock with Cooldown](high-frequency/best-time-to-buy-and-sell-stock-with-cooldown.md)
 * [练习](lian-xi/README.md)
+  * [Maximal Rectangle](lian-xi/maximal-rectangle.md)
   * [Number Complement](lian-xi/number-complement.md)
   * [Maximum XOR of Two Numbers in an Array](lian-xi/maximum-xor-of-two-numbers-in-an-array.md)
   * [Reconstruct Original Digits from English](lian-xi/reconstruct-original-digits-from-english.md)

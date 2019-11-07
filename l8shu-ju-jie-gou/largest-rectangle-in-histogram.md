@@ -1,6 +1,6 @@
 # Largest Rectangle in Histogram
 
-Givennnon-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
+Given nnon-negative integers representing the histogram's bar height where the width of each bar is 1, find the area of largest rectangle in the histogram.
 
 ![](https://leetcode.com/static/images/problemset/histogram.png)
 
@@ -33,27 +33,16 @@ heights\[temp\] \* \(**s.isEmpty\(\) ? i** : i - s.peek\(\) - 1\)
 算中间有几条线段，可以直接i-j
 
 ```text
-class Solution {
-    public int largestRectangleArea(int[] heights) {
-        int n = heights.length;
-        Stack<Integer> s = new Stack<Integer>();
-        int max = 0;
+class Solution {    public int largestRectangleArea(int[] heights) {        int n = heights.length;        Stack<Integer> s = new Stack<Integer>();        int max = 0;        for(int i = 0; i <= n; ){             int h = (i == n ? 0 : heights[i]);            if(s.isEmpty() || heights[s.peek()] <= h){                s.push(i ++);            }else{                                int temp = s.pop();                //此时的s.peek（）是左边第一个比当前top元素小的数                //理解的话就是当前top高度能维持多久，比如图中1,2，中间5，6都可以维持2的高度，直到1不行了                //当前处于i是短的且不动，栈里往前找也是短的，其实是取中间的                //最后栈里没数了用i，可以理解为最后一个数或者前面没有数比它小了，直接起点为0，终点为i                max = Math.max(max, heights[temp] * (s.isEmpty() ?  i : i - s.peek() - 1));            }                   }      return max;      }}
+```
 
-        for(int i = 0; i <= n; ){ 
-            int h = (i == n ? 0 : heights[i]);
-            if(s.isEmpty() || heights[s.peek()] <= h){
-                s.push(i ++);
-            }else{                
-                int temp = s.pop();
-                //此时的s.peek（）是左边第一个比当前top元素小的数
-                //理解的话就是当前top高度能维持多久，比如图中1,2，中间5，6都可以维持2的高度，直到1不行了
-                //当前处于i是短的且不动，栈里往前找也是短的，其实是取中间的
-                //最后栈里没数了用i，可以理解为最后一个数或者前面没有数比它小了，直接起点为0，终点为i
-                max = Math.max(max, heights[temp] * (s.isEmpty() ?  i : i - s.peek() - 1));
-            }           
-        }
-      return max;  
-    }
-}
+
+
+找左右边界，so bar\[i\] must be the right boundary \(exclusive\) of the rectangle, and the previous bar in the stack is the first one that is shorter than the popped one so it must be the left boundary \(also exclusive\). Then we find the rectangle.
+
+**注意这里heights append 0和stack加入-1的做法。**
+
+```text
+class Solution:    def largestRectangleArea(self, heights: List[int]) -> int:        res = 0        stack = [-1]        heights.append(0)        for i,h in enumerate(heights):            while h < heights[stack[-1]]:                                hh = heights[stack.pop()]                ww = i - stack[-1] - 1                res = max(res, hh*ww)            stack.append(i)        #heights.pop()        return res                                                
 ```
 

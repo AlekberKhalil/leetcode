@@ -7,15 +7,13 @@ Given an array of integers `A` sorted in non-decreasing order, return an array o
 **Example 1:**
 
 ```text
-Input: [-4,-1,0,3,10]
-Output: [0,1,9,16,100]
+Input: [-4,-1,0,3,10]Output: [0,1,9,16,100]
 ```
 
 **Example 2:**
 
 ```text
-Input: [-7,-3,2,3,11]
-Output: [4,9,9,49,121]
+Input: [-7,-3,2,3,11]Output: [4,9,9,49,121]
 ```
 
 **Note:**

@@ -23,41 +23,6 @@ For \[4, 5, 1, 2, 3\] and target=0, return -1.
 解法：
 
 ```text
-public int search(int[] A, int target) {
-        // write your code here
-        if(A.length == 0)
-        return -1;
-
-        int s = 0, e = A.length - 1;
-
-        while(s + 1 < e){
-            int m = s + (e - s)/2;
-            if (A[m] == target) {
-                return m;
-            } 
-            if(A[m] > A[s]){//m在上半段
-                if(A[s] <= target && target <= A[m]){//在单调递增区间才能判定，否则还是2条断线，丢回去继续while
-                    e = m;
-                }else{
-                    s = m;
-                }
-            }
-            else{
-                if(A[m] <= target && target <= A[e]){
-                    s = m;
-                }else{
-                    e = m;
-                }
-            }
-        }
-
-        if(A[s] == target)
-            return s;
-
-        if(A[e] == target)
-            return e;
-
-            return -1;
-    }
+public int search(int[] A, int target) {        // write your code here        if(A.length == 0)        return -1;        int s = 0, e = A.length - 1;        while(s + 1 < e){            int m = s + (e - s)/2;            if (A[m] == target) {                return m;            }             if(A[m] > A[s]){//m在上半段                if(A[s] <= target && target <= A[m]){//在单调递增区间才能判定，否则还是2条断线，丢回去继续while                    e = m;                }else{                    s = m;                }            }            else{                if(A[m] <= target && target <= A[e]){                    s = m;                }else{                    e = m;                }            }        }        if(A[s] == target)            return s;        if(A[e] == target)            return e;            return -1;    }
 ```
 

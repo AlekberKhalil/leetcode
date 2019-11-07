@@ -11,26 +11,7 @@ Exclusive time of a function is defined as the time spent within this function, 
 **Example 1:**
 
 ```text
-Input:
-
-n = 2
-logs = 
-["0:start:0",
- "1:start:2",
- "1:end:5",
- "0:end:6"]
-
-Output:
-[3, 4]
-
-Explanation:
-
-Function 0 starts at time 0, then it executes 2 units of time and reaches the end of time 1. 
-Now function 0 
-calls function 1
-, function 1 starts at time 2, executes 4 units of time and end at time 5.
-Function 0 is running again at time 6, and also end at the time 6, thus executes 1 unit of time. 
-So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally execute 4 units of time.
+Input:n = 2logs = ["0:start:0", "1:start:2", "1:end:5", "0:end:6"]Output:[3, 4]Explanation:Function 0 starts at time 0, then it executes 2 units of time and reaches the end of time 1. Now function 0 calls function 1, function 1 starts at time 2, executes 4 units of time and end at time 5.Function 0 is running again at time 6, and also end at the time 6, thus executes 1 unit of time. So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally execute 4 units of time.
 ```
 
 **Note:**
@@ -48,27 +29,6 @@ So function 0 totally execute 2 + 1 = 3 units of time, and function 1 totally ex
 遇到end，当前start+duration,前面一个start-duration
 
 ```text
-class Solution:
-    def exclusiveTime(self, n, logs):
-        """
-        :type n: int
-        :type logs: List[str]
-        :rtype: List[int]
-        """
-        stack = []
-        ret = [0]*n
-        #ret = collections.defaultdict
-        for v in logs:
-            id, label, time = v.split(':')
-            if label == 'start':
-                stack.append((id,time))
-            else:
-                start = stack.pop()
-                duration = int(time) - int(start[1]) + 1
-                ret[int(start[0])] += duration
-                if stack:
-                    ret[int(stack[-1][0])] -= duration
-
-        return ret
+class Solution:    def exclusiveTime(self, n, logs):        """        :type n: int        :type logs: List[str]        :rtype: List[int]        """        stack = []        ret = [0]*n        #ret = collections.defaultdict        for v in logs:            id, label, time = v.split(':')            if label == 'start':                stack.append((id,time))            else:                start = stack.pop()                duration = int(time) - int(start[1]) + 1                ret[int(start[0])] += duration                if stack:                    ret[int(stack[-1][0])] -= duration        return ret
 ```
 

@@ -5,11 +5,7 @@ Given an array of integers and an integer**k**, you need to find the total numbe
 **Example 1:**
 
 ```text
-Input:
-nums = [1,1,1], k = 2
-
-Output:
- 2
+Input:nums = [1,1,1], k = 2Output: 2
 ```
 
 **Note:**
@@ -22,9 +18,7 @@ Output:
 本题只能two sum思想，不能用two pointers，因为可能有负数，所以当前的sum可能和前面好几个sum的diff == K. 用Map才能准确记录前面多少个subsum = cursum - K.\(含有负数抵消的情况）
 
 ```text
-PrefixSum + Dictionary
-> Time Complexity O(N)
-> Space Complexity O(N)
+PrefixSum + Dictionary> Time Complexity O(N)> Space Complexity O(N)
 ```
 
 这里没有presum数组，只有sum累积
@@ -40,28 +34,6 @@ PYTHON MAP:MAP.GET\(KEY,0\)
 ```
 
 ```text
-import collections
-
-class Solution:
-    def subarraySum(self, nums, k):
-        """
-        :type nums: List[int]
-        :type k: int
-        :rtype: int
-        """
-        if not nums:
-            return 0
-        ret = 0
-        n = len(nums)
-
-        map = collections.defaultdict(int)
-        map[0] = 1 #因为前面总是不包含，所以需要map[0]补足？
-        sum=0
-        for i in range(n):
-            sum+=nums[i]
-            if sum - k in map:
-                ret += map[sum- k]#+= 不是 =
-            map[sum] += 1 #+= 不是 =
-        return ret
+import collectionsclass Solution:    def subarraySum(self, nums, k):        """        :type nums: List[int]        :type k: int        :rtype: int        """        if not nums:            return 0        ret = 0        n = len(nums)        map = collections.defaultdict(int)        map[0] = 1 #因为前面总是不包含，所以需要map[0]补足？        sum=0        for i in range(n):            sum+=nums[i]            if sum - k in map:                ret += map[sum- k]#+= 不是 =            map[sum] += 1 #+= 不是 =        return ret
 ```
 

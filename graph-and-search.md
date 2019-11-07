@@ -15,10 +15,6 @@
 宽度优先搜索不会回溯，每个点只遍历一遍
 
 ```text
-private String replace(String s, int index, char c) {
-        char[] chars = s.toCharArray();
-        chars[index] = c;
-        return new String(chars);
-    }
+private String replace(String s, int index, char c) {        char[] chars = s.toCharArray();        chars[index] = c;        return new String(chars);    }
 ```
 

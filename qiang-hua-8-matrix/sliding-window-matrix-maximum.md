@@ -57,26 +57,6 @@ sum\[i\]\[j\]表示0-i－1行和0-j－1列所有元素的和。
 ## Answer
 
 ```text
-public int maxSlidingWindow2(int[][] matrix, int k) {
-        if(matrix == null || matrix.length == 0 || matrix[0].length == 0 || k > matrix.length || k > matrix[0].length){
-            return 0;
-        }
-        int n = matrix.length, m = matrix[0].length;
-        int[][] sum = new int[n + 1][m + 1];
-
-        for(int i = 1; i <= n; i ++){
-            for(int j = 1; j <= m; j ++){
-                sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i -1][j - 1] + matrix[i - 1][j - 1];
-            }
-        }
-
-        int max = Integer.MIN_VALUE;
-        for(int i = k + 1; i <= n; i ++) {
-            for (int j = k + 1; j <= m; j++) {
-                max = Math.max(max, sum[i][j] - sum [i - k][j] - sum[i][j - k] + sum[i - k][j - k]);
-            }
-        }
-        return max;
-    }
+public int maxSlidingWindow2(int[][] matrix, int k) {        if(matrix == null || matrix.length == 0 || matrix[0].length == 0 || k > matrix.length || k > matrix[0].length){            return 0;        }        int n = matrix.length, m = matrix[0].length;        int[][] sum = new int[n + 1][m + 1];        for(int i = 1; i <= n; i ++){            for(int j = 1; j <= m; j ++){                sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i -1][j - 1] + matrix[i - 1][j - 1];            }        }        int max = Integer.MIN_VALUE;        for(int i = k + 1; i <= n; i ++) {            for (int j = k + 1; j <= m; j++) {                max = Math.max(max, sum[i][j] - sum [i - k][j] - sum[i][j - k] + sum[i - k][j - k]);            }        }        return max;    }
 ```
 

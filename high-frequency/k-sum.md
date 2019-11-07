@@ -19,26 +19,7 @@ Return`2`.
 解法：
 
 ```text
-    public int kSum(int[] A, int k, int target) {
-        // write your code here
-        if(A== null || A.length == 0)
-            return 0;
-        int n = A.length;
-        int[][][] sum = new int[n+1][k+1][target+1];
-        sum[0][0][0] = 1;
-        for(int i = 1; i <= n; i ++){
-            sum[i][0][0] = 1;
-            for(int j = 1; j <= k; j ++){
-                for(int t = 0; t <= target; t ++){
-                    if(A[i-1] <= t){
-                        sum[i][j][t] = sum[i-1][j-1][t - A[i-1]];
-                    }
-                    sum[i][j][t] += sum[i-1][j][t];
-                }
-            }
-        }
-        return sum[n][k][target];
-    }
+    public int kSum(int[] A, int k, int target) {        // write your code here        if(A== null || A.length == 0)            return 0;        int n = A.length;        int[][][] sum = new int[n+1][k+1][target+1];        sum[0][0][0] = 1;        for(int i = 1; i <= n; i ++){            sum[i][0][0] = 1;            for(int j = 1; j <= k; j ++){                for(int t = 0; t <= target; t ++){                    if(A[i-1] <= t){                        sum[i][j][t] = sum[i-1][j-1][t - A[i-1]];                    }                    sum[i][j][t] += sum[i-1][j][t];                }            }        }        return sum[n][k][target];    }
 ```
 
 ## k Sum II

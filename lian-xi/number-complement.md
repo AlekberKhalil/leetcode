@@ -14,18 +14,14 @@ Given a positive integer, output its complement number. The complement strategy 
 
 
 ```text
-Input: 5
-Output: 2
-Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
+Input: 5Output: 2Explanation: The binary representation of 5 is 101 (no leading zero bits), and its complement is 010. So you need to output 2.
 ```
 
 **Example 2:**  
 
 
 ```text
-Input: 1
-Output: 0
-Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
+Input: 1Output: 0Explanation: The binary representation of 1 is 1 (no leading zero bits), and its complement is 0. So you need to output 0.
 ```
 
 分析
@@ -33,12 +29,6 @@ Explanation: The binary representation of 1 is 1 (no leading zero bits), and its
 1^num = num所有位相反，找到第一个 》num的数-1,都是11111。。。。
 
 ```text
-class Solution:
-    def findComplement(self, num: int) -> int:
-        i = 1
-        while i <= num:
-            i<<=1
-        return num^(i-1)
-        
+class Solution:    def findComplement(self, num: int) -> int:        i = 1        while i <= num:            i<<=1        return num^(i-1)        
 ```
 

@@ -11,12 +11,7 @@ Calculate the minimum number of cameras needed to monitor all nodes of the tree.
 ![](https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_01.png)
 
 ```text
-Input: 
-[0,0,null,0,0]
-Output: 
-1
-Explanation: 
-One camera is enough to monitor all nodes if placed as shown.
+Input: [0,0,null,0,0]Output: 1Explanation: One camera is enough to monitor all nodes if placed as shown.
 ```
 
 **Example 2:**
@@ -24,20 +19,13 @@ One camera is enough to monitor all nodes if placed as shown.
 ![](https://assets.leetcode.com/uploads/2018/12/29/bst_cameras_02.png)
 
 ```text
-Input: 
-[0,0,null,0,null,0,null,null,0]
-Output: 
-2
-
-Explanation:
- At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
+Input: [0,0,null,0,null,0,null,null,0]Output: 2Explanation: At least two cameras are needed to monitor all nodes of the tree. The above image shows one of the valid configurations of camera placement.
 ```
 
 Note:
 
 ```text
-The number of nodes in the given tree will be in the range [1, 1000].
-Every node has value 0.
+The number of nodes in the given tree will be in the range [1, 1000].Every node has value 0.
 ```
 
 分析
@@ -45,9 +33,7 @@ Every node has value 0.
 3个状态NOT\_MONITORED = 0
 
 ```text
-    MONITORED\_NOCAM = 1
-
-    MONITORED\_WITHCAM = 2
+    MONITORED\_NOCAM = 1    MONITORED\_WITHCAM = 2
 ```
 
 尽量往上放
@@ -59,38 +45,6 @@ Every node has value 0.
 3 直接返回被监视（可能儿子处放置
 
 ```text
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution:
-    def minCameraCover(self, root: TreeNode) -> int:
-        NOT_MONITORED = 0
-        MONITORED_NOCAM = 1
-        MONITORED_WITHCAM = 2
-        cameras = 0
-        if not root:
-                return 0
-
-        def dfs(root: TreeNode) -> int:
-            nonlocal cameras
-            if not root:
-                return MONITORED_NOCAM
-            left = dfs(root.left)
-            right = dfs(root.right)
-
-            if left == MONITORED_NOCAM and right ==MONITORED_NOCAM: 
-                return NOT_MONITORED
-            elif left == NOT_MONITORED or right == NOT_MONITORED:
-                cameras += 1
-                return MONITORED_WITHCAM            
-            else:
-                return MONITORED_NOCAM
-        top = dfs(root)
-
-        return cameras+1 if  top== NOT_MONITORED else cameras
+# Definition for a binary tree node.# class TreeNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = Noneclass Solution:    def minCameraCover(self, root: TreeNode) -> int:        NOT_MONITORED = 0        MONITORED_NOCAM = 1        MONITORED_WITHCAM = 2        cameras = 0        if not root:                return 0        def dfs(root: TreeNode) -> int:            nonlocal cameras            if not root:                return MONITORED_NOCAM            left = dfs(root.left)            right = dfs(root.right)            if left == MONITORED_NOCAM and right ==MONITORED_NOCAM:                 return NOT_MONITORED            elif left == NOT_MONITORED or right == NOT_MONITORED:                cameras += 1                return MONITORED_WITHCAM                        else:                return MONITORED_NOCAM        top = dfs(root)        return cameras+1 if  top== NOT_MONITORED else cameras
 ```
 

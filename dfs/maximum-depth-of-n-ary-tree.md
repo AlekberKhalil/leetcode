@@ -27,18 +27,6 @@ We should return its max depth, which is 3.
 DFS
 
 ```text
-"""
-# Definition for a Node.
-class Node:
-    def __init__(self, val, children):
-        self.val = val
-        self.children = children
-"""
-class Solution:
-    def maxDepth(self, root: 'Node') -> int:
-        if not root:
-            return 0
-
-        return 1+max([self.maxDepth(x) for x in root.children] or [0])
+"""# Definition for a Node.class Node:    def __init__(self, val, children):        self.val = val        self.children = children"""class Solution:    def maxDepth(self, root: 'Node') -> int:        if not root:            return 0        return 1+max([self.maxDepth(x) for x in root.children] or [0])
 ```
 

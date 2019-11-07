@@ -5,11 +5,7 @@ Given an integer array, your task is to find all the different possible increasi
 **Example:**
 
 ```text
-Input:
- [4, 6, 7, 7]
-
-Output:
- [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]
+Input: [4, 6, 7, 7]Output: [[4, 6], [4, 7], [4, 6, 7], [4, 6, 7, 7], [6, 7], [6, 7, 7], [7,7], [4,7,7]]
 ```
 
 **Note:**
@@ -29,20 +25,6 @@ dfs带start参数
 这里不能sort，因为要顺序比较大小。只能用set来去重。
 
 ```text
-class Solution:
-    def findSubsequences(self, nums: List[int]) -> List[List[int]]:
-        res = []
-        ll = len(nums)
-        def dfs(path,idx):
-            if len(path) >=2 :
-                res.append(path)
-            ss = set()#在本层一样的数字不能再选 
-            for i in range(idx,ll):        
-                if (not path or nums[i] >= path[-1]) and nums[i] not in ss:
-                    ss.add(nums[i])
-                    dfs(path + [nums[i]],i + 1)
-
-        dfs([],0)
-        return res
+class Solution:    def findSubsequences(self, nums: List[int]) -> List[List[int]]:        res = []        ll = len(nums)        def dfs(path,idx):            if len(path) >=2 :                res.append(path)            ss = set()#在本层一样的数字不能再选             for i in range(idx,ll):                        if (not path or nums[i] >= path[-1]) and nums[i] not in ss:                    ss.add(nums[i])                    dfs(path + [nums[i]],i + 1)        dfs([],0)        return res
 ```
 
