@@ -25,6 +25,8 @@
   * [Balanced Sales Array](twitter-oa/balanced-sales-array.md)
   * [Unique Twitter User Id Set](twitter-oa/unique-twitter-user-id-set.md)
 * [MS](ms/README.md)
+  * [Odd Even Linked List](ms/odd-even-linked-list.md)
+  * [Plus One Linked List](ms/plus-one-linked-list.md)
   * [Max Stack](ms/max-stack.md)
   * [Design Log Storage System](ms/design-log-storage-system.md)
   * [Longest Common Prefix](ms/longest-common-prefix.md)
