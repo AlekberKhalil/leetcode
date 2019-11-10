@@ -49,3 +49,21 @@ public class Solution {
 }
 ```
 
+
+
+python
+
+split 直接去空格 不需要特殊处理
+
+```text
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s = s[::-1]
+        s = s.strip().split()
+        return ' '.join([''.join(i.strip()[::-1]) for i in s])
+        
+        
+        
+        
+```
+

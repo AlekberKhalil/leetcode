@@ -14,6 +14,8 @@ In array`[1,2,3,4,5]`, the 1st largest element is`5`, 2nd largest element is`4`,
 
 分析：
 
+heapq.nlargest\(k,nums\)\[-1\]
+
 第k大，增序排列，所以是倒数起，第一大就是最后一个。
 
 可以二分，也可以Minheap，二分可以递归也可以不用helper

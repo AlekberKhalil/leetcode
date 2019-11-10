@@ -1,6 +1,6 @@
 # Continuous Subarray Sum（2 sum）
 
-Given a list of**non-negative**numbers and a target**integer**k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to the multiple of**k**, that is, sums up to n\*k where n is also an**integer**.
+Given a list of **non-negative** numbers and a target **integer** k, write a function to check if the array has a continuous subarray of size at least 2 that sums up to the multiple of **k**, that is, sums up to n\*k where n is also an **integer**.
 
 **Example 1:**
 
@@ -35,11 +35,7 @@ Explanation:
 
 分析
 
-2个loop做法：这里presum\[j\] - presum\[i\] 包括j 不包括i,根据题意这里j-i&gt;=2才行。 所以Presum计算的时候坐标后移一位。
-
-一个loop：其实这里还是2 sum问题。x = presum % k，如果X再次出现，直接隔得就是multiple of k。corner是k=0
-
-还是Index直接相减，留尾去头。i-j&gt;=2
+2个loop做法：这里**presum**\[j\] - presum\[i\] 包括j 不包括i,根据题意这里j-i&gt;=2才行。 所以Presum计算的时候坐标后移一位。
 
 自己版本：2个loop
 
@@ -91,7 +87,11 @@ class Solution:
         return False
 ```
 
-1个loop
+1个loop : map sum: index. 初始化{0,-1}
+
+其实这里还是2 sum问题。x = presum % k，如果X再次出现，直接隔得就是multiple of k。corner是k=0
+
+还是Index直接相减，留尾去头。i-j&gt;=2
 
 ```text
 class Solution:

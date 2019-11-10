@@ -66,7 +66,7 @@ class Solution(object):
         return dummy.next
 ```
 
-必须塞入list的index入tuple,防止value相同时候
+**必须塞入list的index入tuple,防止value相同时候,错半死！！！**
 
 ```text
 # Definition for singly-linked list.

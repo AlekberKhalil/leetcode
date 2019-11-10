@@ -12,6 +12,8 @@ The function twoSum should return indices of the two numbers such that they add 
 
 要返回下标 只能用Hash.如果要找多对组合的话 ，把==target的那对删一个数，然后继续。
 
+map : num: index
+
 解答：
 
 ```text

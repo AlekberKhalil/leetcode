@@ -70,3 +70,29 @@ class Solution {
 }
 ```
 
+分析
+
+初始就买，是负数，以后每天只要决定卖不卖。初始化是0
+
+```text
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        n = len(prices)
+        K = 2
+        dp = [[0] * (K+1) for _ in range(n+1)]
+        if n == 0:
+            return 0
+        for k in range(1, K+1):
+            preMax = dp[0][k-1] - prices[0] #初始就买 -，后来每天都是决定卖不卖
+            for i in range(1,n+1):
+                dp[i][k] = max(dp[i-1][k],prices[i-1] + preMax)
+                preMax = max(preMax, dp[i][k-1]-prices[i-1])
+        return dp[i][K]
+                
+        
+        
+                
+        
+            
+```
+

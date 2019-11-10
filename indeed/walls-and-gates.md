@@ -82,34 +82,25 @@ class Main {
 
 python
 
+不用 seen, 替代的是每次比较rooms\[nx\]\[ny\] &gt; rooms\[x\]\[y\] + 1， 不行就不入Q
+
 ```text
 class Solution:
-    """
-    @param rooms: m x n 2D grid
-    @return: nothing
-    """
-    def wallsAndGates(self, rooms):
-        # write your code here
-        N=len(rooms)
-        M=len(rooms[0])
-        INF = 2147483647
-        q = []
-        for i,r in enumerate(rooms):
-            for j,v in enumerate(r):
-                if v == 0:
-                    q.append(i*M+j)
+    def wallsAndGates(self, rooms: List[List[int]]) -> None:
+        """
+        Do not return anything, modify rooms in-place instead.
+        """
+        if not rooms:
+            return
+        n,m = len(rooms),len(rooms[0])
         d = [-1,0,1,0,-1]
-        # visited = [[0]*M for _ in range(N)]
+        q = [(x,y) for x in range(n) for y in range(m) if rooms[x][y] == 0]
+        
         while q:
-            cur = q.pop(0)
-            x,y=cur//M,cur%M
-
-            # visited[cur[0]][cur[1]] = 1
-            for i in range(len(d)-1):
-                nx,ny = x+d[i],y+d[i+1]
-                if nx < 0 or ny < 0 or nx >= N or ny >= M or rooms[nx][ny] < rooms[x][y] + 1:
-                    continue
-                q.append(nx*M+ny)
-                rooms[nx][ny] = rooms[x][y]+1
+            x,y  = q.pop()
+            for nx, ny in [(x+d[i],y+d[i+1]) for i in range(4)]:
+                if 0 <= nx < n and 0<= ny < m and rooms[nx][ny] != -1 and rooms[nx][ny] > rooms[x][y] + 1:
+                    rooms[nx][ny] = rooms[x][y] + 1
+                    q.append((nx,ny))
 ```
 

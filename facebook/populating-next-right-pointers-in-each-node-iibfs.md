@@ -40,23 +40,51 @@ BFS，最后一个node记得用i== n-1判断
 利用链表特性。每层都建个dummy。然后dummy指向前一层root。左右依次加入链表
 
 ```text
-class Solution:    # @param root, a tree link node    # @return nothing    
+class Solution:   
 	def connect(self, root):        
 		while root:
 			dummy = TreeLinkNode(0)
 			curc = dummy
-			while root:
-			    if root.left:
+			while root:根据本层的遍历连接孩子层
+					if root.left:
 			        curc.next = root.left
 			        curc = curc.next
 			    if root.right:
 			        curc.next = root.right
 			        curc = curc.next
 			    root = root.next
-			root = dummy.next
+			root = dummy.next	#root设置为孩子层	
 ```
 
+DFS Recursive
+
 ```text
-# Definition for binary tree with next pointer.# class TreeLinkNode:#     def __init__(self, x):#         self.val = x#         self.left = None#         self.right = None#         self.next = Noneclass Solution:    # @param root, a tree link node    # @return nothing    def connect(self, root):        while root:            dummy = TreeLinkNode(0)            curc = dummy            while root:                if root.left:                    curc.next = root.left                    curc = curc.next                if root.right:                    curc.next = root.right                    curc = curc.next                root = root.next            root = dummy.next
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, left, right, next):
+        self.val = val
+        self.left = left
+        self.right = right
+        self.next = next
+"""
+class Solution:
+    def connect(self, root: 'Node') -> 'Node':
+        
+        if not root:
+            return None
+        p = pre = Node(-1,None,None,None)
+        res = root
+        while root:
+            if root.left:
+                pre.next = root.left
+                pre = pre.next
+            if root.right:
+                pre.next = root.right
+                pre = pre.next
+            root = root.next
+        self.connect(p.next)
+        return res
+                    
 ```
 
