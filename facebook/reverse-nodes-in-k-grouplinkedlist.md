@@ -16,9 +16,13 @@ For k = 3, you should return: 3->2->1->4->5
 
 分析
 
-每个group里cur 和next翻转，记得只要翻k-1次，pre不要动. 翻完以后 利用pre要和前后group连接。设置好pre的next，是为了结果返回对的header
+每个group里cur 和next翻转，记得只要翻k-1次，pre不要动. 翻完以后 利用pre要和前后group连接。
 
-helper函数返回的是最后一个node，好作为将来下一个group的pre
+设置好pre的next，是为了结果返回对的header.
+
+group内翻转，新头（cur）next指针是好的，不用担心，要设置好新尾指针（也就是pre指向的原头）的next。同时注意将pre指向新头（cur）
+
+helper函数返回的是最后一个node\(tail\)，好作为将来下一个group的pre
 
 ```text
 # Definition for singly-linked list.

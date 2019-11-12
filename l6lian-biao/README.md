@@ -1,5 +1,13 @@
 # L6\_链表（快慢指针）
 
+必做：
+
+Reverse Nodes in k-Group
+
+reverse:
+
+翻转完头部指针OK，尾部指针需要重设。当前cur就是新头，所以返回头部反而简单。注意初始如果有pre.next = header。那么pre.next指向的是当前尾部，记得利用pre.next设置合适的Next指针。详情见Reverse Nodes in k-Group
+
 reverse linked list,Add Two Numbers II: 先把dummy和cur都相等，然后cur往后走。记得cur先铺好next,然后再跳到next：   cur.next = ...., cur = cur.next
 
 一步步走，不要next.next跳。可以每次先node.next = ....然后再node = node.next.
