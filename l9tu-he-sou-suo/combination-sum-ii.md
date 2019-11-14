@@ -23,6 +23,33 @@ A solution set is:
 
 分析
 
+注意这里 target == 0 加入res . 《0或者重复时候，不一样处理
+
+```text
+class Solution:
+    def combinationSum2(self, c: List[int], target: int) -> List[List[int]]:
+        c.sort()
+        res = []
+        n=len(c)
+        def dfs(pos,path,target):
+            if target == 0:
+                res.append(path)
+            
+            for i in range(pos,n ):
+                if c[i] > target:
+                    return
+                
+                if i!=pos and c[i]==c[i-1]:
+                    continue #！！！！！！
+                    
+                dfs(i+1,path+[c[i]],target - c[i])
+        dfs(0,[],target)             
+        return res
+                    
+                
+        
+```
+
 DSF带去重和带Pos：candidates\[i - 1\] == candidates\[i\] && !visited\[i-1\]
 
 ```text

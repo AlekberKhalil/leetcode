@@ -1,6 +1,10 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [BB](bb/README.md)
+  * [Convert Sorted List to Binary Search Tree](bb/convert-sorted-list-to-binary-search-tree.md)
+* [Math](math/README.md)
+  * [GCD](math/gcd.md)
 * [Monotonic Queue/Stack](monotonic-queue-stack/README.md)
   * [Online Stock Span](monotonic-queue-stack/online-stock-span.md)
   * [Daily Temperatures](monotonic-queue-stack/daily-temperatures.md)
@@ -574,6 +578,7 @@
   * [Rockers（01变形）](bei-bao-wen-ti/rockers01bian-xing-ff09.md)
 * [TODO](todo.md)
 * [Sort](sort/README.md)
+  * [insertion](sort/insertion.md)
   * [MergeSort](sort/mergesort.md)
 * [Karat](karat/README.md)
   * [Evaluate Division](karat/evaluate-division.md)

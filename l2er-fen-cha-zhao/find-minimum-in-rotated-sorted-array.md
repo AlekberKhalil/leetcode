@@ -39,3 +39,24 @@ class Solution {
 }
 ```
 
+
+
+python
+
+```text
+class Solution:
+    def findMin(self, nums: List[int]) -> int:
+        if not nums:
+            retunr -1
+        t = nums[-1]
+        s,e = 0,len(nums)-1
+        while s <= e:
+            m = (s+e)//2
+            if nums[m] <= t:
+                e = m -1
+            else:
+                s = m + 1
+        return nums[s]
+        
+```
+
