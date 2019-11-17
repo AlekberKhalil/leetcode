@@ -33,6 +33,65 @@ deserialize就是顺序按照i, 2i+1,2i+2来拼装树。
 
 其实正确string是：\[1,2,null,null,3,4,null,null,5,null,null\]
 
+RECURSIVE
+
+ser:遇到none则加入‘null, ’ 记得str\(root.val\)
+
+de：global deque popleft。
+
+
+
+```text
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Codec:
+
+    def serialize(self, root):
+        """Encodes a tree to a single string.
+        
+        :type root: TreeNode
+        :rtype: str
+        """
+        if not root:
+            return 'null,'
+        return str(root.val) + ',' + self.serialize(root.left)+self.serialize(root.right)
+        
+        
+
+    def deserialize(self, data):
+        """Decodes your encoded data to tree.
+        
+        :type data: str
+        :rtype: TreeNode
+        """
+        q = collections.deque(data.split(','))
+        def helper():
+            nonlocal q
+            if q:
+                cur = q.popleft()
+                if cur == 'null':
+                    return None
+                root = TreeNode(cur)
+                root.left = helper()
+                root.right = helper()
+                return root
+        return helper()
+        
+        
+        
+
+# Your Codec object will be instantiated and called as such:
+# codec = Codec()
+# codec.deserialize(codec.serialize(root))
+```
+
+
+
 BFS
 
 ```text

@@ -15,6 +15,7 @@
 * [Twilio](twilio/README.md)
   * [Subarray Sums Divisible by K](twilio/subarray-sums-divisible-by-k.md)
 * [Expedia oa](expedia-oa/README.md)
+  * [Construct Binary Search Tree from Preorder Traversal](expedia-oa/construct-binary-search-tree-from-preorder-traversal.md)
   * [Valid Triangle Number](expedia-oa/valid-triangle-number.md)
   * [String Compression](expedia-oa/string-compression.md)
 * [Gusto](gusto.md)
