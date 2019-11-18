@@ -157,11 +157,25 @@ anagram 顺序不需要，所以**Map**
 
 一个map存char count。头尾指针，尾前进到满足条件，头缩进到不满足条件。2个while一个头一个尾。注意min/max的位置
 
-双指针模板：[https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.](https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/Sliding-Window-algorithm-template-to-solve-all-the-Leetcode-substring-search-problem.)
-
 模板不能做这个Longest Substring with At Least K Repeating Characters（递归）
 
-[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)
+[Subarrays with K Different Integers](https://leetcode.com/problems/subarrays-with-k-different-integers) exact = atmost\(k\)-atmost\(k-1\)
+
+[Longest Substring with At Least K Repeating Characters](https://leetcode.com/problems/longest-substring-with-at-least-k-repeating-characters) 不能模板
+
+[Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k) 单调栈
+
+[Longest Substring with At Most K Distinct Characters](https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters) 模板
+
+[Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+
+[Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/)  
+
+
+
+
+
+
 
 ```text
 int findSubstring(string s){

@@ -16,6 +16,8 @@ O\(n\), n is the size of the string_s_.
 
 分析
 
+count 记录distinct 数目，所以是 while cnt &gt; k
+
 start的while 条件是while counter&gt;k 不是counter+=k
 
 ```text

@@ -14,17 +14,20 @@ stack里存的是Index
 
 ```text
 class Solution:
-    def dailyTemperatures(self, T: List[int]) -> List[int]:
-        s = []
-        res = [0]*len(T)
-        for i,x in enumerate(T):           
-            while s and T[s[-1]] < x:
-                lastIndex = s.pop()
-                res[lastIndex] = i-lastIndex
-            s.append(i)
-        return res
+    def isValid(self, s: str) -> bool:
+        left ='([{'
+        right = ')]}'
+        stack = []
+        for i in s:
+            if i in left:
+                stack.append(i)
+            elif i in right:
+                if not stack or left.find(stack[-1]) != right.find(i):
+                    return False
+                stack.pop()
+        return True if not stack else False
                 
-                
+                    
                 
         
 ```

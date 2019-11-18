@@ -19,23 +19,7 @@ For`"bbbbb"`the longest substring is`"b"`, with the length of`1`.
 
 答案
 
-```text
-public int lengthOfLongestSubstring(String s) {
-        // write your code here
-        int[] cs = new int[256];
-        int n = s.length();
-        int ret = 0;
-        for(int i = 0, j = 0; i < n; i ++){
-            while(j < n & cs[s.charAt(j)] == 0){
-                cs[s.charAt(j)]++;
-                j ++;
-            }
-            ret = Math.max(ret, j - i);
-            cs[s.charAt(i)] = 0;
-        }
-        return ret;
-    }
-```
+模板： cnt记录repeating char的数目，所以是while cnt &gt; 0
 
 ```text
 #注意进出counter while的几个条件
@@ -65,6 +49,24 @@ class Solution:
                 start+=1
             d=max(d,end-start)
         return d
+```
+
+```text
+public int lengthOfLongestSubstring(String s) {
+        // write your code here
+        int[] cs = new int[256];
+        int n = s.length();
+        int ret = 0;
+        for(int i = 0, j = 0; i < n; i ++){
+            while(j < n & cs[s.charAt(j)] == 0){
+                cs[s.charAt(j)]++;
+                j ++;
+            }
+            ret = Math.max(ret, j - i);
+            cs[s.charAt(i)] = 0;
+        }
+        return ret;
+    }
 ```
 
 不用Map计算counter，用set也行

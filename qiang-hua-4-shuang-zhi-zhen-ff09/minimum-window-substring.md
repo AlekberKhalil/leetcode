@@ -177,7 +177,7 @@ class Solution:
 
 根据模板写的
 
-一个map存char count。头尾指针，尾前进到满足条件，头缩进到不满足条件。2个while一个头一个尾。注意min/max的位置
+**一个map存char count。头尾指针，尾前进到满足条件，头缩进到不满足条件。2个while一个头一个尾。注意min/max的位置**
 
 ```text
 这里注意
