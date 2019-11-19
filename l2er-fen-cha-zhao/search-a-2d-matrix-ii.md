@@ -31,9 +31,10 @@ Given target = `20`, return `false`.
 
 **这里注意 i&lt;&lt;1 得到的是整数和下限！！！！**
 
-第二种做法，直接起始点从右上角开始，或者向下或者向左。
+
 
 ```text
+
 class Solution:
     def searchMatrix(self, matrix, target):
         """
@@ -67,5 +68,33 @@ class Solution:
         
 ```
 
+第二种做法，直接起始点从右上角开始，或者向下或者向左。
 
+```text
+class Solution:
+    def searchMatrix(self, matrix, target):
+        """
+        :type matrix: List[List[int]]
+        :type target: int
+        :rtype: bool
+        """
+        if not matrix or not matrix[0]:
+            return False
+        n,m = len(matrix),len(matrix[0])
+        i,j=0,m-1
+        while i < n and j >=0:
+            if matrix[i][j] > target:
+                j -= 1
+            elif matrix[i][j] < target:
+                i += 1
+            else:
+                return True
+        return False
+            
+            
+        
+                
+            
+        
+```
 
