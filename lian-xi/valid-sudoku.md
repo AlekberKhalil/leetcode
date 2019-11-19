@@ -13,7 +13,19 @@ A valid Sudoku board \(partially filled\) is not necessarily solvable. Only the 
 
 分析
 
-三个数组row\[i\]\[val\] ，col\[j\]\[val\] ，block\[index\]\[val\] 。此处block的index = i / 3 \* 3 + j / 3
+三个数组row\[i\]\[val\] ，col\[j\]\[val\] ，block\[index\]\[val\] 。此处block的index = i / 3 \* 3 + j / 3.  
+
+\( i / 3, j / 3\) 是块的坐标，i / 3 \* 3 + j / 3直接定位到第几块，相当是 i\*row+j\(island里定位常用）
+
+2种块坐标表达法
+
+```text
+int row = i - i%3, column = j - j%3;
+ if(board[row+x][column+y] == val) return false;
+ 
+ int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3; 
+ board[blkrow + i / 3][blkcol + i % 3] == num
+```
 
 val就是数字1-9，类似dp里背包用val做Index
 

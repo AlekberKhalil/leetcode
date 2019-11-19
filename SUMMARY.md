@@ -1,6 +1,8 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Wish](wish-1/README.md)
+  * [Sudoku Solver](wish-1/sudoku-solver.md)
 * [BB](bb/README.md)
   * [Convert Sorted List to Binary Search Tree](bb/convert-sorted-list-to-binary-search-tree.md)
 * [Math](math/README.md)
