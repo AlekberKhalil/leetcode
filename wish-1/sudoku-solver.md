@@ -28,7 +28,7 @@ A sudoku puzzle...
 
 dfs或者brute force，就是对于每个格子，loop 1-9尝试放入，然后下一步dfs，可以就返回true，不可以就reset cell
 
-注意这里先check再放入，为了后面check方便
+**注意这里先check再放入，为了后面check方便,不污染原matrix**
 
 string.digits去掉0，本身就是char，不需要str\(i\)
 
