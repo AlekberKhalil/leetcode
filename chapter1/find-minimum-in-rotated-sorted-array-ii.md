@@ -16,39 +16,3 @@ The array may contain duplicates.
 
 解法：
 
-```text
-    public int findMin(int[] num) {
-        // write your code here
-        if(num.length == 0)
-        return -1;
-
-    int s = 0, e = num.length - 1;
-    int target = num[e];
-
-    while(s + 1 < e){
-        int m = s + (e - s)/2;
-        if(num[m] == num[e]){
-            e--;
-        }else if(num[m] < target){
-            e = m;
-        }else{
-            s = m;
-        }
-    }
-
-    if(num[s] < target)//不是<=
-        return num[s];
-
-    return num[e];
-    //return Math.min(num[s], num[e]);也行
-    }
-```
-
-
-
-
-
-```text
-
-```
-
