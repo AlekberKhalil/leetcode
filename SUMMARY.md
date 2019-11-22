@@ -87,7 +87,7 @@
   * [3Sum Smaller](high-frequency/3sum-smaller.md)
   * [Best Time to Buy and Sell Stock with Cooldown](high-frequency/best-time-to-buy-and-sell-stock-with-cooldown.md)
 * [练习](lian-xi/README.md)
-  * [Untitled](lian-xi/untitled.md)
+  * [Group Anagrams](lian-xi/untitled.md)
   * [Maximal Rectangle](lian-xi/maximal-rectangle.md)
   * [Number Complement](lian-xi/number-complement.md)
   * [Maximum XOR of Two Numbers in an Array](lian-xi/maximum-xor-of-two-numbers-in-an-array.md)

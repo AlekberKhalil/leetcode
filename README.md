@@ -28,3 +28,5 @@
 
 [https://seangone.gitbooks.io/sean-s-cheatsheet/content/system-design/intro.html](https://seangone.gitbooks.io/sean-s-cheatsheet/content/system-design/intro.html) 别人刷题笔记
 
+[https://zxi.mytechroad.com/blog/algorithms/binary-search/sp5-binary-search/](https://zxi.mytechroad.com/blog/algorithms/binary-search/sp5-binary-search/) 花花
+

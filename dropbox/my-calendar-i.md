@@ -29,6 +29,50 @@ The third event can be booked, as the first event takes every time less than 20,
 
 分析
 
+用BST做，加入 Node 的規則是: If curr node.start &gt;= new event.end, go left If curr node.end &lt;= new event.start, go right no way out, so there is a conflict
+
+```text
+class Node:
+    def __init__(self,s,e):        
+        self.s = s
+        self.e = e
+        self.left = None
+        self.right = None
+    
+class MyCalendar:
+
+    def __init__(self):
+        self.root = None
+        
+    def helper(self, s: int, e: int, node: Node)->bool:
+        if s >= node.e:
+            if node.right:
+                return self.helper(s,e,node.right)                
+            else:
+                node.right = Node(s,e)
+                return True
+        elif e <= node.s:
+            if node.left:
+                return self.helper(s,e,node.left)                
+            else:
+                node.left = Node(s,e)
+                return True
+        else:
+            return False
+        
+    def book(self, start: int, end: int) -> bool:
+        if not self.root:
+            self.root = Node(start,end)
+            return True
+        return self.helper(start,end,self.root)
+        
+
+
+# Your MyCalendar object will be instantiated and called as such:
+# obj = MyCalendar()
+# param_1 = obj.book(start,end)
+```
+
 初始化必须treeset。 lambda多参数要括号
 
 ```text
