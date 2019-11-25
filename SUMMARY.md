@@ -87,6 +87,7 @@
   * [3Sum Smaller](high-frequency/3sum-smaller.md)
   * [Best Time to Buy and Sell Stock with Cooldown](high-frequency/best-time-to-buy-and-sell-stock-with-cooldown.md)
 * [练习](lian-xi/README.md)
+  * [Find K Closest Elements](lian-xi/find-k-closest-elements.md)
   * [Text Justification](lian-xi/text-justification.md)
   * [Group Anagrams](lian-xi/untitled.md)
   * [Maximal Rectangle](lian-xi/maximal-rectangle.md)
