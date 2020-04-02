@@ -89,3 +89,30 @@ class Solution {
     }
 ```
 
+python, 注意是cols\[j\] 不是cols\[i\]
+
+```text
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        N=9
+        cols = [0]*9
+        blocks = [0]*9
+        for i in range(N):
+            row = 0
+            for j in range(N):
+                col = cols[j]
+                block = blocks[i//3 * 3 + j//3]
+                if board[i][j] != '.':
+                    bit = 1 << int(board[i][j])
+                    if row&bit or col&bit or block&bit:
+                        return False
+                    row|=bit
+                    cols[j]|=bit
+                    blocks[i//3 * 3 + j//3]|=bit
+        return True
+                    
+                
+            
+        
+```
+
