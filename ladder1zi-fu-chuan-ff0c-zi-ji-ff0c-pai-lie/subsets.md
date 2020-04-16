@@ -24,9 +24,45 @@ If**nums**=`[1,2,3]`, a solution is:
 
 和permutation比较，每次for loop从pos开始，因为不在乎顺序。所以pos起可以防止重复。
 
-1.在dfs里Loop，不是在总函数里，记得加空集。等于是每层枚举可能性，一种是不取，另一种是取for loop里一个
+1.在dfs里Loop，不是在总函数里，记得加空集。等于是每层枚举可能性，一种是不取，另一种是取for loop里一个。for loop理解为从起点起，跳入后面某个点继续，所以总要记录到达的点pos（新起点）
 
 2.不需要等Pos == nums.length再加入ret， 因为集合数目不定
+
+python
+
+```text
+
+class Solution:
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res =[]
+        n = len(nums)
+        def dfs(pos, path):
+            res.append(path)
+            for i in range(pos,n):
+                dfs(i+1,path+[nums[i]])#注意是i+1
+        dfs(0,[])
+        return res
+            
+        
+```
+
+```text
+
+#直接用itertools.combinations
+class Solution:
+    
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res =[]
+        n = len(nums)
+        for i in range(n+1):
+            res.extend(itertools.combinations(nums,i))
+        return res
+            
+        
+```
+
+Java
 
 ```text
 new 一个的原因在于 list 是可变对象，你加进去的时候只是指向对象的引用。
