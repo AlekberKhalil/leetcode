@@ -32,6 +32,22 @@ dfs或者brute force，就是对于每个格子，loop 1-9尝试放入，然后�
 
 string.digits去掉0，本身就是char，不需要str\(i\)
 
+2种块坐标表达法
+
+x,y都是到block的初始点，然后+offset 0-3
+
+```text
+int row = i - i%3, column = j - j%3;
+x,y range(3)
+ if(board[row+x][column+y] == val) return false;
+ 
+ i range(9)
+ int blkrow = (row / 3) * 3, blkcol = (col / 3) * 3; 
+ board[blkrow + i / 3][blkcol + i % 3] == num
+```
+
+
+
 ```text
 
 class Solution:

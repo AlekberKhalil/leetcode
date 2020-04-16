@@ -48,37 +48,7 @@ Binary tree
 
 分析
 
-iterative
-
-```text
-# Definition for a binary tree node.
-# class TreeNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.left = None
-#         self.right = None
-
-class Solution:
-    def isValidBST(self, root: TreeNode) -> bool:
-        if not root:
-            return True
-        cur = root
-        s= []
-        pre = None
-        while cur or s:
-            while cur:
-                s.append(cur)
-                cur = cur.left
-            cur = s.pop()
-            if pre and pre.val >= cur.val:
-                return False
-            pre = cur
-            cur = cur.right
-        return True
-            
-```
-
-recursive: int 不够，需要long Long.MAX\_\_VALUE, Lo\_ng.MIN\_VALUE
+int 不够，需要long Long.MAX\_\_VALUE, Lo\_ng.MIN\_VALUE
 
 ```text
 class Solution {

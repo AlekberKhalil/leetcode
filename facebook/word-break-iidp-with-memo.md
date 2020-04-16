@@ -42,7 +42,7 @@ class Solution:
 
         for i in range(len(s)):
             if s[:i+1] in wordDict:
-                ns = s[i+1:]  #i+1这里，loop处理每个i
+                ns = s[i+1:]
                 c= "" if ns=="" else " "
                 res += [s[:i+1] +c+ x for x in self.dfs(ns, wordDict,cache)]
         cache[s] = res
