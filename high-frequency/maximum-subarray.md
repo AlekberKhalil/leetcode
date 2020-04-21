@@ -18,6 +18,8 @@ Given an array of integers, find a contiguous subarray which has the largest sum
 
 解法：
 
+注意此处minSUM要在ret后更新，并且注意3个变量的初始值。
+
 ```text
 public int maxSubArray(int[] nums) {
         // write your code
